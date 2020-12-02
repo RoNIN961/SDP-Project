@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login.dart';
+import 'profile.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -13,26 +14,7 @@ class _HomeState extends State<Home> {
   final List<Widget> _children = [
     Column(children: <Widget>[Text('hey'), Text('wazzup'), Text('aye man')]),
     Column(children: <Widget>[Text('guten'), Text('morgend')]),
-    ListView(
-      padding: const EdgeInsets.all(8),
-      children: <Widget>[
-        Container(
-          height: 50,
-          color: Colors.amber[600],
-          child: const Center(child: Text('Entry A')),
-        ),
-        Container(
-          height: 50,
-          color: Colors.amber[500],
-          child: const Center(child: Text('Entry B')),
-        ),
-        Container(
-          height: 50,
-          color: Colors.amber[100],
-          child: const Center(child: Text('Entry C')),
-        ),
-      ],
-    )
+    ProfilePage()
   ];
 
   @override
