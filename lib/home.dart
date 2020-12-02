@@ -12,7 +12,28 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    Column(children: <Widget>[Text('hey'), Text('wazzup'), Text('aye man')]),
+    Card(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Image.asset('logo.png'),
+          const ListTile(
+            title: Text('Recipe Name'),
+            subtitle: Text('Author Name'),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              TextButton(
+                child: const Text('View'),
+                onPressed: () {/* ... */},
+              ),
+              const SizedBox(width: 8),
+            ],
+          ),
+        ],
+      ),
+    ),
     Column(children: <Widget>[Text('guten'), Text('morgend')]),
     ProfilePage()
   ];
