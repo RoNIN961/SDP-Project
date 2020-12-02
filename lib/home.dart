@@ -16,9 +16,7 @@ class _HomeState extends State<Home> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Container(
-            Image.asset('logo.png'),
-          ),
+          Image.asset('logo.png'),
           const ListTile(
             title: Text('Recipe Name'),
             subtitle: Text('Author Name'),
