@@ -23,7 +23,7 @@ class _RegisterPageState extends State<RegisterPage> {
       child: TextField(
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
-          hintText: 'Username',
+          hintText: 'User',
           contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(50.0)
