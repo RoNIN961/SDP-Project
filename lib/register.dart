@@ -100,7 +100,7 @@ class _RegisterPageState extends State<RegisterPage> {
               inputEmail,
               inputPassword,
               inputConfirmPassword,
-              buttonRegister,
+              buttonRegister,//test
             ],
           ),
         ),
