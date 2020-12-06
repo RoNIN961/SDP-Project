@@ -20,7 +20,10 @@ Widget build(BuildContext context) {
               children: <Widget>[
                 TextButton(
                  child: const Text('View'),
-                  onPressed: () {/* ... */},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context, MaterialPageRoute(builder: (context) => RecipeScreen()));
+              },
                 ),
                 const SizedBox(width: 8),
               ],

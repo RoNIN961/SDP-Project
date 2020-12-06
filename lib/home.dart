@@ -24,10 +24,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(title: Text('My Flutter App'), actions: <Widget>[
         FlatButton(
-          onPressed: () {
-             Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => RecipeScreen()));
-          },
+          onPressed: () {},
           child: Text("Check Points"),
         )
       ]),
