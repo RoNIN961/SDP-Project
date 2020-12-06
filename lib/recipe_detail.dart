@@ -30,7 +30,8 @@ class RecipeScreen extends StatelessWidget {
         Expanded(
           flex: 6,
           child: Column(
-            padding: EdgeInsets.all(20),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             child: <Widget>[
                 Text('Ingredient 1'),
                 Text('Ingredient 2')
