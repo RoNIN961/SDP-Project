@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'recipe.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class RecipeScreen extends StatefulWidget {
   final String mealType;
