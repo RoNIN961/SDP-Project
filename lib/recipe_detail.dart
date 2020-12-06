@@ -9,7 +9,6 @@ class RecipeScreen extends StatelessWidget {
           flex: 2,
           child: Container(
               padding: EdgeInsets.all(20),
-              color: Colors.orange,
               width: double.infinity,
               child: Text(
                 "Recipe Name ",
@@ -32,11 +31,9 @@ class RecipeScreen extends StatelessWidget {
           flex: 6,
           child: Container(
             padding: EdgeInsets.all(20),
-            color: Colors.black12,
-            //width: double.infinity,
-            child: Text(
-                'Ingredients 1\n- Ingredients 2' +
-                    'Ingredients 3',
+            child: Column(
+                Text('Ingredient 1'),
+                Text('Ingredient 2'),
                 style: (TextStyle(fontSize: 20)),
                 textAlign: TextAlign.justify),
           ),
