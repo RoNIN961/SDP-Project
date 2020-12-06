@@ -34,8 +34,6 @@ class RecipeScreen extends StatelessWidget {
             child: <Widget>[
                 Text('Ingredient 1'),
                 Text('Ingredient 2')
-                style: (TextStyle(fontSize: 20)),
-                textAlign: TextAlign.justify
             ],
           ),
         ),
