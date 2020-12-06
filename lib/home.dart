@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'login.dart';
 import 'profile.dart';
 import 'homecontent.dart';
-import 'recipe_detail.dart';
 
 class Home extends StatefulWidget {
   @override
