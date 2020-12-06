@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'login.dart';
 import 'profile.dart';
 import 'homecontent.dart';
+import 'detail.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -24,7 +25,8 @@ class _HomeState extends State<Home> {
       appBar: AppBar(title: Text('My Flutter App'), actions: <Widget>[
         FlatButton(
           onPressed: () {
-            /*...*/
+             Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => DetailScreen()));
           },
           child: Text("Check Points"),
         )
