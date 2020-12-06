@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'recipe.dart';
+import 'recipe_model.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class RecipeScreen extends StatefulWidget {
