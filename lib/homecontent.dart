@@ -28,6 +28,7 @@ Widget build(BuildContext context) {
           ],
         ),
       ),
+      ],
     ),
     ),
   ),
