@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:recipes_app/model/recipe.dart';
-import 'package:recipes_app/ui/widgets/recipe_title.dart';
-import 'package:recipes_app/model/state.dart';
-import 'package:recipes_app/state_widget.dart';
-import 'package:recipes_app/utils/store.dart';
-import 'package:recipes_app/ui/widgets/recipe_image.dart';
+import 'recipe.dart';
+import 'recipe_title.dart';
+import 'recipe_image.dart';
 
 class DetailScreen extends StatefulWidget {
   final Recipe recipe;
