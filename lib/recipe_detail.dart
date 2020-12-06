@@ -1,16 +1,6 @@
 import 'package:flutter/material.dart';
-import 'recipe_model.dart';
 
 class RecipeScreen extends StatefulWidget {
-  final Recipe recipe;
-
-  RecipeScreen({this.mealType, this.recipe});
-  
-  @override
-  _RecipeScreenState createState() => _RecipeScreenState();
-}
-
-class _RecipeScreenState extends State<RecipeScreen> {
   @override
   Widget build(BuildContext context) {
     return Column(
