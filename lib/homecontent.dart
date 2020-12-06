@@ -31,6 +31,6 @@ Widget build(BuildContext context) {
       ],
     ),
     ),
-  ),
+  );
 }
 }
