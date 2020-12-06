@@ -35,7 +35,7 @@ class RecipeScreen extends StatefulWidget {
             color: Colors.black12,
             //width: double.infinity,
             child: Text(
-                'Ingredients 1\n-               Ingredients 2' +
+                'Ingredients 1\n- Ingredients 2' +
                     'Ingredients 3',
                 style: (TextStyle(fontSize: 20)),
                 textAlign: TextAlign.justify),
