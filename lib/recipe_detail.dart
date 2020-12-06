@@ -29,13 +29,14 @@ class RecipeScreen extends StatelessWidget {
         ),
         Expanded(
           flex: 6,
-          child: Container(
+          child: Column(
             padding: EdgeInsets.all(20),
-            child: Column(
+            child: Widget[
                 Text('Ingredient 1'),
-                Text('Ingredient 2'),
+                Text('Ingredient 2')
                 style: (TextStyle(fontSize: 20)),
-                textAlign: TextAlign.justify),
+                textAlign: TextAlign.justify
+            ],
           ),
         ),
       ],
