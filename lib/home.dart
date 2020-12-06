@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'login.dart';
 import 'profile.dart';
 import 'homecontent.dart';
-import 'detail.dart';
+import 'recipe_detail.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
         FlatButton(
           onPressed: () {
              Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => DetailScreen()));
+              context, MaterialPageRoute(builder: (context) => RecipeScreen()));
           },
           child: Text("Check Points"),
         )
