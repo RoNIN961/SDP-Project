@@ -34,22 +34,22 @@ class _RecipeScreenState extends State<RecipeScreen> {
           Text('Ingredients'),
           Text('Steps'),
           _children[_currentIndex],
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: onTabTapped, // new
-        currentIndex: _currentIndex, // new
-        items: [
-          new BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home'),
+          BottomNavigationBar(
+            onTap: onTabTapped, // new
+            currentIndex: _currentIndex, // new
+            items: [
+              new BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                title: Text('Home'),
+              ),
+              new BottomNavigationBarItem(
+                icon: Icon(Icons.mail),
+                title: Text('Messages'),
+              ),
+              new BottomNavigationBarItem(
+                  icon: Icon(Icons.person), title: Text('Profile'))
+            ],
           ),
-          new BottomNavigationBarItem(
-            icon: Icon(Icons.mail),
-            title: Text('Messages'),
-          ),
-          new BottomNavigationBarItem(
-              icon: Icon(Icons.person), title: Text('Profile'))
         ],
       ),
     );
