@@ -9,6 +9,7 @@ class RecipeScreen extends StatefulWidget {
 class _RecipeScreenState extends State<RecipeScreen> {
   @override
   Widget build(BuildContext context) {
+    Home();
     return Scaffold(
       body: Column(
         children: <Widget>[
