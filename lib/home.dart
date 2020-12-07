@@ -35,9 +35,9 @@ class _HomeState extends State<Home> {
         currentIndex: _currentIndex, // new
         items: [
           new BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home'),
-          ),
+              icon: Icon(Icons.home),
+              title: Text('Home'),
+              backgroundColor: Colors.blue),
           new BottomNavigationBarItem(
             icon: Icon(Icons.search),
             title: Text('Search'),
