@@ -6,7 +6,7 @@ class RecipeScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          Text('Name'),
+          Text('Name', style: TextStyle(fontWeight: FontWeight.bold)),
           Expanded(
             child: FittedBox(
               fit: BoxFit.contain,
