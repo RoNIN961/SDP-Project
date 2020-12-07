@@ -13,7 +13,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    HomeContentPage(), 
+    HomeContentPage(),
     Column(children: <Widget>[Text('guten'), Text('morgend')]),
     ProfilePage()
   ];
@@ -53,4 +53,3 @@ class _HomeState extends State<Home> {
     });
   }
 }
-
