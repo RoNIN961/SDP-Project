@@ -15,7 +15,9 @@ class _HomeState extends State<Home> {
   final List<Widget> _children = [
     HomeContentPage(),
     Column(children: <Widget>[Text('guten'), Text('morgend')]),
-    ProfilePage()
+    ProfilePage(),
+    Text('Restaurants'),
+    Text('Settings')
   ];
 
   @override
