@@ -12,8 +12,6 @@ class RecipeScreen extends StatelessWidget {
               width: double.infinity,
               child: Text(
                 "Recipe Name ",
-                textScaleFactor: 2,
-                style: (TextStyle(fontSize: 20)),
                 textAlign: TextAlign.center,
               )),
         ),
@@ -21,7 +19,7 @@ class RecipeScreen extends StatelessWidget {
           flex: 6,
           child: Container(
             width: double.infinity,
-            child: Image.network(
+            child: Image.asset(
               'logo.png',
               fit: BoxFit.fill,
             ),
