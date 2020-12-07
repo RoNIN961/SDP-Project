@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
           tag: 'hero',
           child: CircleAvatar(
             radius: 56.0,
-            child: Image.asset('assets/logo.png'),
+            child: Image.asset('assets/login_logo.png'),
           )),
     );
     final inputEmail = Padding(
