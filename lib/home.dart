@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'login.dart';
 import 'profile.dart';
 import 'homecontent.dart';
+import 'restaurant.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class _HomeState extends State<Home> {
     HomeContentPage(),
     Column(children: <Widget>[Text('guten'), Text('morgend')]),
     ProfilePage(),
-    Text('Restaurants'),
+    RestaurantPage(),
     Text('Settings')
   ];
 
