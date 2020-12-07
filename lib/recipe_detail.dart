@@ -18,7 +18,13 @@ class _RecipeScreenState extends State<RecipeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      appBar: AppBar(title: Text('My Flutter App'), actions: <Widget>[
+        FlatButton(
+          onPressed: () {},
+          child: Text("Check Points"),
+        )
+      ]),
+      body: ListView(
         children: <Widget>[
           Center(
               child: Text(
@@ -33,27 +39,29 @@ class _RecipeScreenState extends State<RecipeScreen> {
           ),
           Text('Ingredients'),
           Text('Steps'),
-          _children[_currentIndex],
-          BottomNavigationBar(
-            onTap: onTabTapped, // new
-            currentIndex: _currentIndex, // new
-            items: [
-              new BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                title: Text('Home'),
-              ),
-              new BottomNavigationBarItem(
-                icon: Icon(Icons.mail),
-                title: Text('Messages'),
-              ),
-              new BottomNavigationBarItem(
-                  icon: Icon(Icons.person), title: Text('Profile'))
-            ],
+        ],
+      ),
+      bottomSheet: _children[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: onTabTapped, // new
+        currentIndex: _currentIndex, // new
+        items: [
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Home'),
           ),
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.mail),
+            title: Text('Messages'),
+          ),
+          new BottomNavigationBarItem(
+              icon: Icon(Icons.person), title: Text('Profile'))
         ],
       ),
     );
   }
+
+  void buildWidget() => widget;
 
   void onTabTapped(int index) {
     setState(() {
