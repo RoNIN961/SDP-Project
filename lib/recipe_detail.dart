@@ -8,7 +8,7 @@ class RecipeScreen extends StatelessWidget {
         children: <Widget>[
           Text(
             'Name',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50),
           ),
           Expanded(
             child: FittedBox(
