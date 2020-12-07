@@ -7,7 +7,12 @@ class RecipeScreen extends StatelessWidget {
       body: Column(
         children: <Widget>[
           Text('Name'),
-          Image.asset('logo.png'),
+          Expanded(
+            child: FittedBox(
+              Image.asset('logo.png'),
+              fit: BoxFit.contain,
+            ),
+          ),
           Text('Ingredients'),
           Text('Steps'),
         ],
