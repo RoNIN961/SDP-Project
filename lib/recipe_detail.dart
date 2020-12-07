@@ -10,7 +10,9 @@ class RecipeScreen extends StatelessWidget {
             'Name',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50),
           ),
-          Expanded(
+          Container(
+            width: 80.0,
+            height: 80.0,
             child: FittedBox(
               fit: BoxFit.contain,
               child: Image.asset('logo.png'),
