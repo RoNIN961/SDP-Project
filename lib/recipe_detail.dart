@@ -18,7 +18,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      Column(
         children: <Widget>[
           Center(
               child: Text(
@@ -35,6 +35,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
           Text('Steps'),
         ],
       ),
+      body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped, // new
         currentIndex: _currentIndex, // new
