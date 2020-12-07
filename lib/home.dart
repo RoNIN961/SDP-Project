@@ -37,11 +37,19 @@ class _HomeState extends State<Home> {
             title: Text('Home'),
           ),
           new BottomNavigationBarItem(
-            icon: Icon(Icons.mail),
-            title: Text('Messages'),
+            icon: Icon(Icons.search),
+            title: Text('Search'),
           ),
           new BottomNavigationBarItem(
-              icon: Icon(Icons.person), title: Text('Profile'))
+            icon: Icon(Icons.account_circle),
+            title: Text('Profile'),
+          ),
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.restaurant_menu),
+            title: Text('Restaurants'),
+          ),
+          new BottomNavigationBarItem(
+              icon: Icon(Icons.menu), title: Text('Settings'))
         ],
       ),
     );
