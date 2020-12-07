@@ -33,6 +33,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
           ),
           Text('Ingredients'),
           Text('Steps'),
+          _children[_currentIndex],
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
