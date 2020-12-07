@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'homecontent.dart';
+import 'profile.dart';
 
 class RecipeScreen extends StatefulWidget {
   @override
@@ -6,6 +8,13 @@ class RecipeScreen extends StatefulWidget {
 }
 
 class _RecipeScreenState extends State<RecipeScreen> {
+  int _currentIndex = 0;
+  final List<Widget> _children = [
+    HomeContentPage(),
+    Column(children: <Widget>[Text('guten'), Text('morgend')]),
+    ProfilePage()
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +35,28 @@ class _RecipeScreenState extends State<RecipeScreen> {
           Text('Steps'),
         ],
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: onTabTapped, // new
+        currentIndex: _currentIndex, // new
+        items: [
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Home'),
+          ),
+          new BottomNavigationBarItem(
+            icon: Icon(Icons.mail),
+            title: Text('Messages'),
+          ),
+          new BottomNavigationBarItem(
+              icon: Icon(Icons.person), title: Text('Profile'))
+        ],
+      ),
     );
+  }
+
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index; //test
+    });
   }
 }
