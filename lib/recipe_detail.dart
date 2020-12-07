@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
 
 class RecipeScreen extends StatefulWidget {
   @override
@@ -9,7 +8,6 @@ class RecipeScreen extends StatefulWidget {
 class _RecipeScreenState extends State<RecipeScreen> {
   @override
   Widget build(BuildContext context) {
-    Home();
     return Scaffold(
       body: Column(
         children: <Widget>[
