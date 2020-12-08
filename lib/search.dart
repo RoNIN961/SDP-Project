@@ -23,7 +23,8 @@ class SearchPage extends StatelessWidget {
                       hintText: 'Search',
                       prefixIcon: Icon(Icons.search),
                       border: OutlineInputBorder(
-                          borderRadius: Border.all(Radius.circular(25.0)))),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(25.0)))),
                 ))
           ],
         )));
