@@ -3,7 +3,7 @@ import 'login.dart';
 import 'profile.dart';
 import 'homecontent.dart';
 import 'restaurant.dart';
-import 'serach.dart';
+import 'search.dart';
 
 class Home extends StatefulWidget {
   @override
