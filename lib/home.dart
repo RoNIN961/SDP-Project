@@ -3,6 +3,7 @@ import 'login.dart';
 import 'profile.dart';
 import 'homecontent.dart';
 import 'restaurant.dart';
+import 'serach.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     HomeContentPage(),
-    Column(children: <Widget>[Text('guten'), Text('morgend')]),
+    SearchPage(),
     ProfilePage(),
     RestaurantPage(),
     Text('Settings')
