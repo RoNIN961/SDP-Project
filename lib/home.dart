@@ -33,28 +33,30 @@ class _HomeState extends State<Home> {
       ]),
       body: _children[_currentIndex], // new
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.blue,
         onTap: onTabTapped, // new
         currentIndex: _currentIndex, // new
         items: [
           new BottomNavigationBarItem(
             icon: Icon(Icons.home),
             title: Text('Home'),
+            backgroundColor: Colors.blue,
           ),
           new BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            title: Text('Search'),
-          ),
+              icon: Icon(Icons.search),
+              title: Text('Search'),
+              backgroundColor: Colors.blue),
           new BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            title: Text('Profile'),
-          ),
+              icon: Icon(Icons.account_circle),
+              title: Text('Profile'),
+              backgroundColor: Colors.blue),
           new BottomNavigationBarItem(
-            icon: Icon(Icons.restaurant_menu),
-            title: Text('Restaurants'),
-          ),
+              icon: Icon(Icons.restaurant_menu),
+              title: Text('Restaurants'),
+              backgroundColor: Colors.blue),
           new BottomNavigationBarItem(
-              icon: Icon(Icons.menu), title: Text('Settings'))
+              icon: Icon(Icons.menu),
+              title: Text('Settings'),
+              backgroundColor: Colors.blue)
         ],
       ),
     );
