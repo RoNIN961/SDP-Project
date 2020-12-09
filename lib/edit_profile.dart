@@ -57,9 +57,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
     return Scaffold(
         body: SafeArea(
             child: Column(children: <Widget>[
-              profilePic,
+              profilePicture,
               changeProfilePic,
-              inputEmail
+              inputEmail,
+              saveChanges
     ])));
   }
 }
