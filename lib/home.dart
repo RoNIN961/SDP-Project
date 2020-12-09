@@ -40,24 +40,24 @@ class _HomeState extends State<Home> {
           new BottomNavigationBarItem(
             icon: Icon(Icons.home),
             title: Text('Home'),
-            backgroundColor: Colors.blue,
+            backgroundColor: Colors.deepOrange,
           ),
           new BottomNavigationBarItem(
               icon: Icon(Icons.search),
               title: Text('Search'),
-              backgroundColor: Colors.blue),
+              backgroundColor: Colors.deepOrange,),
           new BottomNavigationBarItem(
               icon: Icon(Icons.account_circle),
               title: Text('Profile'),
-              backgroundColor: Colors.blue),
+              backgroundColor: Colors.deepOrange,),
           new BottomNavigationBarItem(
               icon: Icon(Icons.restaurant_menu),
               title: Text('Restaurants'),
-              backgroundColor: Colors.blue),
+              backgroundColor: Colors.deepOrange,),
           new BottomNavigationBarItem(
               icon: Icon(Icons.menu),
               title: Text('Settings'),
-              backgroundColor: Colors.blue)
+              backgroundColor: Colors.deepOrange,)
         ],
       ),
     );
