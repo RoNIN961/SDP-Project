@@ -71,7 +71,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
             style: TextStyle(fontSize: 10.0, color: Colors.grey),
           ),
           inputEmail,
-          saveChanges
+          saveChanges,
+          BackButton()
         ])));
   }
 }
