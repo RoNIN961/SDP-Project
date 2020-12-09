@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
-class SearchPage extends StatelessWidget {
+class SearchPage extends StatefulWidget {
   @override
+    State<StatefulWidget> createState() {
+    return _SearchPageState();
+  }
+}
+
+class _SearchPageState extends State<SearchPage>{
+  final duplicateItems = List<String>.generate(20, (i) => "Item $i");
+  var items = List<String>();
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
@@ -18,7 +26,18 @@ class SearchPage extends StatelessWidget {
                   prefixIcon: Icon(Icons.search),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(25.0)))),
-            ))
+            )),
+            Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: items.length,
+                itemBuilder: (context,index) {
+                  return ListTile(
+                    title: Text('${items[index]}'),
+                  )
+                },
+              ),
+            ),
       ],
     )));
   }
