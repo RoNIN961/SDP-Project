@@ -33,13 +33,14 @@ class _HomeState extends State<Home> {
       ]),
       body: _children[_currentIndex], // new
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.blue,
         onTap: onTabTapped, // new
         currentIndex: _currentIndex, // new
         items: [
           new BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              title: Text('Home'),
-              backgroundColor: Colors.blue),
+            icon: Icon(Icons.home),
+            title: Text('Home'),
+          ),
           new BottomNavigationBarItem(
             icon: Icon(Icons.search),
             title: Text('Search'),
