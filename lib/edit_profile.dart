@@ -56,14 +56,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       ),
     );
     return Scaffold(
-        appBar: AppBar(actions: <Widget>[
-          BackButton(
-            onPressed: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => ProfilePage()));
-            },
-          ),
-          Text('My Flutter App', textAlign: TextAlign.center),
+        appBar: AppBar(title: Text('My Flutter App'), actions: <Widget>[
           FlatButton(
             onPressed: () {},
             child: Text("Check Points"),
