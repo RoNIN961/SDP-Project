@@ -120,7 +120,7 @@ class ProfilePage extends StatelessWidget {
                     ),
                     alignment: Alignment.center,
                     child: Text(
-                      "See All Recipes",
+                      "Recipes",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 12.0,
