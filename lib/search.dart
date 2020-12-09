@@ -10,6 +10,13 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   final duplicateItems = List<String>.generate(20, (i) => "Item $i");
   var items = List<String>();
+
+  @override
+  void initState() {
+    items.addAll(duplicateItems);
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
