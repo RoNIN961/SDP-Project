@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class SearchPage extends StatefulWidget {
+class UserRecipePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _SearchPageState();
+    return _UserRecipePageState();
   }
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _UserRecipePageState extends State<UserRecipePage> {
   final duplicateItems = List<String>.generate(20, (recipe) => "Item $recipe");
   var items = List<String>();
 
