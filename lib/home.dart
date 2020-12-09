@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'settings.dart';
 import 'login.dart';
 import 'profile.dart';
 import 'homecontent.dart';
@@ -19,7 +20,7 @@ class _HomeState extends State<Home> {
     SearchPage(),
     ProfilePage(),
     RestaurantPage(),
-    Text('Settings')
+    SettingsPage()
   ];
 
   @override
