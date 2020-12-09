@@ -63,7 +63,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   MaterialPageRoute(builder: (context) => ProfilePage()));
             },
           ),
-          Text('My Flutter App'),
+          Text('My Flutter App', textAlign: TextAlign.center),
           FlatButton(
             onPressed: () {},
             child: Text("Check Points"),
