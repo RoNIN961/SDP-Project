@@ -10,7 +10,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     final profilePicture = Container(
-      alignment: Alignment(1.0, 2.5),
+      alignment: Alignment(0.0, 3.0),
       child: CircleAvatar(
         backgroundImage: NetworkImage("Add you profile DP image URL here "),
         radius: 60.0,
