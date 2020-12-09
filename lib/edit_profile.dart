@@ -55,6 +55,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
       ),
     );
     return Scaffold(
+      appBar: AppBar(title: Text('My Flutter App'), actions: <Widget>[
+        FlatButton(
+          onPressed: () {},
+          child: Text("Check Points"),
+        )
+      ]),
         body: SafeArea(
             child: Column(children: <Widget>[
               profilePicture,
