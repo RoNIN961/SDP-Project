@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sdp_project/profile.dart';
 import 'home.dart';
 
 class EditProfilePage extends StatefulWidget {
@@ -56,6 +57,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
     return Scaffold(
         appBar: AppBar(title: Text('My Flutter App'), actions: <Widget>[
+          BackButton(
+            onPressed: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => ProfilePage()));
+            },
+          ),
           FlatButton(
             onPressed: () {},
             child: Text("Check Points"),
@@ -72,7 +79,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
           ),
           inputEmail,
           saveChanges,
-          BackButton()
         ])));
   }
 }
