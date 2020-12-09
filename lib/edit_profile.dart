@@ -21,9 +21,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
           child: Text(
             'Change Your Profile Picture',
             style: TextStyle(
-                fontSize: 25.0,
+                fontSize: 10.0,
                 color: Colors.blueAccent,
-                letterSpacing: 2.0,
+                letterSpacing: 1.5,
                 fontWeight: FontWeight.w400),
           ));
       final inputEmail = Padding(
