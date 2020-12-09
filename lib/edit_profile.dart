@@ -10,23 +10,23 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     final profilePicture = Container(
-        alignment: Alignment(0.0, 2.5),
-        child: CircleAvatar(
-          backgroundImage: NetworkImage("Add you profile DP image URL here "),
-          radius: 60.0,
-        ),
-      );
+      alignment: Alignment(0.0, 2.5),
+      child: CircleAvatar(
+        backgroundImage: NetworkImage("Add you profile DP image URL here "),
+        radius: 60.0,
+      ),
+    );
     final changeProfilePic = FlatButton(
-          onPressed: () {},
-          child: Text(
-            'Change Your Profile Picture',
-            style: TextStyle(
-                fontSize: 10.0,
-                color: Colors.blueAccent,
-                letterSpacing: 1.5,
-                fontWeight: FontWeight.w400),
-          ));
-      final inputEmail = Padding(
+        onPressed: () {},
+        child: Text(
+          'Change Your Profile Picture',
+          style: TextStyle(
+              fontSize: 10.0,
+              color: Colors.blueAccent,
+              letterSpacing: 1.5,
+              fontWeight: FontWeight.w400),
+        ));
+    final inputEmail = Padding(
       padding: EdgeInsets.only(bottom: 10),
       child: TextField(
         keyboardType: TextInputType.emailAddress,
@@ -55,18 +55,22 @@ class _EditProfilePageState extends State<EditProfilePage> {
       ),
     );
     return Scaffold(
-      appBar: AppBar(title: Text('My Flutter App'), actions: <Widget>[
-        FlatButton(
-          onPressed: () {},
-          child: Text("Check Points"),
-        )
-      ]),
+        appBar: AppBar(title: Text('My Flutter App'), actions: <Widget>[
+          FlatButton(
+            onPressed: () {},
+            child: Text("Check Points"),
+          )
+        ]),
         body: SafeArea(
             child: Column(children: <Widget>[
-              profilePicture,
-              changeProfilePic,
-              inputEmail,
-              saveChanges
-    ])));
+          profilePicture,
+          changeProfilePic,
+          Text(
+            'Email',
+            style: TextStyle(fontSize: 10.0, color: Colors.grey),
+          ),
+          inputEmail,
+          saveChanges
+        ])));
   }
 }
