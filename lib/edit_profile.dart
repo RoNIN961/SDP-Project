@@ -67,6 +67,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           changeProfilePic,
           Text(
             'Email',
+            textAlign: TextAlign.left,
             style: TextStyle(fontSize: 10.0, color: Colors.grey),
           ),
           inputEmail,
