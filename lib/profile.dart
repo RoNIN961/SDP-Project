@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sdp_project/edit_profile.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -130,7 +131,12 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               RaisedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => EditProfilePage()));
+                },
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(80.0),
                 ),
