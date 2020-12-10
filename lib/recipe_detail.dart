@@ -10,13 +10,21 @@ class _RecipeScreenState extends State<RecipeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(actions: <Widget>[
-        BackButton(
-          onPressed: () {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => Home()));
-          },
-        ),
+      appBar: AppBar(
+          leading: BackButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => Home()));
+            },
+          ),
+          title: Text('My Flutter App'),
+          actions: <Widget>[
+            FlatButton(
+              onPressed: () {},
+              child: Text("Check Points"),
+            )
+          ]),
+        actions: <Widget>[
         FlatButton(
           onPressed: () {},
           child: Text("Check Points"),
