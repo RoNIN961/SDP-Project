@@ -13,13 +13,20 @@ class CheckPointsPage extends StatelessWidget {
             },
           ),
         ),
-        body: Container(
-          height: 300,
-          width: 300,
-          margin: EdgeInsets.all(100.0),
-          child: Text('Check your points here'),
-          decoration:
-              BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
-        ));
+        body: Stack(children: <Widget>[
+          Container(
+            height: 500,
+          ),
+          Positioned(
+              bottom: 0,
+              child: Container(
+                height: 500,
+                width: 500,
+                margin: EdgeInsets.all(100.0),
+                decoration:
+                    BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
+              )),
+          Positioned(bottom: 40, child: Text('Your Points Here'))
+        ]));
   }
 }
