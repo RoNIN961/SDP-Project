@@ -18,7 +18,7 @@ class CheckPointsPage extends StatelessWidget {
             height: 500,
           ),
           Positioned(
-              right: 40,
+              right: 50,
               child: Container(
                 height: 100,
                 width: 100,
@@ -26,7 +26,7 @@ class CheckPointsPage extends StatelessWidget {
                 decoration:
                     BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
               )),
-          Positioned(right: 40, child: Text('Your Points Here'))
+          Positioned(bottom: 40, right: 20, child: Text('Your Points Here'))
         ]));
   }
 }
