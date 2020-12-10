@@ -19,7 +19,7 @@ class CheckPointsPage extends StatelessWidget {
           margin: EdgeInsets.all(100.0),
           decoration:
               BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
-          child: Text('Check your points here', textAlign: TextAlign.center),
+          child: Text('Check your points here'),
         ));
   }
 }
