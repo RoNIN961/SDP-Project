@@ -14,12 +14,12 @@ class CheckPointsPage extends StatelessWidget {
           ),
         ),
         body: Container(
-          height: 100.0,
-          width: 100.0,
+          height: 300,
+          width: 300,
           margin: EdgeInsets.all(100.0),
           decoration:
               BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
-          child: Text('Check your points here'),
+          child: Text('Check your points here', textAlign: TextAlign.center),
         ));
   }
 }
