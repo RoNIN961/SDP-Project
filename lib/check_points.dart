@@ -17,15 +17,13 @@ class CheckPointsPage extends StatelessWidget {
           Container(
             height: 400,
           ),
-          Positioned(
-              bottom: 0,
-              child: Container(
-                height: 200,
-                width: 200,
-                decoration:
-                    BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
-              )),
-          Positioned(bottom: 40, child: Text('Your Points Here'))
+          Container(
+            height: 200,
+            width: 200,
+            decoration:
+                BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
+          ),
+          Container(child: Text('Your Points Here'))
         ]));
   }
 }
