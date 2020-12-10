@@ -14,9 +14,6 @@ class CheckPointsPage extends StatelessWidget {
           ),
         ),
         body: Stack(children: <Widget>[
-          Container(
-            height: 500,
-          ),
           Positioned(
               right: 50,
               child: Container(
