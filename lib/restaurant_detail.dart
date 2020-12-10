@@ -10,18 +10,20 @@ class _RestaurantContent extends State<RestaurantContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(actions: <Widget>[
-        BackButton(
-          onPressed: () {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => Home()));
-          },
-        ),
-        FlatButton(
-          onPressed: () {},
-          child: Text("Check Points"),
-        )
-      ]),
+      appBar: AppBar(
+          leading: BackButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => Home()));
+            },
+          ),
+          title: Text('My Flutter App'),
+          actions: <Widget>[
+            FlatButton(
+              onPressed: () {},
+              child: Text("Check Points"),
+            )
+          ]),
       body: Column(
         children: <Widget>[
           Image.network(''),
