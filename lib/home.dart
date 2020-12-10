@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sdp_project/check_points.dart';
 import 'settings.dart';
 import 'login.dart';
 import 'profile.dart';
@@ -28,7 +29,10 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(title: Text('My Flutter App'), actions: <Widget>[
         FlatButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => CheckPointsPage()));
+          },
           child: Text("Check Points"),
         )
       ]),
@@ -43,21 +47,25 @@ class _HomeState extends State<Home> {
             backgroundColor: Colors.deepOrange,
           ),
           new BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              title: Text('Search'),
-              backgroundColor: Colors.deepOrange,),
+            icon: Icon(Icons.search),
+            title: Text('Search'),
+            backgroundColor: Colors.deepOrange,
+          ),
           new BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle),
-              title: Text('Profile'),
-              backgroundColor: Colors.deepOrange,),
+            icon: Icon(Icons.account_circle),
+            title: Text('Profile'),
+            backgroundColor: Colors.deepOrange,
+          ),
           new BottomNavigationBarItem(
-              icon: Icon(Icons.restaurant_menu),
-              title: Text('Restaurants'),
-              backgroundColor: Colors.deepOrange,),
+            icon: Icon(Icons.restaurant_menu),
+            title: Text('Restaurants'),
+            backgroundColor: Colors.deepOrange,
+          ),
           new BottomNavigationBarItem(
-              icon: Icon(Icons.menu),
-              title: Text('Settings'),
-              backgroundColor: Colors.deepOrange,)
+            icon: Icon(Icons.menu),
+            title: Text('Settings'),
+            backgroundColor: Colors.deepOrange,
+          )
         ],
       ),
     );
