@@ -14,7 +14,6 @@ class CheckPointsPage extends StatelessWidget {
           ),
         ),
         body: Container(
-          Text('Current Points', style: TextStyle(fontSize: 30.0)),
           margin: EdgeInsets.all(100.0),
           decoration:
               BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
