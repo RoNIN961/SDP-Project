@@ -20,8 +20,8 @@ class CheckPointsPage extends StatelessWidget {
           Positioned(
               bottom: 0,
               child: Container(
-                height: 500,
-                width: 500,
+                height: 100,
+                width: 100,
                 margin: EdgeInsets.all(100.0),
                 decoration:
                     BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
