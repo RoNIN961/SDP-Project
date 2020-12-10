@@ -24,12 +24,6 @@ class _RecipeScreenState extends State<RecipeScreen> {
               child: Text("Check Points"),
             )
           ]),
-        actions: <Widget>[
-        FlatButton(
-          onPressed: () {},
-          child: Text("Check Points"),
-        )
-      ]),
       body: ListView(
         children: <Widget>[
           Center(

@@ -21,25 +21,19 @@ class _UserRecipePageState extends State<UserRecipePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: BackButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => Home()));
-            },
-          ),
-          title: Text('My Flutter App'),
-          actions: <Widget>[
-            FlatButton(
-              onPressed: () {},
-              child: Text("Check Points"),
-            )
-          ]),
-          actions: <Widget>[
-          FlatButton(
-            onPressed: () {},
-            child: Text("Check Points"),
-          )
-        ]),
+            leading: BackButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => Home()));
+              },
+            ),
+            title: Text('My Flutter App'),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () {},
+                child: Text("Check Points"),
+              )
+            ]),
         body: Container(
             child: Column(
           children: <Widget>[
