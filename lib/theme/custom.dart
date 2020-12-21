@@ -25,6 +25,31 @@ class CustomTextField extends StatelessWidget {
   }
 }
 
+class CustomHiddenTextField extends StatelessWidget {
+  CustomHiddenTextField({@required this.onPressed});
+  final GestureTapCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child: Padding(
+        padding: EdgeInsets.only(bottom: 10),
+        child: TextField(
+          keyboardType: TextInputType.emailAddress,
+          obscureText: true,
+          decoration: InputDecoration(
+              hintText: 'text',
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50.0))),
+        ),
+      ),
+      onPressed: onPressed,
+    );
+  }
+}
+
 class CustomButton extends StatelessWidget {
   CustomButton({@required this.onPressed});
   final GestureTapCallback onPressed;

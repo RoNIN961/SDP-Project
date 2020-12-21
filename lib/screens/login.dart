@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme/custom.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -17,29 +18,8 @@ class _LoginPageState extends State<LoginPage> {
             child: Image.asset('assets/login_logo.png'),
           )),
     );
-    final inputEmail = Padding(
-      padding: EdgeInsets.only(bottom: 10),
-      child: TextField(
-        keyboardType: TextInputType.emailAddress,
-        decoration: InputDecoration(
-            hintText: 'Email',
-            contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(50.0))),
-      ),
-    );
-    final inputPassword = Padding(
-      padding: EdgeInsets.only(bottom: 20),
-      child: TextField(
-        keyboardType: TextInputType.emailAddress,
-        obscureText: true,
-        decoration: InputDecoration(
-            hintText: 'Password',
-            contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(50.0))),
-      ),
-    );
+    final inputEmail = CustomTextField(onPressed: () {});
+    final inputPassword = CustomHiddenTextField(onPressed: () {});
     final buttonRegister = FlatButton(
         child: Text(
           'Not a member? Register here',
@@ -48,21 +28,10 @@ class _LoginPageState extends State<LoginPage> {
         onPressed: () {
           Navigator.pushNamed(context, '/register');
         });
-    final buttonLogin = Padding(
-      padding: EdgeInsets.only(bottom: 5),
-      child: ButtonTheme(
-        height: 56,
-        child: RaisedButton(
-          child: Text('Login',
-              style: TextStyle(color: Colors.white, fontSize: 20)),
-          color: Colors.black87,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-          onPressed: () {
-            Navigator.pushNamed(context, '/home');
-          },
-        ),
-      ),
+    final buttonLogin = CustomButton(
+      onPressed: () {
+        Navigator.pushNamed(context, '/home');
+      },
     );
     final buttonForgotPassword = FlatButton(
         child: Text(
