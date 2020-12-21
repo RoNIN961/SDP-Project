@@ -48,8 +48,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
           onPressed: () {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => Home()));
+            Navigator.pushNamed(context, '/home');
           },
         ),
       ),
@@ -58,8 +57,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         appBar: AppBar(actions: <Widget>[
           BackButton(
             onPressed: () {
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => Home()));
+              Navigator.pushNamed(context, '/home');
             },
           ),
           FlatButton(
