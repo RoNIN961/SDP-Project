@@ -18,5 +18,7 @@ getroute() {
     '/register': (context) => RegisterPage(),
     '/check_points': (context) => CheckPointsPage();
     '/home': (context) => Home();
+    '/profile': (content) => ProfilePage();
+    '/'
   };
 }
