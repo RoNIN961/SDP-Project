@@ -67,7 +67,9 @@ class CustomButton extends StatelessWidget {
             color: Colors.black87,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/home');
+            },
           ),
         ),
       ),
