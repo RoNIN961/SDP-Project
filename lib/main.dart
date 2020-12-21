@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
+import 'package:sdp_project/route.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,7 +11,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
       ),
-      home: LoginPage(), //login
+      initialRoute: '/',
+      routes: getroute(),
     );
   }
 }
