@@ -103,10 +103,7 @@ class ProfilePage extends StatelessWidget {
             children: [
               RaisedButton(
                 onPressed: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => UserRecipePage()));
+                  Navigator.pushNamed(context, '/user_recipes');
                 },
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(80.0),
@@ -138,10 +135,7 @@ class ProfilePage extends StatelessWidget {
               ),
               RaisedButton(
                 onPressed: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => EditProfilePage()));
+                  Navigator.pushNamed(context, '/edit_profile');
                 },
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(80.0),
