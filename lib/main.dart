@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sdp_project/route.dart';
+import 'package:sdp_project/theme/route.dart';
 
 void main() => runApp(MyApp());
 
