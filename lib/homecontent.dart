@@ -22,10 +22,7 @@ class HomeContentPage extends StatelessWidget {
                       TextButton(
                         child: const Text('View'),
                         onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => RecipeScreen()));
+                          Navigator.pushNamed(context, '/recipe_detail');
                         },
                       ),
                       const SizedBox(width: 8),
