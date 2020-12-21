@@ -6,8 +6,11 @@ import 'profile.dart';
 import 'edit_profile.dart';
 import 'homecontent.dart';
 import 'recipe_detail.dart';
-import '';
-
+import 'serach.dart';
+import 'settings.dart';
+import 'user_recipes.dart';
+import 'restaurant.dart';
+import 'restaurant_detail.dart';
 
 getroute() {
   return {
