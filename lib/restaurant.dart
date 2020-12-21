@@ -19,10 +19,7 @@ class RestaurantPage extends StatelessWidget {
                       TextButton(
                         child: const Text('More Info'),
                         onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => RestaurantContent()));
+                          Navigator.pushNamed(context, '/restaurant_detail');
                         },
                       ),
                       const SizedBox(width: 8),

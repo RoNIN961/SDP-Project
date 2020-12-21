@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
 
 class SettingsPage extends StatelessWidget {
   @override
@@ -8,8 +7,7 @@ class SettingsPage extends StatelessWidget {
         body: RaisedButton(
       child: Text('Logout'),
       onPressed: () {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => LoginPage()));
+        Navigator.pushNamed(context, '/');
       },
     ));
   }

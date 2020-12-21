@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sdp_project/home.dart';
 
 class RestaurantContent extends StatefulWidget {
   @override
@@ -13,8 +12,7 @@ class _RestaurantContent extends State<RestaurantContent> {
       appBar: AppBar(
           leading: BackButton(
             onPressed: () {
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => Home()));
+              Navigator.pushNamed(context, '/home');
             },
           ),
           title: Text('My Flutter App'),

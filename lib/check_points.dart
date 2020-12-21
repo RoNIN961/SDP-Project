@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
 
 class CheckPointsPage extends StatelessWidget {
   @override
@@ -8,8 +7,7 @@ class CheckPointsPage extends StatelessWidget {
         appBar: AppBar(
           leading: BackButton(
             onPressed: () {
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => Home()));
+              Navigator.pushNamed(context, '/home');
             },
           ),
         ),

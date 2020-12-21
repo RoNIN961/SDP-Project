@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'recipe_detail.dart';
 
 class HomeContentPage extends StatelessWidget {
   @override

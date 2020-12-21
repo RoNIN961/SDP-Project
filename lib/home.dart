@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sdp_project/check_points.dart';
 import 'settings.dart';
-import 'login.dart';
 import 'profile.dart';
 import 'homecontent.dart';
 import 'restaurant.dart';

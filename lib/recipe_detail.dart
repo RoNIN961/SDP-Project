@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
 
 class RecipeScreen extends StatefulWidget {
   @override
@@ -13,8 +12,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
       appBar: AppBar(
           leading: BackButton(
             onPressed: () {
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => Home()));
+              Navigator.pushNamed(context, '/home');
             },
           ),
           title: Text('My Flutter App'),

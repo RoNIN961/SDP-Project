@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sdp_project/edit_profile.dart';
-import 'package:sdp_project/user_recipes.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
