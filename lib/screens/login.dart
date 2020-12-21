@@ -18,20 +18,24 @@ class _LoginPageState extends State<LoginPage> {
             child: Image.asset('assets/login_logo.png'),
           )),
     );
-    final inputEmail = CustomTextField(onPressed: () {});
-    final inputPassword = CustomHiddenTextField(onPressed: () {});
-    final buttonRegister = FlatButton(
-        child: Text(
-          'Not a member? Register here',
-          style: TextStyle(color: Colors.red, fontSize: 16),
-        ),
+    final inputEmail = CustomTextField(
+      onPressed: () {},
+      text: 'email address',
+    );
+    final inputPassword = CustomHiddenTextField(
+      onPressed: () {},
+      text: 'password',
+    );
+    final buttonRegister = CustomButton(
         onPressed: () {
           Navigator.pushNamed(context, '/register');
-        });
+        },
+        text: 'Not a member? Register here');
     final buttonLogin = CustomButton(
       onPressed: () {
         Navigator.pushNamed(context, '/home');
       },
+      text: 'login',
     );
     final buttonForgotPassword = FlatButton(
         child: Text(
