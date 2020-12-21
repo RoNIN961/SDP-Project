@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
 class CustomTextField extends StatelessWidget {
-  CustomTextField({@required this.onPressed});
+  CustomTextField({@required this.onPressed, this.text});
   final GestureTapCallback onPressed;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class CustomTextField extends StatelessWidget {
         child: TextField(
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
-              hintText: 'text',
+              hintText: text,
               contentPadding:
                   EdgeInsets.symmetric(horizontal: 25, vertical: 20),
               border: OutlineInputBorder(
@@ -26,8 +27,9 @@ class CustomTextField extends StatelessWidget {
 }
 
 class CustomHiddenTextField extends StatelessWidget {
-  CustomHiddenTextField({@required this.onPressed});
+  CustomHiddenTextField({@required this.onPressed, this.text});
   final GestureTapCallback onPressed;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class CustomHiddenTextField extends StatelessWidget {
           keyboardType: TextInputType.emailAddress,
           obscureText: true,
           decoration: InputDecoration(
-              hintText: 'text',
+              hintText: text,
               contentPadding:
                   EdgeInsets.symmetric(horizontal: 25, vertical: 20),
               border: OutlineInputBorder(
@@ -51,8 +53,9 @@ class CustomHiddenTextField extends StatelessWidget {
 }
 
 class CustomButton extends StatelessWidget {
-  CustomButton({@required this.onPressed});
+  CustomButton({@required this.onPressed, this.text});
   final GestureTapCallback onPressed;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +65,8 @@ class CustomButton extends StatelessWidget {
         child: ButtonTheme(
           height: 56,
           child: RaisedButton(
-            child: Text('Text',
-                style: TextStyle(color: Colors.white, fontSize: 20)),
+            child:
+                Text(text, style: TextStyle(color: Colors.white, fontSize: 20)),
             color: Colors.black87,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
