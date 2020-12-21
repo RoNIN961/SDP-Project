@@ -15,6 +15,8 @@ import 'restaurant_detail.dart';
 getroute() {
   return {
     '/': (context) => LoginPage(),
-    '/second': (context) => RegisterPage(),
+    '/register': (context) => RegisterPage(),
+    '/check_points': (context) => CheckPointsPage();
+    '/home': (context) => Home();
   };
 }
