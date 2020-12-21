@@ -48,8 +48,7 @@ class _LoginPageState extends State<LoginPage> {
           style: TextStyle(color: Colors.red, fontSize: 16),
         ),
         onPressed: () {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => RegisterPage()));
+          Navigator.pushNamed(context, '/');
         });
     final buttonLogin = Padding(
       padding: EdgeInsets.only(bottom: 5),

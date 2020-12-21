@@ -30,8 +30,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(title: Text('My Flutter App'), actions: <Widget>[
         FlatButton(
           onPressed: () {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => CheckPointsPage()));
+            Navigator.pushNamed(context, '/check_points');
           },
           child: Text("Check Points"),
         )
