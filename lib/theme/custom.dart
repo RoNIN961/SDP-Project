@@ -71,7 +71,9 @@ class CustomButton extends StatelessWidget {
           ),
         ),
       ),
-      onPressed: onPressed,
+      onPressed: () {
+        Navigator.pushNamed(context, '/home');
+      },
     );
   }
 }
