@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'settings.dart';
-import 'profile.dart';
+import '../profile/profile.dart';
 import 'homecontent.dart';
-import 'restaurant.dart';
-import 'search.dart';
+import '../restaurant/restaurant.dart';
+import '../recipe/search.dart';
 
 class Home extends StatefulWidget {
   @override
