@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sdp_project/theme/custom.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -8,77 +9,31 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
-    final logo = Padding(
-      padding: EdgeInsets.all(20),
-      child: Hero(
-          tag: 'hero',
-          child: CircleAvatar(
-            radius: 56.0,
-            child: Image.asset('assets/logo.png'),
-          )),
+    final logo = CustomLogo(
+      onPressed: null,
+      image: null,
     );
-    final inputUsername = Padding(
-      padding: EdgeInsets.only(bottom: 10),
-      child: TextField(
-        keyboardType: TextInputType.emailAddress,
-        decoration: InputDecoration(
-            hintText: 'Username',
-            contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(50.0))),
-      ),
+    final inputUsername = CustomTextField(
+      onPressed: null,
+      text: 'Username',
     );
-    final inputEmail = Padding(
-      padding: EdgeInsets.only(bottom: 10),
-      child: TextField(
-        keyboardType: TextInputType.emailAddress,
-        decoration: InputDecoration(
-            hintText: 'Email',
-            contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(50.0))),
-      ),
+    final inputEmail = CustomTextField(
+      onPressed: null,
+      text: 'email address',
     );
-    final inputPassword = Padding(
-      padding: EdgeInsets.only(bottom: 20),
-      child: TextField(
-        keyboardType: TextInputType.emailAddress,
-        obscureText: true,
-        decoration: InputDecoration(
-            hintText: 'Password',
-            contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(50.0))),
-      ),
+    final inputPassword = CustomHiddenTextField(
+      onPressed: null,
+      text: 'password',
     );
-    final inputConfirmPassword = Padding(
-      padding: EdgeInsets.only(bottom: 20),
-      child: TextField(
-        keyboardType: TextInputType.emailAddress,
-        obscureText: true,
-        decoration: InputDecoration(
-            hintText: 'Confirm Password',
-            contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(50.0))),
-      ),
+    final inputConfirmPassword = CustomHiddenTextField(
+      onPressed: null,
+      text: 'confirm password',
     );
-    final buttonRegister = Padding(
-      padding: EdgeInsets.only(bottom: 5),
-      child: ButtonTheme(
-        height: 56,
-        child: RaisedButton(
-          child: Text('Register',
-              style: TextStyle(color: Colors.white, fontSize: 20)),
-          color: Colors.black87,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-          onPressed: () {
-            Navigator.pushNamed(context, '/');
-          },
-        ),
-      ),
-    );
+    final buttonRegister = CustomButton1(
+        onPressed: () {
+          Navigator.pushNamed(context, '/');
+        },
+        text: 'Create Account');
     return SafeArea(
         child: Scaffold(
       body: Center(
