@@ -14,11 +14,11 @@ class _LoginPageState extends State<LoginPage> {
       image: Image.asset('login_logo.png'),
     );
     final inputEmail = CustomTextField(
-      onPressed: () {},
+      onPressed: null,
       text: 'email address',
     );
     final inputPassword = CustomHiddenTextField(
-      onPressed: () {},
+      onPressed: null,
       text: 'password',
     );
     final buttonRegister = CustomButton2(
