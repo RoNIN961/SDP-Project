@@ -52,8 +52,8 @@ class CustomHiddenTextField extends StatelessWidget {
   }
 }
 
-class CustomButton extends StatelessWidget {
-  CustomButton({@required this.onPressed, this.text});
+class CustomButton1 extends StatelessWidget {
+  CustomButton1({@required this.onPressed, this.text});
   final GestureTapCallback onPressed;
   final String text;
 
@@ -74,6 +74,26 @@ class CustomButton extends StatelessWidget {
           ),
         ),
       ),
+      onPressed: onPressed,
+    );
+  }
+}
+
+class CustomButton2 extends StatelessWidget {
+  CustomButton2({@required this.onPressed, this.text,this.color});
+  final GestureTapCallback onPressed;
+  final String text;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child: FlatButton(
+          child: Text(
+            text,
+            style: TextStyle(color: Colors.grey, fontSize: 16),
+          ),
+          onPressed: onPressed),
       onPressed: onPressed,
     );
   }

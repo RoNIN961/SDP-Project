@@ -26,23 +26,19 @@ class _LoginPageState extends State<LoginPage> {
       onPressed: () {},
       text: 'password',
     );
-    final buttonRegister = CustomButton(
+    final buttonRegister = CustomButton2(
         onPressed: () {
           Navigator.pushNamed(context, '/register');
         },
         text: 'Not a member? Register here');
-    final buttonLogin = CustomButton(
+    final buttonLogin = CustomButton1(
       onPressed: () {
         Navigator.pushNamed(context, '/home');
       },
       text: 'login',
     );
-    final buttonForgotPassword = FlatButton(
-        child: Text(
-          'Forgot Password',
-          style: TextStyle(color: Colors.grey, fontSize: 16),
-        ),
-        onPressed: null);
+    final buttonForgotPassword =
+        CustomButton2(onPressed: null, text: 'Forgot Password');
     return SafeArea(
         child: Scaffold(
       body: Center(
