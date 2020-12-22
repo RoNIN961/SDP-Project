@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'restaurant_detail.dart';
 
 class RestaurantPage extends StatelessWidget {
   @override
