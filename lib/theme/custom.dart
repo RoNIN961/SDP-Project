@@ -80,7 +80,7 @@ class CustomButton1 extends StatelessWidget {
 }
 
 class CustomButton2 extends StatelessWidget {
-  CustomButton2({@required this.onPressed, this.text,this.color});
+  CustomButton2({@required this.onPressed, this.text, this.color});
   final GestureTapCallback onPressed;
   final String text;
   final Color color;
@@ -91,7 +91,7 @@ class CustomButton2 extends StatelessWidget {
       child: FlatButton(
           child: Text(
             text,
-            style: TextStyle(color: Colors.grey, fontSize: 16),
+            style: TextStyle(color: color, fontSize: 16),
           ),
           onPressed: onPressed),
       onPressed: onPressed,
