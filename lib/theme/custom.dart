@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
 gettheme() {
-  return {ThemeData(primaryColor: Colors.orangeAccent)};
+  return {ThemeData(primaryColor: Colors.deepOrange)};
 }
 
 class CustomLogo extends StatelessWidget {
