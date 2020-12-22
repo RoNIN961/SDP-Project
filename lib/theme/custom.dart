@@ -1,6 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
+class CustomLogo extends StatelessWidget {
+  CustomLogo({@required this.onPressed, this.image});
+  final GestureTapCallback onPressed;
+  final Image image;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child: Padding(
+          padding: EdgeInsets.all(20),
+          child: Hero(
+              tag: 'hero', child: CircleAvatar(radius: 56.0, child: image))),
+      onPressed: onPressed,
+    );
+  }
+}
+
 class CustomTextField extends StatelessWidget {
   CustomTextField({@required this.onPressed, this.text});
   final GestureTapCallback onPressed;
