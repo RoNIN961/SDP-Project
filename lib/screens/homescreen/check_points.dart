@@ -16,6 +16,7 @@ class CheckPointsPage extends StatelessWidget {
             child: new CircularPercentIndicator(
                 radius: 200.0,
                 percent: 0.4,
+                lineWidth: 20.0,
                 animation: true,
                 center: new Text(
                   'Current Points',
