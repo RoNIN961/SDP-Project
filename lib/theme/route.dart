@@ -11,6 +11,7 @@ import '../screens/homescreen/settings.dart';
 import '../screens/recipe/user_recipes.dart';
 import '../screens/restaurant/restaurant.dart';
 import '../screens/restaurant/restaurant_detail.dart';
+import '../screens/recipe/recipe.dart';
 
 getroute() {
   return {
@@ -26,6 +27,7 @@ getroute() {
     '/settings': (content) => SettingsPage(),
     '/user_recipes': (content) => UserRecipePage(),
     '/restaurant': (content) => RestaurantPage(),
-    '/restaurant_detail': (content) => RestaurantContent()
+    '/restaurant_detail': (content) => RestaurantContent(),
+    '/recipe': (content) => RecipePage()
   };
 }
