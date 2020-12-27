@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sdp_project/theme/custom.dart';
-import 'settings.dart';
-import '../profile/profile.dart';
 import 'homecontent.dart';
 import '../restaurant/restaurant.dart';
 import '../recipe/search.dart';
