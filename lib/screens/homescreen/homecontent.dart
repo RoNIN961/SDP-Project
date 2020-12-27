@@ -8,7 +8,6 @@ class HomeContentPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            CustomSearchBar(),
             Card(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
