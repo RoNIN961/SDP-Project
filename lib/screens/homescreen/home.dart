@@ -22,7 +22,14 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('My Flutter App'), actions: <Widget>[]),
+      appBar: AppBar(title: Text('My Flutter App'), actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.search),
+          onPressed: () {
+            Navigator.pushNamed(context, '/search');
+          },
+        )
+      ]),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped,
