@@ -174,7 +174,9 @@ class CustomDrawer extends StatelessWidget {
         Divider(),
         ListTile(
           title: Text("Redeem", style: _menutextcolor),
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, '/check_points');
+          },
         ),
       ],
     );
