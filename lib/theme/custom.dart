@@ -131,8 +131,8 @@ class CustomDrawer extends StatelessWidget {
       padding: EdgeInsets.all(0),
       children: <Widget>[
         UserAccountsDrawerHeader(
-          accountEmail: Text(""),
-          accountName: Text(""),
+          accountEmail: Text("rong090601@gmail.com"),
+          accountName: Text("RoNIN01"),
           currentAccountPicture: Image.asset(''),
         ),
         ListTile(
@@ -159,7 +159,9 @@ class CustomDrawer extends StatelessWidget {
             child: Icon(Icons.account_box),
           ),
           title: Text("Account", style: _menutextcolor),
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, '/profile');
+          },
         ),
         ListTile(
           leading: IconTheme(
