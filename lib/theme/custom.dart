@@ -119,3 +119,66 @@ class CustomButton2 extends StatelessWidget {
     );
   }
 }
+
+class CustomDrawer extends StatelessWidget {
+  final _menutextcolor = TextStyle(
+    color: Colors.black,
+    fontSize: 14.0,
+    fontWeight: FontWeight.w500,
+  );
+  final _iconcolor = new IconThemeData(
+    color: Color(0xff757575),
+  );
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding: EdgeInsets.all(0),
+      children: <Widget>[
+        UserAccountsDrawerHeader(
+          accountEmail: Text(""),
+          accountName: Text(""),
+          currentAccountPicture: Image.asset(''),
+        ),
+        ListTile(
+          leading: IconTheme(
+            data: _iconcolor,
+            child: Icon(Icons.apps),
+          ),
+          title: Text("My recipes", style: _menutextcolor),
+          selected: true,
+          onTap: () {},
+        ),
+        ListTile(
+          leading: IconTheme(
+            data: _iconcolor,
+            child: Icon(Icons.notifications),
+          ),
+          title: Text("Notification", style: _menutextcolor),
+          onTap: () {},
+        ),
+        Divider(),
+        ListTile(
+          leading: IconTheme(
+            data: _iconcolor,
+            child: Icon(Icons.account_box),
+          ),
+          title: Text("Account", style: _menutextcolor),
+          onTap: () {},
+        ),
+        ListTile(
+          leading: IconTheme(
+            data: _iconcolor,
+            child: Icon(Icons.settings),
+          ),
+          title: Text("Settings", style: _menutextcolor),
+          onTap: () {},
+        ),
+        Divider(),
+        ListTile(
+          title: Text("Redeem", style: _menutextcolor),
+          onTap: () {},
+        ),
+      ],
+    );
+  }
+}
