@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
-gettheme() {
-  return {ThemeData(primarySwatch: Colors.deepOrange)};
-}
-
 class CustomLogo extends StatelessWidget {
   CustomLogo({@required this.onPressed, this.image});
   final GestureTapCallback onPressed;
