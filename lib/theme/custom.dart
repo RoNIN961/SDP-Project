@@ -182,3 +182,22 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 }
+
+class CustomSearchBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              onChanged: (value) {},
+              controller: TextEditingController(),
+              decoration: InputDecoration(
+                  labelText: 'Search',
+                  hintText: 'Search',
+                  prefixIcon: Icon(Icons.search),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(25.0)))),
+            )));
+  }
+}

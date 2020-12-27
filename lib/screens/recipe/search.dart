@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sdp_project/theme/custom.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -22,18 +23,7 @@ class _SearchPageState extends State<SearchPage> {
         body: Container(
             child: Column(
       children: <Widget>[
-        Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              onChanged: (value) {},
-              controller: TextEditingController(),
-              decoration: InputDecoration(
-                  labelText: 'Search',
-                  hintText: 'Search',
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(25.0)))),
-            )),
+        CustomSearchBar(),
         Expanded(
           child: ListView.builder(
             shrinkWrap: true,

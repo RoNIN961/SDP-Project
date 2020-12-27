@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sdp_project/theme/custom.dart';
 
 class HomeContentPage extends StatelessWidget {
   @override
@@ -7,6 +8,7 @@ class HomeContentPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
+            CustomSearchBar(),
             Card(
               child: Column(
                 mainAxisSize: MainAxisSize.min,

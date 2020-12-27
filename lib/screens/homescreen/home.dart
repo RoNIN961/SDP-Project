@@ -23,10 +23,10 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('My Flutter App'), actions: <Widget>[]),
-      body: _children[_currentIndex], // new
+      body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        onTap: onTabTapped, // new
-        currentIndex: _currentIndex, // new
+        onTap: onTabTapped,
+        currentIndex: _currentIndex,
         items: [
           new BottomNavigationBarItem(
               icon: Icon(Icons.home),
@@ -48,7 +48,7 @@ class _HomeState extends State<Home> {
 
   void onTabTapped(int index) {
     setState(() {
-      _currentIndex = index; //test
+      _currentIndex = index;
     });
   }
 }
