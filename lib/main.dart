@@ -11,10 +11,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Simple Login Page',
       initialRoute: '/',
       theme: ThemeData(
-          primarySwatch: Colors.deepOrange,
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-              selectedItemColor: Colors.white,
-              backgroundColor: Colors.deepOrange)),
+        primarySwatch: Colors.deepOrange,
+      ),
       routes: getroute(),
     );
   }

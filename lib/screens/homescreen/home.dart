@@ -18,9 +18,7 @@ class _HomeState extends State<Home> {
   final List<Widget> _children = [
     HomeContentPage(),
     SearchPage(),
-    ProfilePage(),
     RestaurantPage(),
-    SettingsPage()
   ];
 
   @override
@@ -40,25 +38,17 @@ class _HomeState extends State<Home> {
         currentIndex: _currentIndex, // new
         items: [
           new BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home'),
-          ),
+              icon: Icon(Icons.home),
+              title: Text('Home'),
+              backgroundColor: Colors.deepOrange),
           new BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            title: Text('Search'),
-          ),
+              icon: Icon(Icons.search),
+              title: Text('Search'),
+              backgroundColor: Colors.deepOrange),
           new BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            title: Text('Profile'),
-          ),
-          new BottomNavigationBarItem(
-            icon: Icon(Icons.restaurant_menu),
-            title: Text('Restaurants'),
-          ),
-          new BottomNavigationBarItem(
-            icon: Icon(Icons.menu),
-            title: Text('Settings'),
-          )
+              icon: Icon(Icons.restaurant_menu),
+              title: Text('Restaurants'),
+              backgroundColor: Colors.deepOrange),
         ],
       ),
       drawer: Drawer(child: CustomDrawer()),
