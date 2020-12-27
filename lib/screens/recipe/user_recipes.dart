@@ -28,14 +28,7 @@ class _UserRecipePageState extends State<UserRecipePage> {
               },
             ),
             title: Text('My Flutter App'),
-            actions: <Widget>[
-              FlatButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/home');
-                },
-                child: Text("Check Points"),
-              )
-            ]),
+            actions: <Widget>[]),
         body: Container(
             child: Column(
           children: <Widget>[
