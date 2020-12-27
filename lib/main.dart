@@ -13,7 +13,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.deepOrange,
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
-              selectedItemColor: Colors.deepOrange)),
+              selectedItemColor: Colors.white,
+              backgroundColor: Colors.deepOrange)),
       routes: getroute(),
     );
   }
