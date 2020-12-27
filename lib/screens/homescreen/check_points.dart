@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class CheckPointsPage extends StatelessWidget {
   @override
@@ -11,17 +12,16 @@ class CheckPointsPage extends StatelessWidget {
             },
           ),
         ),
-        body: Stack(children: <Widget>[
-          Positioned(
-              right: 50,
-              child: Container(
-                height: 300,
-                width: 300,
-                margin: EdgeInsets.all(100.0),
-                decoration:
-                    BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
-              )),
-          Positioned(bottom: 20, right: 50, child: Text('Your Points Here'))
-        ]));
+        body: Center(
+            child: new CircularPercentIndicator(
+                radius: 200.0,
+                percent: 0.4,
+                animation: true,
+                center: new Text(
+                  'Current Points',
+                  style: new TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 20.0),
+                ),
+                header: new Text('Points until next discount voucher'))));
   }
 }
