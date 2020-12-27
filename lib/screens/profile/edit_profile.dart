@@ -53,17 +53,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       ),
     );
     return Scaffold(
-        appBar: AppBar(actions: <Widget>[
-          BackButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/home');
-            },
-          ),
-          FlatButton(
-            onPressed: () {},
-            child: Text("Check Points"),
-          )
-        ]),
+        appBar: AppBar(),
         body: SafeArea(
             child: Column(children: <Widget>[
           profilePicture,
