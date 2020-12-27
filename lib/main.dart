@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Simple Login Page',
       initialRoute: '/',
+      theme: gettheme(),
       routes: getroute(),
     );
   }
