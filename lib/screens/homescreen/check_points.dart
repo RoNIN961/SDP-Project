@@ -23,6 +23,9 @@ class CheckPointsPage extends StatelessWidget {
                   style: new TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 20.0),
                 ),
-                header: new Text('Points until next discount voucher'))));
+                header: new Text(
+                  'Points until next discount voucher',
+                  style: new TextStyle(fontSize: 30.0),
+                ))));
   }
 }
