@@ -16,12 +16,7 @@ class _RestaurantContent extends State<RestaurantContent> {
             },
           ),
           title: Text('My Flutter App'),
-          actions: <Widget>[
-            FlatButton(
-              onPressed: () {},
-              child: Text("Check Points"),
-            )
-          ]),
+          actions: <Widget>[]),
       body: Column(
         children: <Widget>[
           Image.network(''),

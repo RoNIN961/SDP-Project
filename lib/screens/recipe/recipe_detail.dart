@@ -16,12 +16,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
             },
           ),
           title: Text('My Flutter App'),
-          actions: <Widget>[
-            FlatButton(
-              onPressed: () {},
-              child: Text("Check Points"),
-            )
-          ]),
+          actions: <Widget>[]),
       body: ListView(
         children: <Widget>[
           Center(
