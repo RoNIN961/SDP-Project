@@ -142,7 +142,7 @@ class CustomDrawer extends StatelessWidget {
         ListTile(
           leading: IconTheme(
             data: _iconcolor,
-            child: Icon(Icons.apps),
+            child: Icon(Icons.list),
           ),
           title: Text("My recipes", style: _menutextcolor),
           selected: true,
