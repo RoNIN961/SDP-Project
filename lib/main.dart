@@ -12,8 +12,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       theme: ThemeData(
           primarySwatch: Colors.deepOrange,
-          bottomNavigationBarTheme:
-              BottomNavigationBarThemeData(backgroundColor: Colors.deepOrange)),
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+              selectedItemColor: Colors.deepOrange)),
       routes: getroute(),
     );
   }
