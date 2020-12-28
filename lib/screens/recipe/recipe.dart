@@ -11,7 +11,11 @@ class RecipePage extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  const ListTile(
+                  ListTile(
+                    leading: ConstrainedBox(
+                        constraints:
+                            BoxConstraints(maxWidth: 40.0, maxHeight: 20.0),
+                        child: Image.asset('')),
                     title: Text('Recipe Name'),
                     subtitle: Text('Author Name'),
                   ),
