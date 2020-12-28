@@ -142,7 +142,9 @@ class CustomDrawer extends StatelessWidget {
           ),
           title: Text("My recipes", style: _menutextcolor),
           selected: true,
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, '/user_recipes');
+          },
         ),
         ListTile(
           leading: IconTheme(
@@ -169,7 +171,9 @@ class CustomDrawer extends StatelessWidget {
             child: Icon(Icons.settings),
           ),
           title: Text("Settings", style: _menutextcolor),
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, '/settings');
+          },
         ),
         Divider(),
         ListTile(
