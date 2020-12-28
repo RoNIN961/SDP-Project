@@ -23,7 +23,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
               Title(color: Colors.black, child: Text('Title')),
               SizedBox(
                 width: 400.0,
-                height: 200.0,
+                height: 40.0,
                 child: Image(image: null),
               ),
               Container(
