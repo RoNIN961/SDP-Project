@@ -19,18 +19,18 @@ class _RecipeScreenState extends State<RecipeScreen> {
             actions: <Widget>[]),
         body: SizedBox(
           width: 1000.0,
-          height: 500.0,
+          height: 800.0,
           child: Column(
             children: <Widget>[
               Title(color: Colors.black, child: Text('Title')),
               SizedBox(
-                width: 200.0,
+                width: 500.0,
                 height: 200.0,
                 child: Image(image: null),
               ),
               SizedBox(
-                width: 200.0,
-                height: 150.0,
+                width: 400.0,
+                height: 200.0,
                 child: ListView(
                   children: <Widget>[
                     Title(color: Colors.black, child: Text('Ingredients')),
@@ -47,8 +47,8 @@ class _RecipeScreenState extends State<RecipeScreen> {
                 ),
               ),
               SizedBox(
-                width: 200.0,
-                height: 150.0,
+                width: 400.0,
+                height: 200.0,
                 child: ListView(
                   children: <Widget>[
                     Title(color: Colors.black, child: Text('Steps')),
@@ -65,8 +65,8 @@ class _RecipeScreenState extends State<RecipeScreen> {
                 ),
               ),
               SizedBox(
-                  width: 200.0,
-                  height: 50.0,
+                  width: 400.0,
+                  height: 200.0,
                   child: Column(children: <Widget>[
                     CircleAvatar(
                       child: Image(image: null),
