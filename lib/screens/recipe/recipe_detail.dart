@@ -67,7 +67,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
                   height: 200.0,
                   child: Column(children: <Widget>[
                     CircleAvatar(
-                      radius: 80.0,
+                      radius: 50.0,
                       child: Image(image: null),
                     ),
                     Text('Published by'),
