@@ -14,7 +14,7 @@ class RecipePage extends StatelessWidget {
                   ListTile(
                     leading: ConstrainedBox(
                         constraints:
-                            BoxConstraints(maxWidth: 40.0, maxHeight: 20.0),
+                            BoxConstraints(maxWidth: 80.0, maxHeight: 20.0),
                         child: Image.asset('')),
                     title: Text('Recipe Name'),
                     subtitle: Text('Author Name'),
