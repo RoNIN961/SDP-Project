@@ -477,7 +477,7 @@ class CustomRestaurantListView extends StatelessWidget {
                             padding: EdgeInsets.all(2.0),
                           ),
                           Text(
-                            "Recipe Name",
+                            "Restaurant Name",
                             style: TextStyle(
                               color: Color(0xff202124),
                             ),
@@ -510,7 +510,7 @@ class CustomRestaurantListView extends StatelessWidget {
                             padding: EdgeInsets.all(2.0),
                           ),
                           Text(
-                            "Recipe Name",
+                            "Restaurant Name",
                             style: TextStyle(
                               color: Color(0xff202124),
                             ),
@@ -543,7 +543,7 @@ class CustomRestaurantListView extends StatelessWidget {
                             padding: EdgeInsets.all(2.0),
                           ),
                           Text(
-                            "Recipe Name",
+                            "Restaurant Name",
                             style: TextStyle(
                               color: Color(0xff202124),
                             ),
@@ -576,7 +576,7 @@ class CustomRestaurantListView extends StatelessWidget {
                             padding: EdgeInsets.all(2.0),
                           ),
                           Text(
-                            "Recipe Name",
+                            "Restaurant Name",
                             style: TextStyle(
                               color: Color(0xff202124),
                             ),
