@@ -5,7 +5,7 @@ class HomeContentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: <Widget>[CustomRecipeListView(), CustomRecipeListView()],
+      children: <Widget>[CustomRecipeListView(), CustomRestaurantListView()],
     );
   }
 }
