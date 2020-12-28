@@ -25,12 +25,12 @@ class _RecipeScreenState extends State<RecipeScreen> {
               Title(color: Colors.black, child: Text('Title')),
               SizedBox(
                 width: 200.0,
-                height: 40.0,
+                height: 200.0,
                 child: Image(image: null),
               ),
               SizedBox(
                 width: 200.0,
-                height: 50.0,
+                height: 150.0,
                 child: ListView(
                   children: <Widget>[
                     Title(color: Colors.black, child: Text('Ingredients')),
@@ -48,7 +48,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
               ),
               SizedBox(
                 width: 200.0,
-                height: 50.0,
+                height: 150.0,
                 child: ListView(
                   children: <Widget>[
                     Title(color: Colors.black, child: Text('Steps')),
