@@ -4,7 +4,9 @@ class UploadRecipePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(actions: <Widget>[]),
+        appBar: AppBar(actions: <Widget>[
+          FlatButton(onPressed: null, child: Text('Upload'))
+        ]),
         body: Container(
             child: ListView(
           children: [
