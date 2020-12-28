@@ -12,6 +12,7 @@ import '../screens/recipe/user_recipes.dart';
 import '../screens/restaurant/restaurant.dart';
 import '../screens/restaurant/restaurant_detail.dart';
 import '../screens/recipe/recipe.dart';
+import '../screens/recipe/upload_recipe.dart';
 
 getroute() {
   return {
@@ -28,6 +29,7 @@ getroute() {
     '/user_recipes': (content) => UserRecipePage(),
     '/restaurant': (content) => RestaurantPage(),
     '/restaurant_detail': (content) => RestaurantContent(),
-    '/recipe': (content) => RecipePage()
+    '/recipe': (content) => RecipePage(),
+    '/upload_recipe': (content) => UploadRecipePage()
   };
 }
