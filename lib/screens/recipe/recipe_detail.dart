@@ -20,7 +20,11 @@ class _RecipeScreenState extends State<RecipeScreen> {
         body: ListView(children: <Widget>[
           Column(
             children: <Widget>[
-              Title(color: Colors.black, child: Text('Title')),
+              Title(
+                  color: Colors.black,
+                  child: Text('Title',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 30.0))),
               SizedBox(
                 width: 500.0,
                 height: 200.0,
@@ -31,7 +35,11 @@ class _RecipeScreenState extends State<RecipeScreen> {
                 height: 200.0,
                 child: ListView(
                   children: <Widget>[
-                    Title(color: Colors.black, child: Text('Ingredients')),
+                    Title(
+                        color: Colors.black,
+                        child: Text('Ingredients',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 25.0))),
                     ListTile(
                       title: Text('Ingredient 1'),
                     ),
@@ -49,7 +57,13 @@ class _RecipeScreenState extends State<RecipeScreen> {
                 height: 200.0,
                 child: ListView(
                   children: <Widget>[
-                    Title(color: Colors.black, child: Text('Steps')),
+                    Title(
+                        color: Colors.black,
+                        child: Text(
+                          'Steps',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 25.0),
+                        )),
                     ListTile(
                       title: Text('Step 1'),
                     ),
