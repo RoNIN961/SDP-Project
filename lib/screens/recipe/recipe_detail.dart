@@ -17,7 +17,9 @@ class _RecipeScreenState extends State<RecipeScreen> {
             ),
             title: Text('My Flutter App'),
             actions: <Widget>[]),
-        body: Container(
+        body: SizedBox(
+          width: 1000.0,
+          height: 500.0,
           child: Column(
             children: <Widget>[
               Title(color: Colors.black, child: Text('Title')),
