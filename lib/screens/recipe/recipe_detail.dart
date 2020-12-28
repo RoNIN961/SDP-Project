@@ -22,11 +22,13 @@ class _RecipeScreenState extends State<RecipeScreen> {
             children: <Widget>[
               Title(color: Colors.black, child: Text('Title')),
               SizedBox(
-                width: 400.0,
+                width: 200.0,
                 height: 40.0,
                 child: Image(image: null),
               ),
-              Container(
+              SizedBox(
+                width: 200.0,
+                height: 50.0,
                 child: ListView(
                   children: <Widget>[
                     Title(color: Colors.black, child: Text('Ingredients')),
@@ -42,7 +44,9 @@ class _RecipeScreenState extends State<RecipeScreen> {
                   ],
                 ),
               ),
-              Container(
+              SizedBox(
+                width: 200.0,
+                height: 50.0,
                 child: ListView(
                   children: <Widget>[
                     Title(color: Colors.black, child: Text('Steps')),
@@ -58,18 +62,21 @@ class _RecipeScreenState extends State<RecipeScreen> {
                   ],
                 ),
               ),
-              Container(
+              SizedBox(
+                  width: 200.0,
+                  height: 50.0,
                   child: Column(children: <Widget>[
-                CircleAvatar(
-                  child: Image(image: null),
-                ),
-                Text('Published by'),
-                Text(
-                  'Author Name',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
-                ),
-                Text('on "Date Published"')
-              ]))
+                    CircleAvatar(
+                      child: Image(image: null),
+                    ),
+                    Text('Published by'),
+                    Text(
+                      'Author Name',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 30.0),
+                    ),
+                    Text('on "Date Published"')
+                  ]))
             ],
           ),
         ));
