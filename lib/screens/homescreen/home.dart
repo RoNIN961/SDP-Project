@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sdp_project/screens/recipe/recipe.dart';
+import 'package:sdp_project/screens/recipe/upload_recipe.dart';
 import 'package:sdp_project/theme/custom.dart';
 import 'homecontent.dart';
 import '../restaurant/restaurant.dart';
@@ -16,7 +17,8 @@ class _HomeState extends State<Home> {
   final List<Widget> _children = [
     HomeContentPage(),
     RestaurantPage(),
-    RecipePage()
+    RecipePage(),
+    UploadRecipePage()
   ];
 
   @override
@@ -46,6 +48,10 @@ class _HomeState extends State<Home> {
           new BottomNavigationBarItem(
               icon: Icon(Icons.book),
               title: Text('Recipes'),
+              backgroundColor: Colors.deepOrange),
+          new BottomNavigationBarItem(
+              icon: Icon(Icons.add_circle),
+              title: Text('Upload'),
               backgroundColor: Colors.deepOrange)
         ],
       ),
