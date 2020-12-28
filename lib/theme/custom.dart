@@ -236,6 +236,11 @@ class CustomRecipeListView extends StatelessWidget {
                           ),
                           Padding(
                             padding: EdgeInsets.all(2.0),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/recipe_detail');
+                              },
+                            ),
                           ),
                           Text(
                             "Recipe Name",
