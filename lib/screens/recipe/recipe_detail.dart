@@ -17,10 +17,8 @@ class _RecipeScreenState extends State<RecipeScreen> {
             ),
             title: Text('My Flutter App'),
             actions: <Widget>[]),
-        body: SizedBox(
-          width: 1000.0,
-          height: 800.0,
-          child: Column(
+        body: ListView(children: <Widget>[
+          Column(
             children: <Widget>[
               Title(color: Colors.black, child: Text('Title')),
               SizedBox(
@@ -81,6 +79,6 @@ class _RecipeScreenState extends State<RecipeScreen> {
                   ]))
             ],
           ),
-        ));
+        ]));
   }
 }
