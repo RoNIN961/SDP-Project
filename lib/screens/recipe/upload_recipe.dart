@@ -11,7 +11,10 @@ class UploadRecipePage extends StatelessWidget {
             width: 400.0,
             height: 80.0,
             child: InkWell(
-              child: Text('Upload Recipe Image'),
+              child: Text('Upload Recipe Image',
+                  textAlign: TextAlign.center,
+                  style:
+                      TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold)),
               onTap: () {},
             )),
         TextField(
@@ -20,7 +23,12 @@ class UploadRecipePage extends StatelessWidget {
         Container(
             child: Column(
           children: <Widget>[
-            Title(color: Colors.black, child: Text('Ingredients')),
+            Title(
+                color: Colors.black,
+                child: Text(
+                  'Ingredients',
+                  style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+                )),
             TextField(decoration: InputDecoration(hintText: '250g flour')),
             TextField(decoration: InputDecoration(hintText: '100ml water')),
             RaisedButton(child: Text('Add Ingredient'), onPressed: null)
