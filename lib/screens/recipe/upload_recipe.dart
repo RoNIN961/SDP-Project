@@ -9,7 +9,7 @@ class UploadRecipePage extends StatelessWidget {
       children: [
         SizedBox(
             width: 400.0,
-            height: 80.0,
+            height: 200.0,
             child: InkWell(
               child: Text('Upload Recipe Image',
                   textAlign: TextAlign.center,
