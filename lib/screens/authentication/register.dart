@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sdp_project/theme/custom.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -26,48 +27,60 @@ class _RegisterPageState extends State<RegisterPage> {
     // obtain shared preferences
 
     if (jsonString == 'success') {
+      myToast(jsonString);
       Navigator.pushNamed(context, '/');
-    } else {}
-  }
+    } else {
+      myToast(jsonString);
+    }
 
-  @override
-  Widget build(BuildContext context) {
-    final logo = CustomLogo(
-      onPressed: null,
-      image: null,
-    );
-    final inputUsername = CustomTextField(
-        onPressed: null, text: 'Username', controller: username);
-    final inputEmail = CustomTextField(
-      onPressed: null,
-      text: 'email address',
-      controller: email,
-    );
-    final inputPassword = CustomHiddenTextField(
-      onPressed: null,
-      text: 'password',
-      controller: password,
-    );
-    final buttonRegister = CustomButton1(
-        onPressed: () {
-          addData();
-        },
-        text: 'Create Account');
-    return SafeArea(
-        child: Scaffold(
-      body: Center(
-        child: ListView(
-          shrinkWrap: true,
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          children: <Widget>[
-            logo,
-            inputUsername,
-            inputEmail,
-            inputPassword,
-            buttonRegister,
-          ],
+    @override
+    Widget build(BuildContext context) {
+      final logo = CustomLogo(
+        onPressed: null,
+        image: null,
+      );
+      final inputUsername = CustomTextField(
+          onPressed: null, text: 'Username', controller: username);
+      final inputEmail = CustomTextField(
+        onPressed: null,
+        text: 'email address',
+        controller: email,
+      );
+      final inputPassword = CustomHiddenTextField(
+        onPressed: null,
+        text: 'password',
+        controller: password,
+      );
+      final buttonRegister = CustomButton1(
+          onPressed: () {
+            addData();
+          },
+          text: 'Create Account');
+      return SafeArea(
+          child: Scaffold(
+        body: Center(
+          child: ListView(
+            shrinkWrap: true,
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            children: <Widget>[
+              logo,
+              inputUsername,
+              inputEmail,
+              inputPassword,
+              buttonRegister,
+            ],
+          ),
         ),
-      ),
-    ));
+      ));
+    }
   }
+}
+
+myToast(String toast) {
+  return Fluttertoast.showToast(
+      msg: toast,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      backgroundColor: Colors.red,
+      textColor: Colors.white);
 }
