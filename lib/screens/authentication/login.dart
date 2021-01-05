@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
     String password = passwordController.text;
 
     // SERVER LOGIN API URL
-    var url = 'https://flutter-examples.000webhostapp.com/login_user.php';
+    var url = 'https://czechoslovakian-scr.000webhostapp.com/login.php';
 
     // Store all data with Param Name.
     var data = {'Email': email, 'Password': password};

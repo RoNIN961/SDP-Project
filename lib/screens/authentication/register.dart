@@ -18,7 +18,7 @@ class _RegisterPageState extends State<RegisterPage> {
     String email = emailController.text;
     String password = passwordController.text;
 
-    var url = "https://czechoslovakian-scr.000webhostapp.com/register.php";
+    var url = 'https://czechoslovakian-scr.000webhostapp.com/register.php';
 
     var data = {'Username': username, 'Password': password, 'Email': email};
 
