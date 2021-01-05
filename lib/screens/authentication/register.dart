@@ -48,10 +48,6 @@ class _RegisterPageState extends State<RegisterPage> {
       onPressed: null,
       text: 'password',
     );
-    final inputConfirmPassword = CustomHiddenTextField(
-      onPressed: null,
-      text: 'confirm password',
-    );
     final buttonRegister = CustomButton1(
         onPressed: () {
           addData();
@@ -68,7 +64,6 @@ class _RegisterPageState extends State<RegisterPage> {
             inputUsername,
             inputEmail,
             inputPassword,
-            inputConfirmPassword,
             buttonRegister, //test
           ],
         ),
