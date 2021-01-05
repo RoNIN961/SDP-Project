@@ -33,8 +33,8 @@ class _LoginPageState extends State<LoginPage> {
 
     // If the Response Message is Matched.
     if (message == 'Login Matched') {
-      // Navigate to Profile Screen & Sending Email to Next Screen.
-      Navigator.pushNamed(context, '/Home');
+      print(response.body);
+      //Navigator.pushNamed(context, '/Home');
     } else {
       // Showing Alert Dialog with Response JSON Message.
       showDialog(
