@@ -74,9 +74,7 @@ class _LoginPageState extends State<LoginPage> {
         text: 'Not a member? Register here',
         color: Colors.red);
     final buttonLogin = CustomButton1(
-      onPressed: () {
-        Navigator.pushNamed(context, '/home');
-      },
+      onPressed: userLogin,
       text: 'login',
     );
     final buttonForgotPassword = CustomButton2(
