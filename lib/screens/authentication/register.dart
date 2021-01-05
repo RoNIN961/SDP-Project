@@ -3,8 +3,6 @@ import 'package:sdp_project/theme/custom.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-String username = '';
-
 class RegisterPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
