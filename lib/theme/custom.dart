@@ -30,6 +30,7 @@ class CustomTextField extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.only(bottom: 10),
         child: TextField(
+          controller: controller,
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
               hintText: text,
@@ -56,6 +57,7 @@ class CustomHiddenTextField extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.only(bottom: 10),
         child: TextField(
+          controller: controller,
           keyboardType: TextInputType.emailAddress,
           obscureText: true,
           decoration: InputDecoration(
