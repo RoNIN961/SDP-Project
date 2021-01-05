@@ -32,47 +32,47 @@ class _RegisterPageState extends State<RegisterPage> {
     } else {
       myToast(jsonString);
     }
+  }
 
-    @override
-    Widget build(BuildContext context) {
-      final logo = CustomLogo(
-        onPressed: null,
-        image: null,
-      );
-      final inputUsername = CustomTextField(
-          onPressed: null, text: 'Username', controller: username);
-      final inputEmail = CustomTextField(
-        onPressed: null,
-        text: 'email address',
-        controller: email,
-      );
-      final inputPassword = CustomHiddenTextField(
-        onPressed: null,
-        text: 'password',
-        controller: password,
-      );
-      final buttonRegister = CustomButton1(
-          onPressed: () {
-            addData();
-          },
-          text: 'Create Account');
-      return SafeArea(
-          child: Scaffold(
-        body: Center(
-          child: ListView(
-            shrinkWrap: true,
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            children: <Widget>[
-              logo,
-              inputUsername,
-              inputEmail,
-              inputPassword,
-              buttonRegister,
-            ],
-          ),
+  @override
+  Widget build(BuildContext context) {
+    final logo = CustomLogo(
+      onPressed: null,
+      image: null,
+    );
+    final inputUsername = CustomTextField(
+        onPressed: null, text: 'Username', controller: username);
+    final inputEmail = CustomTextField(
+      onPressed: null,
+      text: 'email address',
+      controller: email,
+    );
+    final inputPassword = CustomHiddenTextField(
+      onPressed: null,
+      text: 'password',
+      controller: password,
+    );
+    final buttonRegister = CustomButton1(
+        onPressed: () {
+          addData();
+        },
+        text: 'Create Account');
+    return SafeArea(
+        child: Scaffold(
+      body: Center(
+        child: ListView(
+          shrinkWrap: true,
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          children: <Widget>[
+            logo,
+            inputUsername,
+            inputEmail,
+            inputPassword,
+            buttonRegister,
+          ],
         ),
-      ));
-    }
+      ),
+    ));
   }
 }
 
