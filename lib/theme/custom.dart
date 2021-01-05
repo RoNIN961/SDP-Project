@@ -45,9 +45,10 @@ class CustomTextField extends StatelessWidget {
 }
 
 class CustomHiddenTextField extends StatelessWidget {
-  CustomHiddenTextField({@required this.onPressed, this.text});
+  CustomHiddenTextField({@required this.onPressed, this.text, this.controller});
   final GestureTapCallback onPressed;
   final String text;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
