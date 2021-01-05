@@ -56,11 +56,8 @@ class _RegisterPageState extends State<RegisterPage> {
       text: 'password',
       controller: passwordController,
     );
-    final buttonRegister = CustomButton1(
-        onPressed: () {
-          addData();
-        },
-        text: 'Create Account');
+    final buttonRegister =
+        CustomButton1(onPressed: addData, text: 'Create Account');
     return SafeArea(
         child: Scaffold(
       body: Center(
