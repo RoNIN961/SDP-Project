@@ -9,10 +9,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    final logo = CustomLogo(
-      onPressed: null,
-      image: Image.asset('login_logo.png'),
-    );
+    final logo = CustomLogo(onPressed: null, image: null);
     final inputEmail = CustomTextField(
       text: 'email address',
     );
