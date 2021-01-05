@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sdp_project/theme/custom.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -10,41 +9,52 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  TextEditingController username = new TextEditingController();
-  TextEditingController password = new TextEditingController();
-  TextEditingController email = new TextEditingController();
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+  final emailController = TextEditingController();
 
-  var url = "https://czechoslovakian-scr.000webhostapp.com/register.php";
+  Future addData() async {
+    String username = usernameController.text;
+    String email = emailController.text;
+    String password = passwordController.text;
 
-  void addData() async {
-    var response = await http.post(url, body: {
-      'Username': username.text.trim(),
-      'Password': password.text.trim(),
-      'Email': email.text.trim(),
-    });
-    var jsonData = jsonDecode(response.body);
-    var jsonString = jsonData['message'];
-    // obtain shared preferences
+    var url = "https://czechoslovakian-scr.000webhostapp.com/register.php";
 
-    if (jsonString == 'success') {
-      myToast(jsonString);
-      Navigator.pushNamed(context, '/');
-    } else {
-      myToast(jsonString);
-    }
+    var data = {'Username': username, 'Password': password, 'Email': email};
+
+    var response = await http.post(url, body: json.encode(data));
+
+    var message = jsonDecode(response.body);
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: new Text(message),
+          actions: <Widget>[
+            FlatButton(
+              child: new Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final inputUsername =
-        CustomTextField(text: 'Username', controller: username);
+        CustomTextField(text: 'Username', controller: usernameController);
     final inputEmail = CustomTextField(
       text: 'email address',
-      controller: email,
+      controller: emailController,
     );
     final inputPassword = CustomHiddenTextField(
       text: 'password',
-      controller: password,
+      controller: passwordController,
     );
     final buttonRegister = CustomButton1(
         onPressed: () {
@@ -67,13 +77,4 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     ));
   }
-}
-
-myToast(String toast) {
-  return Fluttertoast.showToast(
-      msg: toast,
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
-      backgroundColor: Colors.red,
-      textColor: Colors.white);
 }
