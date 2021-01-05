@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
+import 'package:sdp_project/restaurant_home.dart';
 import 'register.dart';
+
 
 class LoginPage extends StatefulWidget {
   @override
@@ -15,8 +16,7 @@ class _LoginPageState extends State<LoginPage> {
       child: Hero(
           tag: 'hero',
           child: CircleAvatar(
-            radius: 56.0,
-            child: Image.asset('assets/logo.png'),
+            radius: 56.0,          
           )),
     );
     final inputEmail = Padding(
@@ -62,8 +62,8 @@ class _LoginPageState extends State<LoginPage> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
           onPressed: () {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => Home()));
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => RestaurantHome()));
           },
         ),
       ),
@@ -85,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
             inputEmail,
             inputPassword,
             buttonRegister,
-            buttonLogin,
+            buttonLogin, //login
             buttonForgotPassword
           ],
         ),
