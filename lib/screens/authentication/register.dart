@@ -40,15 +40,13 @@ class _RegisterPageState extends State<RegisterPage> {
       onPressed: null,
       image: null,
     );
-    final inputUsername = CustomTextField(
-        onPressed: null, text: 'Username', controller: username);
+    final inputUsername =
+        CustomTextField(text: 'Username', controller: username);
     final inputEmail = CustomTextField(
-      onPressed: null,
       text: 'email address',
       controller: email,
     );
     final inputPassword = CustomHiddenTextField(
-      onPressed: null,
       text: 'password',
       controller: password,
     );

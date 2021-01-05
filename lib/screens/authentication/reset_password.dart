@@ -4,7 +4,7 @@ import 'package:sdp_project/theme/custom.dart';
 class ResetPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final inputEmail = CustomTextField(onPressed: null, text: 'email address');
+    final inputEmail = CustomTextField(text: 'email address');
     final buttonReset = CustomButton2(
         onPressed: () {
           Navigator.pushNamed(context, '/');
