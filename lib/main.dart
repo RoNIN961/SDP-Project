@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sdp_project/theme/custom.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'package:sdp_project/theme/route.dart';
 
 void main() => runApp(MyApp());
@@ -15,5 +16,17 @@ class MyApp extends StatelessWidget {
       ),
       routes: getroute(),
     );
+  }
+
+  Future getData() async {
+    var url = 'https://disgusted-vapors.000webhostapp.com/get.php';
+    http.Response response = await http.get(url);
+    var data = jsonDecode(response.body);
+    print(data.toString());
+  }
+
+  @override
+  void initState() {
+    getData();
   }
 }
