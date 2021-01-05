@@ -18,9 +18,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
   void addData() async {
     var response = await http.post(url, body: {
-      "Username": username.text.trim(),
-      "Password": password.text.trim(),
-      "Email": email.text.trim(),
+      'Username': username.text.trim(),
+      'Password': password.text.trim(),
+      'Email': email.text.trim(),
     });
     var jsonData = jsonDecode(response.body);
     var jsonString = jsonData['message'];
@@ -36,10 +36,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    final logo = CustomLogo(
-      onPressed: null,
-      image: null,
-    );
     final inputUsername =
         CustomTextField(text: 'Username', controller: username);
     final inputEmail = CustomTextField(
@@ -62,7 +58,6 @@ class _RegisterPageState extends State<RegisterPage> {
           shrinkWrap: true,
           padding: EdgeInsets.symmetric(horizontal: 20),
           children: <Widget>[
-            logo,
             inputUsername,
             inputEmail,
             inputPassword,
