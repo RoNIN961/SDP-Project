@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   }
 
   Future getData() async {
-    var url = 'https://disgusted-vapors.000webhostapp.com/get.php';
+    var url = 'https://czechoslovakian-scr.000webhostapp.com/get.php';
     http.Response response = await http.get(url);
     var data = jsonDecode(response.body);
     print(data.toString());
