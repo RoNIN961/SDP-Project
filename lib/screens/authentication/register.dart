@@ -26,6 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
     // obtain shared preferences
 
     if (jsonString == 'success') {
+      Navigator.pushNamed(context, '/');
     } else {}
   }
 
@@ -53,7 +54,6 @@ class _RegisterPageState extends State<RegisterPage> {
     );
     final buttonRegister = CustomButton1(
         onPressed: () {
-          Navigator.pushNamed(context, '/');
           addData();
         },
         text: 'Create Account');
