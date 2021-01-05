@@ -19,14 +19,13 @@ class CustomLogo extends StatelessWidget {
 }
 
 class CustomTextField extends StatelessWidget {
-  CustomTextField({@required this.onPressed, this.text, this.controller});
-  final GestureTapCallback onPressed;
+  CustomTextField({@required this.text, this.controller});
   final String text;
   final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
-    return RawMaterialButton(
+    return SizedBox(
       child: Padding(
         padding: EdgeInsets.only(bottom: 10),
         child: TextField(
@@ -40,20 +39,18 @@ class CustomTextField extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50.0))),
         ),
       ),
-      onPressed: onPressed,
     );
   }
 }
 
 class CustomHiddenTextField extends StatelessWidget {
-  CustomHiddenTextField({@required this.onPressed, this.text, this.controller});
-  final GestureTapCallback onPressed;
+  CustomHiddenTextField({@required this.text, this.controller});
   final String text;
   final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
-    return RawMaterialButton(
+    return SizedBox(
       child: Padding(
         padding: EdgeInsets.only(bottom: 10),
         child: TextField(
@@ -68,7 +65,6 @@ class CustomHiddenTextField extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50.0))),
         ),
       ),
-      onPressed: onPressed,
     );
   }
 }
