@@ -19,9 +19,10 @@ class CustomLogo extends StatelessWidget {
 }
 
 class CustomTextField extends StatelessWidget {
-  CustomTextField({@required this.onPressed, this.text});
+  CustomTextField({@required this.onPressed, this.text, this.controller});
   final GestureTapCallback onPressed;
   final String text;
+  final String controller;
 
   @override
   Widget build(BuildContext context) {
