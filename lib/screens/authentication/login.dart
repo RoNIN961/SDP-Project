@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sdp_project/screens/authentication/register.dart';
 import '../../theme/custom.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -15,50 +14,56 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
 
   Future userLogin() async {
-    // Getting value from Controller
-    String email = emailController.text;
-    String password = passwordController.text;
+    try {
+      // Getting value from Controller
+      String email = emailController.text;
+      String password = passwordController.text;
 
-    // SERVER LOGIN API URL
-    var url = 'https://czechoslovakian-scr.000webhostapp.com/login.php';
+      // SERVER LOGIN API URL
+      var url = 'https://czechoslovakian-scr.000webhostapp.com/login.php';
 
-    // Store all data with Param Name.
-    var data = {'Email': email, 'Password': password};
+      // Store all data with Param Name.
+      var data = {'Email': email, 'Password': password};
 
-    // Starting Web API Call.
-    var response = await http.post(url, body: json.encode(data));
+      // Starting Web API Call.
+      var response = await http.post(url, body: data);
 
-    // Getting Server response into variable.
-    var message = jsonDecode(response.body);
+      // Getting Server response into variable.
+      var message = response.body;
 
-    // If the Response Message is Matched.
-    if (message == 'Login Matched') {
-      print(response.body);
-      //Navigator.pushNamed(context, '/Home');
-    } else {
-      // Showing Alert Dialog with Response JSON Message.
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: new Text(message),
-            actions: <Widget>[
-              FlatButton(
-                child: new Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
+      var jsonResponse = jsonDecode(response.body);
+
+      // If the Response Message is Matched.
+      if (jsonResponse['message'] == 'User Successfully Logged In') {
+        Navigator.pushNamed(context, '/home');
+      } else {
+        // Showing Alert Dialog with Response JSON Message.
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: new Text(message),
+              actions: <Widget>[
+                FlatButton(
+                  child: new Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
+    } catch (e) {
+      print(e.toString());
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final logo = CustomLogo(onPressed: null, image: null);
+    final logo = CustomLogo(
+        onPressed: null, image: Image.asset('assets/login_logo.png'));
     final inputEmail = CustomTextField(
       text: 'email address',
       controller: emailController,

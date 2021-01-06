@@ -39,19 +39,19 @@ class _HomeState extends State<Home> {
         items: [
           new BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              title: Text('Home'),
+              label: 'Home',
               backgroundColor: Colors.deepOrange),
           new BottomNavigationBarItem(
               icon: Icon(Icons.restaurant_menu),
-              title: Text('Restaurants'),
+              label: 'Restaurants',
               backgroundColor: Colors.deepOrange),
           new BottomNavigationBarItem(
               icon: Icon(Icons.book),
-              title: Text('Recipes'),
+              label: 'Recipes',
               backgroundColor: Colors.deepOrange),
           new BottomNavigationBarItem(
               icon: Icon(Icons.add_circle),
-              title: Text('Upload'),
+              label: 'Upload',
               backgroundColor: Colors.deepOrange)
         ],
       ),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:sdp_project/theme/custom.dart';
 import 'package:http/http.dart' as http;
@@ -14,34 +16,51 @@ class _RegisterPageState extends State<RegisterPage> {
   final emailController = TextEditingController();
 
   Future addData() async {
-    String username = usernameController.text;
-    String email = emailController.text;
-    String password = passwordController.text;
+    try {
+      String username = usernameController.text;
+      String email = emailController.text;
+      String password = passwordController.text;
 
-    var url = 'https://czechoslovakian-scr.000webhostapp.com/register.php';
+      var url = 'https://czechoslovakian-scr.000webhostapp.com/register.php';
 
-    var data = {'Username': username, 'Password': password, 'Email': email};
+      var data = {
+        'Username': username,
+        'Password': password,
+        'Email': email,
+        'Usertype': 'Customer'
+      };
 
-    var response = await http.post(url, body: json.encode(data));
+      var response = await http.post(url, body: data);
 
-    var message = jsonDecode(response.body);
+      var message = response.body;
 
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: new Text(message),
-          actions: <Widget>[
-            FlatButton(
-              child: new Text("OK"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
+      print(message);
+      //var jsonResponse = jsonDecode(response.body);
+
+      if (message == 'Registration Success!') {
+        Navigator.pushNamed(context, '/');
+      } else {
+        // Showing Alert Dialog with Response JSON Message.
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: new Text(message),
+              actions: <Widget>[
+                FlatButton(
+                  child: new Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
         );
-      },
-    );
+      }
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   @override
