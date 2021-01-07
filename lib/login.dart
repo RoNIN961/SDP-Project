@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
+import 'package:sdp_project/home.dart';
 import 'register.dart';
 
 class LoginPage extends StatefulWidget {
@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
           onPressed: () {
             Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => Home()));
+                context, MaterialPageRoute(builder: (context) => MyHomePage()));
           },
         ),
       ),
