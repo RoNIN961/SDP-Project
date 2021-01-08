@@ -133,7 +133,7 @@ class CustomDrawer extends StatelessWidget {
         UserAccountsDrawerHeader(
           accountEmail: Text("rong090601@gmail.com"),
           accountName: Text("RoNIN01"),
-          currentAccountPicture: Image.asset(''),
+          currentAccountPicture: Image.asset('assets/profile-picture.jpg'),
         ),
         ListTile(
           leading: IconTheme(
@@ -230,7 +230,7 @@ class CustomRecipeListView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Image(
-                            image: AssetImage(''),
+                            image: AssetImage('assets/chicken-casserole.jpg'),
                             width: 80.0,
                             height: 80.0,
                           ),
@@ -263,7 +263,7 @@ class CustomRecipeListView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Image(
-                            image: AssetImage(''),
+                            image: AssetImage('assets/chicken-casserole.jpg'),
                             width: 80.0,
                             height: 80.0,
                           ),
@@ -296,7 +296,7 @@ class CustomRecipeListView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Image(
-                            image: AssetImage(''),
+                            image: AssetImage('assets/chicken-casserole.jpg'),
                             width: 80.0,
                             height: 80.0,
                           ),
@@ -329,7 +329,7 @@ class CustomRecipeListView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Image(
-                            image: AssetImage(''),
+                            image: AssetImage('assets/chicken-casserole.jpg'),
                             width: 80.0,
                             height: 80.0,
                           ),
@@ -362,7 +362,7 @@ class CustomRecipeListView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Image(
-                            image: AssetImage(''),
+                            image: AssetImage('assets/chicken-casserole.jpg'),
                             width: 80.0,
                             height: 80.0,
                           ),
@@ -440,7 +440,7 @@ class CustomRestaurantListView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Image(
-                            image: AssetImage(''),
+                            image: AssetImage('assets/KFC.png'),
                             width: 80.0,
                             height: 80.0,
                           ),
@@ -473,7 +473,7 @@ class CustomRestaurantListView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Image(
-                            image: AssetImage(''),
+                            image: AssetImage('assets/KFC.png'),
                             width: 80.0,
                             height: 80.0,
                           ),
@@ -506,7 +506,7 @@ class CustomRestaurantListView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Image(
-                            image: AssetImage(''),
+                            image: AssetImage('assets/KFC.png'),
                             width: 80.0,
                             height: 80.0,
                           ),
@@ -539,7 +539,7 @@ class CustomRestaurantListView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Image(
-                            image: AssetImage(''),
+                            image: AssetImage('assets/KFC.png'),
                             width: 80.0,
                             height: 80.0,
                           ),
@@ -572,7 +572,7 @@ class CustomRestaurantListView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Image(
-                            image: AssetImage(''),
+                            image: AssetImage('assets/KFC.png'),
                             width: 80.0,
                             height: 80.0,
                           ),
