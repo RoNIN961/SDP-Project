@@ -116,6 +116,51 @@ class CustomButton2 extends StatelessWidget {
   }
 }
 
+class CustomButton3 extends StatelessWidget {
+  CustomButton3({@required this.onPressed, this.text});
+  final GestureTapCallback onPressed;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        RaisedButton(
+          onPressed: onPressed,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(80.0),
+          ),
+          child: Ink(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [Colors.pink, Colors.redAccent]),
+              borderRadius: BorderRadius.circular(80.0),
+            ),
+            child: Container(
+              constraints: BoxConstraints(
+                maxWidth: 100.0,
+                maxHeight: 40.0,
+              ),
+              alignment: Alignment.center,
+              child: Text(
+                (text),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12.0,
+                    letterSpacing: 2.0,
+                    fontWeight: FontWeight.w300),
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
+
 class CustomDrawer extends StatelessWidget {
   final _menutextcolor = TextStyle(
     color: Colors.black,

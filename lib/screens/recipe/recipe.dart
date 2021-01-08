@@ -15,7 +15,7 @@ class RecipePage extends StatelessWidget {
                     leading: ConstrainedBox(
                         constraints:
                             BoxConstraints(maxWidth: 80.0, maxHeight: 20.0),
-                        child: Image.asset('')),
+                        child: Image.asset('assets/ginger-chicken.jpg')),
                     title: Text('Recipe Name'),
                     subtitle: Text('Author Name'),
                   ),
