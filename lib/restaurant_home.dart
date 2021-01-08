@@ -10,7 +10,7 @@ class RestaurantHome extends StatefulWidget {
 
 class _RestaurantHomeState extends State<RestaurantHome> {
   int _currentIndex = 0;
-  final List<Widget> _children = [RestaurantHomeContent()];
+  final List<Widget> _children = [RestaurantHomeContent(),];
 
   @override
   Widget build(BuildContext context) {
