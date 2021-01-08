@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
 
       // If the Response Message is Matched.
       if (jsonResponse['message'] == 'User Successfully Logged In') {
-        Navigator.pushNamed(context, '/home');
+        Navigator.pushNamed(context, '/rest_home');
       } else {
         // Showing Alert Dialog with Response JSON Message.
         showDialog(
@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final logo = CustomLogo(
-        onPressed: null, image: Image.asset('assets/login_logo.png'));
+        onPressed: null, image: null);
     final inputEmail = CustomTextField(
       text: 'email address',
       controller: emailController,
