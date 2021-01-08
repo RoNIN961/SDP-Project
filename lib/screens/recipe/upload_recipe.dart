@@ -13,11 +13,17 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
   final instructionIDController = TextEditingController();
   final imageIDController = TextEditingController();
 
-  Future uploadInstructions() async {
-    try {
-      var url = '';
-    }
-  }
+  // Future uploadInstructions() async {
+  //   try {
+  //     String detail = instructionIDController.text;
+  //     String step = ;
+
+  //     var url = 'https://czechoslovakian-scr.000webhostapp.com/upload_instructions.php';
+
+  //   }
+  // }catch (e) {
+  //     print(e.toString());
+  //   }
 
   Future uploadRecipe() async {
     try {
