@@ -651,4 +651,32 @@ class CustomRestaurantListView extends StatelessWidget {
     );
   }
 }
-//aaa
+
+class CustomDropDownButton extends StatefulWidget {
+  @override
+  _CustomDropDownButtonState createState() => _CustomDropDownButtonState();
+}
+
+class _CustomDropDownButtonState extends State<CustomDropDownButton> {
+  @override
+  Widget build(BuildContext context) {
+    String dropdownValue = 'Please Choose One';
+    return DropdownButton<String>(
+      value: dropdownValue,
+      icon: Icon(Icons.arrow_downward_rounded),
+      iconSize: 24,
+      style: TextStyle(color: Colors.deepOrange),
+      underline: Container(height: 2, color: Colors.deepOrange),
+      onChanged: (String categoryValue) {
+        dropdownValue = categoryValue;
+      },
+      items: <String>['Halal', 'Non-Halal']
+          .map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    );
+  }
+}

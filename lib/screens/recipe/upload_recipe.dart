@@ -12,16 +12,22 @@ class UploadRecipePage extends StatefulWidget {
 class _UploadRecipePageState extends State<UploadRecipePage> {
   final titleController = TextEditingController();
   final detailController = TextEditingController();
+  final categoryController = CustomDropDownButton();
 
   Future uploadRecipe() async {
     try {
       String title = titleController.text;
       String detail = detailController.text;
+      String category = categoryController.toString();
 
       var url =
           'https://czechoslovakian-scr.000webhostapp.com/upload_recipe.php';
 
-      var data = {'Recipe_Title': title, 'Detail': detail};
+      var data = {
+        'Recipe_Title': title,
+        'Detail': detail,
+        'Category': category
+      };
 
       var response = await http.post(url, body: data);
 
@@ -69,7 +75,9 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
                       TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold)),
               onTap: () {},
             )),
-        CustomTextField(text: 'Title:Ginger Chicken'),
+        CustomTextField(
+            text: 'Title:Ginger Chicken', controller: titleController),
+        CustomDropDownButton(),
         Container(
             child: Column(
           children: <Widget>[
