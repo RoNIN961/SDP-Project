@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
@@ -8,53 +10,27 @@ class UploadRecipePage extends StatefulWidget {
 }
 
 class _UploadRecipePageState extends State<UploadRecipePage> {
-  final recipeTitleController = TextEditingController();
-  final ingredientIDController = TextEditingController();
-  final instructionIDController = TextEditingController();
-  final imageIDController = TextEditingController();
-
-  // Future uploadInstructions() async {
-  //   try {
-  //     String detail = instructionIDController.text;
-  //     String step = ;
-
-  //     var url = 'https://czechoslovakian-scr.000webhostapp.com/upload_instructions.php';
-
-  //   }
-  // }catch (e) {
-  //     print(e.toString());
-  //   }
+  final titleController = TextEditingController();
+  final detailController = TextEditingController();
 
   Future uploadRecipe() async {
     try {
-      String recipeTitle = recipeTitleController.text;
-      String ingredientsID = ingredientIDController.text;
-      String instructionID = instructionIDController.text;
-      String imageID = imageIDController.text;
+      String title = titleController.text;
+      String detail = detailController.text;
 
       var url =
           'https://czechoslovakian-scr.000webhostapp.com/upload_recipe.php';
 
-      var data = {
-        'Recipe_Title': recipeTitle,
-        'Ingredients_ID': ingredientsID,
-        'Instruction_ID': instructionID,
-        'Image_ID': imageID,
-        'User_ID': '7',
-        'Category': 'Unknown'
-      };
+      var data = {'Recipe_Title': title, 'Detail': detail};
 
       var response = await http.post(url, body: data);
 
       var message = response.body;
 
-      print(message);
-      //var jsonResponse = jsonDecode(response.body);
+      var jsonResponse = jsonDecode(response.body);
 
-      if (message == 'Upload Success!') {
-        Navigator.pushNamed(context, '/');
+      if (jsonResponse['message'] == 'Upload Success') {
       } else {
-        // Showing Alert Dialog with Response JSON Message.
         showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -93,8 +69,7 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
                       TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold)),
               onTap: () {},
             )),
-        CustomTextField(
-            text: 'Title:Ginger Chicken', controller: recipeTitleController),
+        CustomTextField(text: 'Title:Ginger Chicken'),
         Container(
             child: Column(
           children: <Widget>[
@@ -104,14 +79,15 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
                   'Ingredients',
                   style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
                 )),
-            CustomTextField(
-              text: '250g flour',
-              controller: ingredientIDController,
-            ),
-            CustomTextField(
-              text: '100ml water',
-              controller: ingredientIDController,
-            ),
+            Column(children: <Widget>[
+              Row(children: <Widget>[
+                TextFormField(
+                  enableInteractiveSelection: false,
+                  initialValue: step,
+                ),
+                CustomTextField(text: '250g flour')
+              ])
+            ]),
             CustomButton3(
               onPressed: null,
               text: 'add ingredients',
@@ -129,11 +105,6 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
                 )),
             CustomTextField(
               text: 'Step 1',
-              controller: instructionIDController,
-            ),
-            CustomTextField(
-              text: 'Step 2',
-              controller: instructionIDController,
             ),
             CustomButton3(
               onPressed: null,
@@ -142,10 +113,13 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
           ],
         )),
         CustomButton3(
-          onPressed: uploadRecipe,
           text: 'Upload Recipe',
+          onPressed: null,
         )
       ],
     )));
   }
 }
+
+int stepNumber = 1;
+String step = "$stepNumber";
