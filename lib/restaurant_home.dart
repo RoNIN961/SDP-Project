@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sdp_project/restaurant_homecontent.dart';
+import 'package:sdp_project/Review.dart';
+import 'Reservation.dart';
+import 'restaurant_homecontent.dart';
+import 'Menu.dart';
+import 'Review.dart';
 
 class RestaurantHome extends StatefulWidget {
   @override
@@ -10,7 +14,7 @@ class RestaurantHome extends StatefulWidget {
 
 class _RestaurantHomeState extends State<RestaurantHome> {
   int _currentIndex = 0;
-  final List<Widget> _children = [RestaurantHomeContent()];
+  final List<Widget> _children = [RestaurantHomeContent(),MenuPage(),ReservationPage(),ReviewPage()];
 
   @override
   Widget build(BuildContext context) {
