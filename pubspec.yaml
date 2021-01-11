@@ -26,7 +26,7 @@ dependencies:
   percent_indicator: "^2.1.7+2"
   http: ^0.12.2
   image_picker: ^0.6.7+21
-  flutter_bloc: ^2.0.0
+  flutter_bloc: ^6.1.1
   equatable: ^0.6.1
 
 

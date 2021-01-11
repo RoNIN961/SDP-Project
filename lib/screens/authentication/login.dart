@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sdp_project/loginBloc.dart';
+import 'package:sdp_project/loginRepo.dart';
 import '../../theme/custom.dart';
-import 'dart:async';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   @override
@@ -10,58 +10,22 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  @override
+  Widget build(context) {
+    return BlocProvider(
+      create: (context) => LoginBloc(LoginRepo()),
+      child: LoginUI(),
+    );
+  }
+}
+
+class LoginUI extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  Future userLogin() async {
-    try {
-      // Getting value from Controller
-      String email = emailController.text;
-      String password = passwordController.text;
-
-      // SERVER LOGIN API URL
-      var url = 'https://czechoslovakian-scr.000webhostapp.com/login.php';
-
-      // Store all data with Param Name.
-      var data = {'Email': email, 'Password': password};
-
-      // Starting Web API Call.
-      var response = await http.post(url, body: data);
-
-      // Getting Server response into variable.
-      var message = response.body;
-
-      var jsonResponse = jsonDecode(response.body);
-
-      // If the Response Message is Matched.
-      if (jsonResponse['message'] == 'User Successfully Logged In') {
-        Navigator.pushNamed(context, '/home');
-      } else {
-        // Showing Alert Dialog with Response JSON Message.
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: new Text(message),
-              actions: <Widget>[
-                FlatButton(
-                  child: new Text("OK"),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            );
-          },
-        );
-      }
-    } catch (e) {
-      print(e.toString());
-    }
-  }
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(context) {
+    final loginBloc = BlocProvider.of<LoginBloc>(context);
     final logo = CustomLogo(
         onPressed: null, image: Image.asset('assets/login_logo.png'));
     final inputEmail = CustomTextField(
@@ -79,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
         text: 'Not a member? Register here',
         color: Colors.red);
     final buttonLogin = CustomButton1(
-      onPressed: userLogin,
+      onPressed: () => loginBloc.add(FetchLoginData(emailController.text)),
       text: 'login',
     );
     final buttonForgotPassword = CustomButton2(
@@ -99,7 +63,18 @@ class _LoginPageState extends State<LoginPage> {
             inputPassword,
             buttonRegister,
             buttonLogin,
-            buttonForgotPassword
+            buttonForgotPassword,
+            BlocConsumer<LoginBloc, LoginState>(builder: (context, state) {
+              if (State is NotLoggedIn)
+                return LoginUI();
+              else if (State is LoadingLogin)
+                return Center(child: CircularProgressIndicator());
+
+              return Text("error");
+            }, listener: (context, state) {
+              if (State is LoggedInSuccess)
+                Navigator.pushNamed(context, '/Home');
+            })
           ],
         ),
       ),

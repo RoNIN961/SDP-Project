@@ -4,7 +4,8 @@ import 'loginModel.dart';
 
 class LoginRepo {
   Future<LoginModel> getData(String email) async {
-    final result = await http.Client().get("");
+    final result = await http.Client()
+        .get("https://czechoslovakian-scr.000webhostapp.com/login.php");
 
     if (result.statusCode != 200) throw Exception();
 
