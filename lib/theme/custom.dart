@@ -655,22 +655,34 @@ class CustomRestaurantListView extends StatelessWidget {
 class CustomDropDownButton extends StatefulWidget {
   @override
   _CustomDropDownButtonState createState() => _CustomDropDownButtonState();
+  CustomDropDownButton({Key key}) : super(key: key);
 }
 
 class _CustomDropDownButtonState extends State<CustomDropDownButton> {
+  String dropdownValue = 'Please Choose One';
+  String holder = '';
+
+  getCategory() {
+    return setState(() {
+      holder = dropdownValue;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    String dropdownValue = 'Please Choose One';
     return DropdownButton<String>(
       value: dropdownValue,
-      icon: Icon(Icons.arrow_downward_rounded),
+      icon: Icon(Icons.arrow_drop_down),
       iconSize: 24,
+      elevation: 16,
       style: TextStyle(color: Colors.deepOrange),
-      underline: Container(height: 2, color: Colors.deepOrange),
+      underline: Container(height: 2, width: 2, color: Colors.deepOrange),
       onChanged: (String categoryValue) {
-        dropdownValue = categoryValue;
+        setState(() {
+          dropdownValue = categoryValue;
+        });
       },
-      items: <String>['Halal', 'Non-Halal']
+      items: <String>['Please Choose One', 'Halal', 'Non-Halal']
           .map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,

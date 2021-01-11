@@ -1,24 +1,64 @@
 import 'dart:convert';
-
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:sdp_project/theme/custom.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UploadRecipePage extends StatefulWidget {
   _UploadRecipePageState createState() => _UploadRecipePageState();
 }
 
 class _UploadRecipePageState extends State<UploadRecipePage> {
+  PickedFile _image;
+  // ignore: unused_field
+  dynamic _pickImageError;
   final titleController = TextEditingController();
   final detailController = TextEditingController();
-  final categoryController = CustomDropDownButton();
+  final ingredientController = TextEditingController();
+  final ImagePicker _picker = ImagePicker();
+
+  _imgFromCamera() async {
+    try {
+      final pickedFile = await _picker.getImage(
+        source: ImageSource.camera,
+        imageQuality: 50,
+      );
+      setState(() {
+        _image = pickedFile;
+      });
+    } catch (e) {
+      setState(() {
+        _pickImageError = e;
+      });
+      print(e);
+    }
+  }
+
+  _imgFromGallery() async {
+    try {
+      final pickedFile = await _picker.getImage(
+        source: ImageSource.gallery,
+        imageQuality: 50,
+      );
+      setState(() {
+        _image = pickedFile;
+      });
+      print(_image.path);
+    } catch (e) {
+      setState(() {
+        _pickImageError = e;
+      });
+      print(e);
+    }
+  }
 
   Future uploadRecipe() async {
     try {
       String title = titleController.text;
       String detail = detailController.text;
-      String category = categoryController.toString();
+      String category = CustomDropDownButton() as String;
 
       var url =
           'https://czechoslovakian-scr.000webhostapp.com/upload_recipe.php';
@@ -29,6 +69,7 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
         'Category': category
       };
 
+      print(category);
       var response = await http.post(url, body: data);
 
       var message = response.body;
@@ -36,6 +77,7 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
       var jsonResponse = jsonDecode(response.body);
 
       if (jsonResponse['message'] == 'Upload Success') {
+        print(category);
       } else {
         showDialog(
           context: context,
@@ -66,18 +108,49 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
             child: ListView(
       children: [
         SizedBox(
-            width: 400.0,
-            height: 200.0,
-            child: InkWell(
-              child: Text('Upload Recipe Image',
-                  textAlign: TextAlign.center,
-                  style:
-                      TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold)),
-              onTap: () {},
-            )),
-        CustomTextField(
-            text: 'Title:Ginger Chicken', controller: titleController),
-        CustomDropDownButton(),
+            child: GestureDetector(
+                onTap: () {
+                  _showPicker(context);
+                },
+                child: CircleAvatar(
+                  radius: 55,
+                  backgroundColor: Color(0xffFDCF09),
+                  child: _image != null
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image.file(
+                            File(_image.path),
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.fitHeight,
+                          ),
+                        )
+                      : Container(
+                          decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius: BorderRadius.circular(50)),
+                          width: 100,
+                          height: 100,
+                          child: Icon(
+                            Icons.camera_alt,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                ))),
+        Column(children: <Widget>[
+          CustomTextField(
+              text: 'Title:Ginger Chicken', controller: titleController),
+          Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  'Category',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
+                ),
+                CustomDropDownButton()
+              ])
+        ]),
         Container(
             child: Column(
           children: <Widget>[
@@ -87,15 +160,8 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
                   'Ingredients',
                   style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
                 )),
-            Column(children: <Widget>[
-              Row(children: <Widget>[
-                TextFormField(
-                  enableInteractiveSelection: false,
-                  initialValue: step,
-                ),
-                CustomTextField(text: '250g flour')
-              ])
-            ]),
+            CustomTextField(
+                text: '250g flour', controller: ingredientController),
             CustomButton3(
               onPressed: null,
               text: 'add ingredients',
@@ -120,14 +186,38 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
             )
           ],
         )),
-        CustomButton3(
-          text: 'Upload Recipe',
-          onPressed: null,
-        )
+        CustomButton3(text: 'Upload Recipe', onPressed: uploadRecipe)
       ],
     )));
   }
-}
 
-int stepNumber = 1;
-String step = "$stepNumber";
+  void _showPicker(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+            child: Container(
+              child: new Wrap(
+                children: <Widget>[
+                  new ListTile(
+                      leading: new Icon(Icons.photo_library),
+                      title: new Text('Photo Library'),
+                      onTap: () {
+                        _imgFromGallery();
+                        Navigator.of(context).pop();
+                      }),
+                  new ListTile(
+                    leading: new Icon(Icons.photo_camera),
+                    title: new Text('Camera'),
+                    onTap: () {
+                      _imgFromCamera();
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+}
