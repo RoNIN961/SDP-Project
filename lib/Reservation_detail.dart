@@ -53,12 +53,15 @@ class ReservationDetailScreen extends StatelessWidget {
                           children: <Widget>[
                             SizedBox(height: 130),
                             Center(
-                                child: SizedBox(
-                              child: Text(
-                                'Username',
-                                style: TextStyle(fontSize: 30.0),
+                                child: Column(children: <Widget>[
+                              SizedBox(
+                                child: Text(
+                                  'Username',
+                                  style: TextStyle(fontSize: 30.0),
+                                ),
                               ),
-                            ))
+                              Text(reservationlist['Cus_Name'])
+                            ]))
                           ]),
                     ))),
             Positioned(
