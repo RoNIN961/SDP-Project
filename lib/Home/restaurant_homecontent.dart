@@ -68,11 +68,7 @@ class CustomRecipeListView extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.all(2.0),
                           ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
+                          
                         ],
                       ),
                     ),
@@ -101,11 +97,7 @@ class CustomRecipeListView extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.all(2.0),
                           ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
+                          
                         ],
                       ),
                     ),
@@ -134,11 +126,7 @@ class CustomRecipeListView extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.all(2.0),
                           ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
+                          
                         ],
                       ),
                     ),
@@ -167,11 +155,7 @@ class CustomRecipeListView extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.all(2.0),
                           ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
+                          
                         ],
                       ),
                     ),
@@ -200,11 +184,7 @@ class CustomRecipeListView extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.all(2.0),
                           ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
+                          
                         ],
                       ),
                     ),
@@ -278,11 +258,7 @@ class CustomRestaurantListView extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.all(2.0),
                           ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
+                          
                         ],
                       ),
                     ),
@@ -311,11 +287,7 @@ class CustomRestaurantListView extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.all(2.0),
                           ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
+                          
                         ],
                       ),
                     ),
@@ -344,11 +316,7 @@ class CustomRestaurantListView extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.all(2.0),
                           ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
+                          
                         ],
                       ),
                     ),
@@ -377,11 +345,7 @@ class CustomRestaurantListView extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.all(2.0),
                           ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
+                        
                         ],
                       ),
                     ),
@@ -410,11 +374,7 @@ class CustomRestaurantListView extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.all(2.0),
                           ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
+                          
                         ],
                       ),
                     ),
