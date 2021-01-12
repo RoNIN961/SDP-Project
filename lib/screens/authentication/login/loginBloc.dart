@@ -9,12 +9,12 @@ class LoginEvent extends Equatable {
 }
 
 class FetchLoginData extends LoginEvent {
-  final _email;
+  final _user;
 
-  FetchLoginData(this._email);
+  FetchLoginData(this._user);
 
   @override
-  List<Object> get props => [_email];
+  List<Object> get props => [_user];
 }
 
 class ResetLoginData extends LoginEvent {}
@@ -29,14 +29,14 @@ class NotLoggedIn extends LoginState {}
 class LoadingLogin extends LoginState {}
 
 class LoggedInSuccess extends LoginState {
-  final _email;
+  final _user;
 
-  LoggedInSuccess(this._email);
+  LoggedInSuccess(this._user);
 
   @override
-  List<Object> get props => [_email];
+  List<Object> get props => [_user];
 
-  LoginModel get getEmail => _email;
+  LoginModel get getUser => _user;
 }
 
 class LoggedInFailed extends LoginState {}
@@ -52,8 +52,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       yield LoadingLogin();
 
       try {
-        LoginModel email = await loginRepo.getData(event._email);
-        yield LoggedInSuccess(email);
+        LoginModel user = await loginRepo.getData(event._user);
+        yield LoggedInSuccess(user);
       } catch (_) {
         yield LoggedInFailed();
       }

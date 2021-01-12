@@ -162,6 +162,10 @@ class CustomButton3 extends StatelessWidget {
 }
 
 class CustomDrawer extends StatelessWidget {
+  CustomDrawer({@required this.email, this.name});
+  final String name;
+  final String email;
+
   final _menutextcolor = TextStyle(
     color: Colors.black,
     fontSize: 14.0,
@@ -176,8 +180,8 @@ class CustomDrawer extends StatelessWidget {
       padding: EdgeInsets.all(0),
       children: <Widget>[
         UserAccountsDrawerHeader(
-          accountEmail: Text("rong090601@gmail.com"),
-          accountName: Text("RoNIN01"),
+          accountEmail: Text(email),
+          accountName: Text(name),
           currentAccountPicture: Image.asset('assets/profile-picture.jpg'),
         ),
         ListTile(

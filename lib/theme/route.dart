@@ -1,4 +1,4 @@
-import '../screens/authentication/login.dart';
+import '../screens/authentication/login/login.dart';
 import '../screens/authentication/register.dart';
 import '../screens/homescreen/check_points.dart';
 import '../screens/homescreen/home.dart';
@@ -19,7 +19,7 @@ getroute() {
     '/': (context) => LoginPage(),
     '/register': (context) => RegisterPage(),
     '/check_points': (context) => CheckPointsPage(),
-    '/home': (context) => Home(),
+    '/home': (context) => HomePage(),
     '/profile': (content) => ProfilePage(),
     '/edit_profile': (content) => EditProfilePage(),
     '/homecontent': (content) => HomeContentPage(),

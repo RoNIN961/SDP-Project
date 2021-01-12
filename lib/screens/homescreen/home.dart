@@ -1,34 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sdp_project/screens/recipe/recipe.dart';
 import 'package:sdp_project/screens/recipe/upload_recipe.dart';
 import 'package:sdp_project/theme/custom.dart';
-import '../../loginBloc.dart';
-import '../../loginRepo.dart';
 import 'homecontent.dart';
 import '../restaurant/restaurant.dart';
 
-class Home extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _HomeState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomeState extends State<Home> {
-  @override
-  Widget build(context) {
-    return BlocProvider(
-      create: (context) => LoginBloc(LoginRepo()),
-      child: HomeUI(),
-    );
-  }
-}
-
-class HomeUI extends StatefulWidget {
-  @override
-  _HomeUIState createState() => _HomeUIState();
-}
-
-class _HomeUIState extends State<HomeUI> {
+class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     HomeContentPage(),
@@ -70,7 +52,11 @@ class _HomeUIState extends State<HomeUI> {
               backgroundColor: Colors.deepOrange)
         ],
       ),
-      drawer: Drawer(child: CustomDrawer()),
+      drawer: Drawer(
+          child: CustomDrawer(
+        email: 'data',
+        name: 'data',
+      )),
     );
   }
 

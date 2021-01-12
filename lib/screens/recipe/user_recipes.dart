@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sdp_project/screens/homescreen/home.dart';
 
 class UserRecipePage extends StatefulWidget {
   @override
@@ -20,15 +19,7 @@ class _UserRecipePageState extends State<UserRecipePage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            leading: BackButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (context) => Home()));
-              },
-            ),
-            title: Text('My Flutter App'),
-            actions: <Widget>[]),
+        appBar: AppBar(title: Text('My Flutter App'), actions: <Widget>[]),
         body: Container(
             child: Column(
           children: <Widget>[
