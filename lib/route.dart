@@ -1,8 +1,8 @@
-import 'login.dart';
-import 'register.dart';
+import 'Login/login.dart';
+import 'Login/register.dart';
 import 'profile.dart';
-import 'restaurant_home.dart';
-import 'restaurant_homecontent.dart';
+import 'Home/restaurant_home.dart';
+import 'Home/restaurant_homecontent.dart';
 
 getroute() {
   return {

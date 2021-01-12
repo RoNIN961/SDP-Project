@@ -1,41 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'Reservation_detail.dart';
+import 'package:sdp_project/Reviews/Review_details.dart';
 
-const Re_ListData = [
+const ReviewListData = [
   {
-    'Cus_Name': 'Lui Yan De',
-    'Reservation_Date': '8/1/2021',
+    'Cus_Name': 'Happy Meals',
+    'total_review': '100',
     'Email': 'luiyande5678@gmail.com',
-    'imgUrl': 'assets/Yukinoshita Yukino.jpg',
-    'bgColor': Color(0xFFEFEFEF),
+    'imgUrl': 'assets/Happy Meals.jpg',
+    'total_rating': '4.6',
   },
   {
-    'Cus_Name': 'Mirza',
-    'Reservation_Date': '9/1/2021',
+    'Cus_Name': 'Happy Meals',
+    'total_review': '90',
     'Email': 'mirz666a@gmail.com',
-    'imgUrl': 'assets/Yukinoshita Yukino.jpg',
-    'bgColor': Color(0xFFC8E6C9),
+    'imgUrl': 'assets/Happy Meals.jpg',
+    'total_rating': '4.7',
   },
   {
-    'Cus_Name': 'Lim Jia Rong',
-    'Reservation_Date': '10/1/2021',
+    'Cus_Name': 'Happy Meals',
+    'total_review': '70',
     'Email': 'lim222@gmail.com',
-    'imgUrl': 'assets/Yukinoshita Yukino.jpg',
-    'bgColor': Color(0xFFA5D6A7),
+    'imgUrl': 'assets/Happy Meals.jpg',
+    'total_rating': '4.5',
   },
 ];
 
-class ReservationPage extends StatelessWidget {
+class ReviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: <Widget>[Reservation()],
+      children: <Widget>[Review()],
     );
   }
 }
 
-class Reservation extends StatelessWidget {
+class Review extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -56,21 +55,22 @@ class Reservation extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                'Reservation',
+                'Review',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
-              ReservationListCard(Re_ListData[0]),
-              ReservationListCard(Re_ListData[1]),
-              ReservationListCard(Re_ListData[2]),
-            ],
-          )),
+              MenuReview(ReviewListData[0]),
+              MenuReview(ReviewListData[1]),
+              MenuReview(ReviewListData[2]),
+          ],
+        )
+      ),
     );
   }
 }
 
-class ReservationListCard extends StatelessWidget {
-  final reservationlist;
-  ReservationListCard(this.reservationlist);
+class MenuReview extends StatelessWidget {
+  final reviewlist;
+  MenuReview(this.reviewlist);
 
   @override
   Widget build(BuildContext context) {
@@ -80,36 +80,36 @@ class ReservationListCard extends StatelessWidget {
       height: MediaQuery.of(context).size.height / 4 - 20,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: reservationlist['bgColor'],
+        color: Color(0xFFECEFF1),
       ),
       child: Stack(
         children: <Widget>[
           Positioned(
             top: 10,
-            right: 10,
+            left: 10,
             child: Image.asset(
-              reservationlist['imgUrl'],
+              reviewlist['imgUrl'],
               height: MediaQuery.of(context).size.height * 0.20,
               width: MediaQuery.of(context).size.width * 0.30,
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 20, left: 30),
+            padding: EdgeInsets.only(top: 20, left: 140),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  reservationlist['Cus_Name'],
+                  reviewlist['Cus_Name'],
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 20,
                   ),
                 ),
                 SizedBox(
-                  height: 5,
+                  height: 10
                 ),
                 Text(
-                  reservationlist['Reservation_Date'],
+                  '${reviewlist['total_review']} total reviews',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w300,
@@ -118,28 +118,48 @@ class ReservationListCard extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                MaterialButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  ReservationDetailScreen(reservationlist)));
-                    },
+                Row(
+                  children:<Widget>[
+                    Icon(
+                      Icons.star,
+                      size:16,
+                      color:Color(0xffFF8573),
+                    ),
+                    SizedBox(width:5),
+                    Text(
+                      reviewlist['total_rating'],
+                      style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                    SizedBox(width:40),
+                    MaterialButton(
+                      onPressed: () {
+                    Navigator.push(
+                      context,
+                    MaterialPageRoute(
+                      builder: (context) => ReviewDetailScreen(reviewlist)
+                      )
+                    );
+                  },
                     color: Color(0xff4E2958),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     child: Text(
-                      'View Profile',
+                      'View Menu',
                       style: TextStyle(
                         color: Colors.white,
+                          ),
+                        )
                       ),
-                    )),
+                  ],
+                ),
               ],
             ),
           )
-        ],
-      ),
+        ]
+      )
     );
   }
 }

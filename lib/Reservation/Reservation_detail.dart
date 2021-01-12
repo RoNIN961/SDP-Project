@@ -51,19 +51,56 @@ class ReservationDetailScreen extends StatelessWidget {
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            SizedBox(height: 130),
+                            SizedBox(height: 80),
                             Center(
                                 child: Column(children: <Widget>[
                               SizedBox(
                                 child: Text(
                                   'Username',
-                                  style: TextStyle(fontSize: 30.0),
+                                  style: TextStyle(
+                                    fontSize: 36,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                              Text(reservationlist['Cus_Name'])
-                            ]))
-                          ]),
-                    ))),
+                              SizedBox(
+                                height: 30
+                              ),
+                              Text(
+                                reservationlist['Cus_Name'],
+                                style: TextStyle(
+                                  fontSize: 28,
+                                  color: Color(0xFFB0BEC5)
+                                  ),
+                                ),
+                              SizedBox(
+                                height: 50
+                              ),
+                              Text(
+                                'Email',
+                                style: TextStyle(
+                                  fontSize: 36,
+                                  fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                              SizedBox(
+                                height: 30
+                              ),
+                              Text(
+                                reservationlist['Email'],
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Color(0xFF2196F3)
+                                  ),
+                                )
+                              ]
+                            )
+                          )
+                        ]
+                      ),
+                    )
+                  )
+                ),
             Positioned(
               top: MediaQuery.of(context).size.height / 3 - 120,
               child: Padding(
