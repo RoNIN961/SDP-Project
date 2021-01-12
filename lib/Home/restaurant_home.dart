@@ -4,6 +4,7 @@ import '../Reservation/Reservation.dart';
 import 'restaurant_homecontent.dart';
 import '../Menu/Menu.dart';
 import '../Reviews/Review.dart';
+import 'package:sdp_project/Edit_Profile.dart';
 
 class RestaurantHome extends StatefulWidget {
   @override
@@ -19,8 +20,38 @@ class _RestaurantHomeState extends State<RestaurantHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('My Flutter App'),
+      appBar: AppBar(title: Text('Restaurant Main Page'),
       ),
+      drawer: new Drawer(
+      child: new ListView(
+        children: <Widget>[
+          new UserAccountsDrawerHeader(
+            accountName: new Text('nibbas'),
+            accountEmail: new Text('bababoey@mail.com'),
+            currentAccountPicture: new CircleAvatar(
+            backgroundColor: Colors.white,
+            child: Text("M"),
+          )
+        ),
+          new ListTile(
+            title: new Text("View Account"),
+            trailing: new Icon(Icons.people),
+            onTap: (){
+            Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => EditProfile()));
+          },
+        ),
+           new ListTile(
+            title: new Text("View Account"),
+            trailing: new Icon(Icons.people),
+            onTap: (){
+            Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => EditProfile()));
+          },
+        )
+      ]
+    ),
+  ),
       body: _children[_currentIndex], // new
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped, // new
