@@ -1,25 +1,16 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
-
-void main() => runApp(new MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Flutter Demo',
-      theme: new ThemeData(
-        primarySwatch: Colors.deepOrange,
-      ),
-      home: MyHomePage(),
-    );
-  }
+import 'package:admin_ui/navbar.dart';
+void main(){
+  runApp(Admin());
 }
 
-class User {
-  final String id;
-  final String utype;
-  final String email;
-
-  User(this.id, this.utype, this.email);
+class Admin extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: new ThemeData(primarySwatch: Colors.deepOrange),
+      title: 'bottom nav bar',
+      home: Nav(),
+    );
+  }
 }
