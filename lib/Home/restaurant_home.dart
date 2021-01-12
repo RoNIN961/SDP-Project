@@ -28,22 +28,22 @@ class _RestaurantHomeState extends State<RestaurantHome> {
         items: [
           new BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            title: Text("Home"),
             backgroundColor: Colors.deepOrange,
           ),
           new BottomNavigationBarItem(
             icon: Icon(Icons.menu_book),
-            label: 'Menu',
+            title: Text("Menu"),
             backgroundColor: Colors.deepOrange,
           ),
           new BottomNavigationBarItem(
             icon: Icon(Icons.book),
-            label: 'Reservations',
+            title: Text("Reservation"),
             backgroundColor: Colors.deepOrange,
           ),
           new BottomNavigationBarItem(
             icon: Icon(Icons.rate_review),
-            label: 'Reviews',
+            title: Text("Review"),
             backgroundColor: Colors.deepOrange,
           ),
         ],
