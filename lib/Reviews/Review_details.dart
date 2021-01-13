@@ -31,7 +31,9 @@ class ReviewDetailScreen extends StatelessWidget {
                     reviewlist['imgUrl'],
                     fit: BoxFit.fill,
                   )
-                ])),
+                ]
+              )
+            ),
             Positioned(
               top: 40,
               left: 20,

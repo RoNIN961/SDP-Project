@@ -30,7 +30,7 @@ class _AddMenuPageState extends State<AddMenu> {
               inputDescription(),
               inputCategory(),
               inputPrice(),
-              buttonRegister(),
+              buttonAddMenu(),
               buttonBack(),//test
             ],
           ),
@@ -41,15 +41,18 @@ class _AddMenuPageState extends State<AddMenu> {
   Widget menupic(){
     return Stack(
     children:<Widget>[
-    CircleAvatar(
+    Center(
+    child:CircleAvatar(
       radius:70,
+      backgroundColor: Color(0xFFECEFF1),
       backgroundImage: _imageFile==null
-      ? AssetImage("assets/Yukinoshita Yukino.jpg")
+      ? AssetImage("assets/personicon.png")
       : FileImage(File(_imageFile.path)),
+      ),
       ),
       Positioned(
       bottom:20,
-      left:90,
+      left:190,
       child: InkWell(
         onTap: (){
           showModalBottomSheet(
@@ -197,7 +200,7 @@ class _AddMenuPageState extends State<AddMenu> {
       ),
     );
   }
-  Widget buttonRegister(){
+  Widget buttonAddMenu(){
     return Padding(
       padding: EdgeInsets.only(bottom: 15),
       child: ButtonTheme(

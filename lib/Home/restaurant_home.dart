@@ -4,7 +4,7 @@ import '../Reservation/Reservation.dart';
 import 'restaurant_homecontent.dart';
 import '../Menu/Menu.dart';
 import '../Reviews/Review.dart';
-import 'package:sdp_project/Edit_Profile.dart';
+import 'package:sdp_project/Home/Edit_Profile.dart';
 
 class RestaurantHome extends StatefulWidget {
   @override
@@ -26,13 +26,15 @@ class _RestaurantHomeState extends State<RestaurantHome> {
       child: new ListView(
         children: <Widget>[
           new UserAccountsDrawerHeader(
-            accountName: new Text('nibbas'),
-            accountEmail: new Text('bababoey@mail.com'),
+            accountName: new Text('KFC'),
+            accountEmail: new Text('kfc@mail.com'),
             currentAccountPicture: new CircleAvatar(
+            radius: 70.0,
             backgroundColor: Colors.white,
-            child: Text("M"),
-          )
-        ),
+            backgroundImage: AssetImage("assets/KFC.png"),
+            ),            
+          ),
+        
           new ListTile(
             title: new Text("View Account"),
             trailing: new Icon(Icons.people),
@@ -45,8 +47,8 @@ class _RestaurantHomeState extends State<RestaurantHome> {
             title: new Text("Log Out"),
             trailing: new Icon(Icons.logout),
             onTap: (){
-            Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => EditProfile()));
+            // Navigator.of(context)
+            //   .push(MaterialPageRoute(builder: (context) => EditProfile()));
           },
         )
       ]
