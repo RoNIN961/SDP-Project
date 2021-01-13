@@ -20,7 +20,7 @@ const ReviewListData = [
     'Cus_Name': 'Happy Meals',
     'total_review': '70',
     'Email': 'lim222@gmail.com',
-    'imgUrl': 'assets/Happy Meals.jpg',
+    'imgUrl': 'assets/Yukinoshita Yukino.jpg',
     'total_rating': '4.5',
   },
 ];
