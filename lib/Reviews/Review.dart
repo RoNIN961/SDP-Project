@@ -6,7 +6,7 @@ const ReviewListData = [
     'Cus_Name': 'Happy Meals',
     'total_review': '100',
     'Email': 'luiyande5678@gmail.com',
-    'imgUrl': 'assets/Happy Meals.jpg',
+    'imgUrl': 'assets/chicken-fajitas.jpg',
     'total_rating': '4.6',
   },
   {
