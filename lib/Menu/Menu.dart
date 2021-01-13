@@ -1,4 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:sdp_project/Menu/AddMenu.dart';
+
+const MenuListData = [
+  {
+    'Cus_Name': 'Happy Meals',
+    'total_review': '100',
+    'Email': 'luiyande5678@gmail.com',
+    'imgUrl': 'assets/Happy Meals.jpg',
+    'total_rating': '4.6',
+  },
+  {
+    'Cus_Name': 'Happy Meals',
+    'total_review': '90',
+    'Email': 'mirz666a@gmail.com',
+    'imgUrl': 'assets/Happy Meals.jpg',
+    'total_rating': '4.7',
+  },
+  {
+    'Cus_Name': 'Happy Meals',
+    'total_review': '70',
+    'Email': 'lim222@gmail.com',
+    'imgUrl': 'assets/Happy Meals.jpg',
+    'total_rating': '4.5',
+  },
+];
 
 class MenuPage extends StatelessWidget {
   @override
@@ -8,213 +34,149 @@ class MenuPage extends StatelessWidget {
     );
   }
 }
+
 class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 550.0,
-      decoration: new BoxDecoration(boxShadow: [
-        new BoxShadow(
-          color: Color(0xffeeeeee),
-          blurRadius: 1.0,
-          offset: new Offset(1.0, 1.0),
-        ),
-      ]),
-      child: Card(
-        child: InkWell(
-            child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0, top: 10.0),
-              child: Text(
-                "Welcome to FoodAmore",
-                style: TextStyle(color: Color(0xff616161), fontSize: 16.0),
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(
+                height: 10,
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0, top: 3.0),
-              child: Text(
-                "Our Menu",
-                style: TextStyle(color: Color(0xff616161), fontSize: 16.0),
+              Row(
+                  children:<Widget>[
+              Text(
+                'Menu',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
-            ),
-            Expanded(
-              child: ListView(
-                scrollDirection: Axis.vertical,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15.00, bottom: 15.00, left: 8, right: 4),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image(
-                            image: AssetImage('assets/chicken-casserole.jpg'),
-                            width: 80.0,
-                            height: 80.0,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Recipe Name",
-                            style: TextStyle(
-                              color: Color(0xff202124),                              
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 5.00, bottom: 5.00, left: 8, right: 4),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image(
-                            image: AssetImage('assets/chicken-casserole.jpg'),
-                            width: 80.0,
-                            height: 80.0,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Recipe Name",
-                            style: TextStyle(
-                              color: Color(0xff202124),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15.00, bottom: 15.00, left: 8, right: 4),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image(
-                            image: AssetImage('assets/chicken-casserole.jpg'),
-                            width: 80.0,
-                            height: 80.0,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Recipe Name",
-                            style: TextStyle(
-                              color: Color(0xff202124),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15.00, bottom: 15.00, left: 8, right: 4),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image(
-                            image: AssetImage('assets/chicken-casserole.jpg'),
-                            width: 80.0,
-                            height: 80.0,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Recipe Name",
-                            style: TextStyle(
-                              color: Color(0xff202124),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15.00, bottom: 15.00, left: 8, right: 4),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image(
-                            image: AssetImage('assets/chicken-casserole.jpg'),
-                            width: 80.0,
-                            height: 80.0,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Recipe Name",
-                            style: TextStyle(
-                              color: Color(0xff202124),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+              SizedBox(
+                width:190,
               ),
-            ),
-                      
+              MaterialButton(
+                onPressed: () {  
+                  Navigator.push(
+                    context,
+                  MaterialPageRoute(
+                    builder: (context) => AddMenu(),
+                    )
+                  );                  
+                  },
+                    color: Colors.deepOrange,
+                    shape: CircleBorder(
+                        side: BorderSide(
+                          color: Colors.deepOrange,
+                        ),
+                        ),
+                    child: Icon(
+                      Icons.add,
+                      size:24,
+                      color:Color(0xffFF8573),
+                    ),
+                  ),
+                ]
+              ),
+              Menulist(MenuListData[0]),
+              Menulist(MenuListData[1]),
+              Menulist(MenuListData[2]),
           ],
-        )),
-      ),      
+        )
+      ),
+    );
+  }
+}
+
+class Menulist extends StatelessWidget {
+  final menulist;
+  Menulist(this.menulist);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 5),
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height / 4 - 20,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Color(0xFFECEFF1),
+      ),
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+            top: 10,
+            left: 10,
+            child: Image.asset(
+              menulist['imgUrl'],
+              height: MediaQuery.of(context).size.height * 0.20,
+              width: MediaQuery.of(context).size.width * 0.30,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 20, left: 140),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  menulist['Cus_Name'],
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 20,
+                  ),
+                ),
+                SizedBox(
+                  height: 10
+                ),
+                Text(
+                  '${menulist['total_review']} total reviews',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children:<Widget>[
+                    Icon(
+                      Icons.star,
+                      size:16,
+                      color:Color(0xffFF8573),
+                    ),
+                    SizedBox(width:5),
+                    Text(
+                      menulist['total_rating'],
+                      style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                    SizedBox(width:40),
+                    MaterialButton(
+                      onPressed: () {                    
+                  },
+                    color: Color(0xff4E2958),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Text(
+                      'View Menu',
+                      style: TextStyle(
+                        color: Colors.white,
+                          ),
+                        )
+                      ),
+                  ],
+                ),
+              ],
+            ),
+          )
+        ]
+      )
     );
   }
 }
