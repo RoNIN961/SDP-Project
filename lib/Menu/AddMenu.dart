@@ -1,28 +1,70 @@
 import 'package:flutter/material.dart';
 import 'package:sdp_project/Menu/Menu.dart';
+import 'package:image_picker/image_picker.dart';
 
-class AddMenu extends StatefulWidget {
+class AddMenu extends StatefulWidget {  
   @override
   _AddMenuPageState createState() => _AddMenuPageState();
 }
 class _AddMenuPageState extends State<AddMenu> {
+  PickedFile _imagefile;  
+  final ImagePicker _picker = ImagePicker();
+
   String title = 'DropDownButton';
   String _categorylist;
   List _categoryname = ['Main Dishes', 'Snacks','Drinks'];
   @override
   Widget build(BuildContext context) {
-    final logo = Padding(
-      padding: EdgeInsets.all(20),
-        child: Hero(
-        tag: 'hero',
-        child: CircleAvatar(
-          radius: 56.0,
-          child: Image.asset('assets/logo.png'),
-        )
-      ),
+      return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: ListView(
+            shrinkWrap: true,
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            children: <Widget>[  
+              menupic(),            
+              inputMenuName(),
+              inputDescription(),
+              inputCategory(),
+              inputPrice(),
+              buttonRegister(),
+              buttonBack(),//test
+            ],
+          ),
+        ),
+      )
     );
-    final inputMenuName= Padding(
-      padding: EdgeInsets.only(bottom: 10),
+  }
+  Widget menupic(){
+    return Stack(
+    children:<Widget>[
+    CircleAvatar(
+      radius:70,
+      backgroundImage:(AssetImage("assets/Yukinoshita Yukino.jpg")),
+      ),
+      Positioned(
+      bottom:20,
+      left:90,
+      child: InkWell(
+        onTap: (){
+          showModalBottomSheet(
+            context: context, 
+            builder: ((builder) => Bottomsheet()),
+          );
+        },
+        child: Icon(
+          Icons.camera_alt,
+          color: Colors.teal,
+          size: 28,
+        )
+        ),
+      )
+    ]
+  );
+  }
+  Widget inputMenuName(){
+    return Padding(
+      padding: EdgeInsets.only(top:20,bottom: 10),
       child: TextField(
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
@@ -34,7 +76,9 @@ class _AddMenuPageState extends State<AddMenu> {
         ),
       ),
     );
-    final inputDescription = Padding(
+  }
+  Widget inputDescription(){
+    return Padding(
       padding: EdgeInsets.only(bottom: 10),
       child: TextField(
         keyboardType: TextInputType.emailAddress,
@@ -47,7 +91,9 @@ class _AddMenuPageState extends State<AddMenu> {
         ),
       ),
     );
-    final inputCategory = Padding(
+  }
+  Widget inputCategory(){
+    return Padding(
       padding: EdgeInsets.only(bottom: 10),
       child: Container(
         padding: EdgeInsets.only(left:16,right:16),
@@ -79,8 +125,10 @@ class _AddMenuPageState extends State<AddMenu> {
         )
       )
     );
-    final inputPrice = Padding(
-      padding: EdgeInsets.only(bottom: 20),
+  }
+  Widget inputPrice(){
+    return Padding(
+      padding: EdgeInsets.only(bottom: 10),
       child: TextField(
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
@@ -92,13 +140,15 @@ class _AddMenuPageState extends State<AddMenu> {
         ),
       ),
     );
-    final buttonRegister = Padding(
-      padding: EdgeInsets.only(bottom: 5),
+  }
+  Widget buttonRegister(){
+    return Padding(
+      padding: EdgeInsets.only(bottom: 15),
       child: ButtonTheme(
         height: 56,
         child: RaisedButton(
-          child: Text('Register', style: TextStyle(color: Colors.white, fontSize: 20)),
-          color: Colors.black87,
+          child: Text('Add Menu', style: TextStyle(color: Colors.white, fontSize: 20)),
+          color: Colors.lightBlue,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(50)
           ),
@@ -108,25 +158,301 @@ class _AddMenuPageState extends State<AddMenu> {
         ),
       ),
     );
-    return SafeArea(
-      child: Scaffold(
-        body: Center(
-          child: ListView(
-            shrinkWrap: true,
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            children: <Widget>[
-              logo,
-
-              inputMenuName,
-              inputDescription,
-              inputCategory,
-              inputPrice,
-              buttonRegister,//test
-            ],
+  }
+  Widget buttonBack(){
+    return Padding(
+      padding: EdgeInsets.only(bottom: 20),
+      child: ButtonTheme(
+        height: 56,
+        child: RaisedButton(
+          child: Text('Back', style: TextStyle(color: Colors.white, fontSize: 20)),
+          color: Colors.black12,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(50)
           ),
+          onPressed: () {
+              Navigator.pop(context);
+          },
         ),
-      )
+      ),
     );
   }
+  void takePhoto(ImageSource source) async {
+  final pickedFile = await _picker.getImage(
+    source:source,
+  );
+  setState((){
+    _imagefile = pickedFile;
+  }
+ );
+}
+}
+class Bottomsheet extends StatelessWidget {
+  
+  @override
+  Widget build(BuildContext context) {   
+    return Container(
+    height:100,
+    width: MediaQuery.of(context).size.width,
+    margin: EdgeInsets.symmetric(
+      horizontal:20,
+      vertical:20,
+    ),
+    child: Column(
+      children: <Widget>[
+        Text(
+          "Choose Profile photo",
+        style:TextStyle(
+          fontSize: 20,
+          )
+        ),
+        SizedBox(
+          height:20
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            FlatButton.icon(
+              icon: Icon(Icons.camera),
+              onPressed: (){
+
+              },
+              label:Text("Camera"),
+            ),  
+            FlatButton.icon(
+              icon: Icon(Icons.image),
+              onPressed: (){
+
+              },
+              label:Text("Gallery"),
+            ),            
+          ],
+        )
+      ],
+    ),
+  );
+ }
 }
 
+
+  //   final menupic = Stack(
+  //   children:<Widget>[
+  //   CircleAvatar(
+  //     radius:70,
+  //     backgroundImage:(AssetImage("assets/Yukinoshita Yukino.jpg")),
+  //     ),
+  //     Positioned(
+  //     bottom:20,
+  //     left:90,
+  //     child: InkWell(
+  //       onTap: (){
+  //         showModalBottomSheet(
+  //           context: context, 
+  //           builder: ((builder) => Bottomsheet()),
+  //         );
+  //       },
+  //       child: Icon(
+  //         Icons.camera_alt,
+  //         color: Colors.teal,
+  //         size: 28,
+  //       )
+  //       ),
+  //     )
+  //   ]
+  // );
+
+    // final inputMenuName= Padding(
+    //   padding: EdgeInsets.only(top:20,bottom: 10),
+    //   child: TextField(
+    //     keyboardType: TextInputType.emailAddress,
+    //     decoration: InputDecoration(
+    //       hintText: 'MenuName',
+    //       contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+    //       border: OutlineInputBorder(
+    //         borderRadius: BorderRadius.circular(50.0)
+    //       )
+    //     ),
+    //   ),
+    // );
+    // final inputDescription = Padding(
+    //   padding: EdgeInsets.only(bottom: 10),
+    //   child: TextField(
+    //     keyboardType: TextInputType.emailAddress,
+    //     decoration: InputDecoration(
+    //       hintText: 'Description',
+    //       contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+    //       border: OutlineInputBorder(
+    //         borderRadius: BorderRadius.circular(50.0)
+    //       )
+    //     ),
+    //   ),
+    // );
+    // final inputCategory = Padding(
+    //   padding: EdgeInsets.only(bottom: 10),
+    //   child: Container(
+    //     padding: EdgeInsets.only(left:16,right:16),
+    //     decoration: BoxDecoration(
+    //       border: Border.all(width:1),
+    //       borderRadius: BorderRadius.circular(50.0),        
+    //     ),
+    //     child: DropdownButton(
+    //       hint: Text(
+    //         'SelectCategory'
+    //         ),
+    //       dropdownColor: Colors.grey,
+    //       elevation: 5,
+    //       icon: Icon(Icons.arrow_drop_down),
+    //       iconSize: 48,
+    //       isExpanded: true,
+    //       value: _categorylist,
+    //       style: TextStyle(color: Colors.black,fontSize: 22),
+    //       onChanged: (value){
+    //         setState(() {
+    //           _categorylist = value;
+    //         });
+    //       },
+    //       items: _categoryname.map((value) {
+    //         return DropdownMenuItem(
+    //           value: value,
+    //           child: Text(value),);
+    //       }).toList(),
+    //     )
+    //   )
+    // );
+    // final inputPrice = Padding(
+    //   padding: EdgeInsets.only(bottom: 10),
+    //   child: TextField(
+    //     keyboardType: TextInputType.emailAddress,
+    //     decoration: InputDecoration(
+    //       hintText: 'Price (in RM)',
+    //       contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+    //       border: OutlineInputBorder(
+    //         borderRadius: BorderRadius.circular(50.0)
+    //       )
+    //     ),
+    //   ),
+    // );
+    // final buttonRegister = Padding(
+    //   padding: EdgeInsets.only(bottom: 15),
+    //   child: ButtonTheme(
+    //     height: 56,
+    //     child: RaisedButton(
+    //       child: Text('Add Menu', style: TextStyle(color: Colors.white, fontSize: 20)),
+    //       color: Colors.lightBlue,
+    //       shape: RoundedRectangleBorder(
+    //         borderRadius: BorderRadius.circular(50)
+    //       ),
+    //       onPressed: () {
+    //           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Menu()));
+    //       },
+    //     ),
+    //   ),
+    // // );
+    // final buttonBack = Padding(
+    //   padding: EdgeInsets.only(bottom: 20),
+    //   child: ButtonTheme(
+    //     height: 56,
+    //     child: RaisedButton(
+    //       child: Text('Back', style: TextStyle(color: Colors.white, fontSize: 20)),
+    //       color: Colors.black12,
+    //       shape: RoundedRectangleBorder(
+    //         borderRadius: BorderRadius.circular(50)
+    //       ),
+    //       onPressed: () {
+    //           Navigator.pop(context);
+    //       },
+    //     ),
+    //   ),
+    // );
+    // // return SafeArea(
+    //   child: Scaffold(
+    //     body: Center(
+    //       child: ListView(
+    //         shrinkWrap: true,
+    //         padding: EdgeInsets.symmetric(horizontal: 20),
+    //         children: <Widget>[  
+    //           menupic,            
+    //           inputMenuName,
+    //           inputDescription,
+    //           inputCategory,
+    //           inputPrice,
+    //           buttonRegister,
+    //           buttonBack,//test
+    //         ],
+    //       ),
+    //     ),
+    //   )
+    // );
+//   }
+// }
+
+
+// Widget menupic(){
+//   return Stack(
+//   children:<Widget>[
+//     CircleAvatar(
+//       radius:70,
+//       backgroundImage:(AssetImage("assets/Yukinoshita Yukino.jpg")),
+//       ),
+//       Positioned(
+//       bottom:20,
+//       left:90,
+//       child: InkWell(
+//         onTap: (){
+//           showModalBottomSheet(
+//             context: context, 
+//             builder: ((builder) => bottomsheet()),
+//           );
+//         },
+//         child: Icon(
+//           Icons.camera_alt,
+//           color: Colors.teal,
+//           size: 28,
+//         )
+//         ),
+//       )
+//     ]
+//   );
+// }
+
+// Widget bottomsheet(){
+//   return Container(
+//     height:100,
+//     width: MediaQuery.of(context).size.width,
+//     margin: EdgeInsets.symmetric(
+//       horizontal:20,
+//       vertical:20,
+//     ),
+//     child: Column(
+//       children: <Widget>[
+//         Text(
+//           "Choose Profile photo",
+//         style:TextStyle(
+//           fontSize: 20,
+//           )
+//         ),
+//         SizedBox(
+//           height:20
+//         ),
+//         Row(
+//           children: <Widget>[
+//             FlatButton.icon(
+//               icon: Icon(Icons.camera),
+//               onPressed: (){
+
+//               },
+//               label:Text("Camera"),
+//             ),  
+//             FlatButton.icon(
+//               icon: Icon(Icons.image),
+//               onPressed: (){
+
+//               },
+//               label:Text("Gallery"),
+//             ),            
+//           ],
+//         )
+//       ],
+//     ),
+//   );
+// }
