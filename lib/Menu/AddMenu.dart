@@ -1,13 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:sdp_project/Menu/Menu.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddMenu extends StatefulWidget {  
+  
   @override
   _AddMenuPageState createState() => _AddMenuPageState();
 }
 class _AddMenuPageState extends State<AddMenu> {
-  PickedFile _imagefile;  
+  PickedFile _imageFile;  
   final ImagePicker _picker = ImagePicker();
 
   String title = 'DropDownButton';
@@ -40,7 +43,9 @@ class _AddMenuPageState extends State<AddMenu> {
     children:<Widget>[
     CircleAvatar(
       radius:70,
-      backgroundImage:(AssetImage("assets/Yukinoshita Yukino.jpg")),
+      backgroundImage: _imageFile==null
+      ? AssetImage("assets/Yukinoshita Yukino.jpg")
+      : FileImage(File(_imageFile.path)),
       ),
       Positioned(
       bottom:20,
@@ -49,7 +54,7 @@ class _AddMenuPageState extends State<AddMenu> {
         onTap: (){
           showModalBottomSheet(
             context: context, 
-            builder: ((builder) => Bottomsheet()),
+            builder: ((builder) => bottomsheet()),
           );
         },
         child: Icon(
@@ -62,6 +67,57 @@ class _AddMenuPageState extends State<AddMenu> {
     ]
   );
   }
+  
+  Widget bottomsheet(){return Container(
+    height:100,
+    width: MediaQuery.of(context).size.width,
+    margin: EdgeInsets.symmetric(
+      horizontal:20,
+      vertical:20,
+    ),
+    child: Column(
+      children: <Widget>[
+        Text(
+          "Choose Profile photo",
+        style:TextStyle(
+          fontSize: 20,
+          )
+        ),
+        SizedBox(
+          height:20
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            FlatButton.icon(
+              icon: Icon(Icons.camera),
+              onPressed: (){
+                takePhoto(ImageSource.camera);
+              },
+              label:Text("Camera"),
+            ),  
+            FlatButton.icon(
+              icon: Icon(Icons.image),
+              onPressed: (){
+                takePhoto(ImageSource.gallery);
+              },
+              label:Text("Gallery"),
+            ),            
+          ],
+        )
+      ],
+    ),
+  );
+  }
+  void takePhoto(ImageSource source) async {
+  final pickedFile = await _picker.getImage(
+    source:source,
+  );
+  setState((){
+    _imageFile = pickedFile;
+  }
+ );
+}
   Widget inputMenuName(){
     return Padding(
       padding: EdgeInsets.only(top:20,bottom: 10),
@@ -177,62 +233,55 @@ class _AddMenuPageState extends State<AddMenu> {
       ),
     );
   }
-  void takePhoto(ImageSource source) async {
-  final pickedFile = await _picker.getImage(
-    source:source,
-  );
-  setState((){
-    _imagefile = pickedFile;
-  }
- );
 }
-}
-class Bottomsheet extends StatelessWidget {
+
+// }
+// class Bottomsheet extends StatelessWidget {
   
-  @override
-  Widget build(BuildContext context) {   
-    return Container(
-    height:100,
-    width: MediaQuery.of(context).size.width,
-    margin: EdgeInsets.symmetric(
-      horizontal:20,
-      vertical:20,
-    ),
-    child: Column(
-      children: <Widget>[
-        Text(
-          "Choose Profile photo",
-        style:TextStyle(
-          fontSize: 20,
-          )
-        ),
-        SizedBox(
-          height:20
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            FlatButton.icon(
-              icon: Icon(Icons.camera),
-              onPressed: (){
+//   @override
+//   Widget build(BuildContext context) {   
+//     return Container(
+//     height:100,
+//     width: MediaQuery.of(context).size.width,
+//     margin: EdgeInsets.symmetric(
+//       horizontal:20,
+//       vertical:20,
+//     ),
+//     child: Column(
+//       children: <Widget>[
+//         Text(
+//           "Choose Profile photo",
+//         style:TextStyle(
+//           fontSize: 20,
+//           )
+//         ),
+//         SizedBox(
+//           height:20
+//         ),
+//         Row(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: <Widget>[
+//             FlatButton.icon(
+//               icon: Icon(Icons.camera),
+//               onPressed: (){
 
-              },
-              label:Text("Camera"),
-            ),  
-            FlatButton.icon(
-              icon: Icon(Icons.image),
-              onPressed: (){
+//               },
+//               label:Text("Camera"),
+//             ),  
+//             FlatButton.icon(
+//               icon: Icon(Icons.image),
+//               onPressed: (){
 
-              },
-              label:Text("Gallery"),
-            ),            
-          ],
-        )
-      ],
-    ),
-  );
- }
-}
+//               },
+//               label:Text("Gallery"),
+//             ),            
+//           ],
+//         )
+//       ],
+//     ),
+//   );
+//  }
+// }
 
 
   //   final menupic = Stack(
