@@ -133,7 +133,7 @@ class MenuReview extends StatelessWidget {
                       fontWeight: FontWeight.w300,
                       ),
                     ),
-                    SizedBox(width:40),
+                    SizedBox(width:26),
                     MaterialButton(
                       onPressed: () {
                     Navigator.push(
@@ -147,7 +147,7 @@ class MenuReview extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     child: Text(
-                      'View Menu',
+                      'View Review',
                       style: TextStyle(
                         color: Colors.white,
                           ),
