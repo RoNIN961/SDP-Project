@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:sdp_project/Menu/AddMenu.dart';
+import 'package:sdp_project/Menu/EditMenu.dart';
 
 const MenuListData = [
   {
-    'Cus_Name': 'Happy Meals',
-    'total_review': '100',
-    'Email': 'luiyande5678@gmail.com',
+    'Menuname': 'Happy Meals',
+    'Description': 'A Happy Meals',
     'imgUrl': 'assets/Happy Meals.jpg',
-    'total_rating': '4.6',
+    'Price': '24.60',
   },
   {
-    'Cus_Name': 'Happy Meals',
-    'total_review': '90',
-    'Email': 'mirz666a@gmail.com',
+    'Menuname': 'Lucky Meals',
+    'Description': 'A Lucky Meals',
     'imgUrl': 'assets/Happy Meals.jpg',
-    'total_rating': '4.7',
+    'Price': '34.70',
   },
   {
-    'Cus_Name': 'Happy Meals',
-    'total_review': '70',
-    'Email': 'lim222@gmail.com',
+    'Menuname': 'Family Meals',
+    'Description': 'A Family Meals',
     'imgUrl': 'assets/Happy Meals.jpg',
-    'total_rating': '4.5',
+    'Price': '14.50',
   },
 ];
 
@@ -81,6 +79,21 @@ class Menu extends StatelessWidget {
                   ),
                 ]
               ),
+              
+              Container(
+                height: 40,
+                child:ListView(scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  category("Main Dishes", true),
+                  category("Snacks", false),
+                  category("Drink", false),
+                 ],
+                )
+              ),
+              SizedBox(
+                height:10,
+              ),
+
               Menulist(MenuListData[0]),
               Menulist(MenuListData[1]),
               Menulist(MenuListData[2]),
@@ -91,6 +104,19 @@ class Menu extends StatelessWidget {
   }
 }
 
+Container category(String label, bool isActive){
+  return Container(
+    padding: EdgeInsets.symmetric(horizontal:10),
+    child: Chip(
+      label:Text(
+        label,
+      style:TextStyle(color: Colors.white,fontSize: 16),
+      ),
+      backgroundColor: isActive ?Colors.orange :Colors.grey,
+      ),
+  );
+}
+
 class Menulist extends StatelessWidget {
   final menulist;
   Menulist(this.menulist);
@@ -98,7 +124,7 @@ class Menulist extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
+      margin: EdgeInsets.symmetric(vertical: 1),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height / 4 - 20,
       decoration: BoxDecoration(
@@ -121,59 +147,82 @@ class Menulist extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                Row(
+                  children:<Widget>[
                 Text(
-                  menulist['Cus_Name'],
+                  menulist['Menuname'],
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    fontSize: 20,
+                    fontSize: 18,
                   ),
                 ),
-                SizedBox(
-                  height: 10
+                MaterialButton(
+                      onPressed: () {  
+                    Navigator.push(
+                      context,
+                    MaterialPageRoute(
+                      builder: (context) => EditMenu(),
+                    )
+                  );                  
+                 },
+                      color: Colors.green,
+                      shape: CircleBorder(
+                      side: BorderSide(
+                      color: Colors.green,
+                      ),
+                    ),
+                    child: Icon(
+                      Icons.edit,
+                      size:24,
+                      color:Colors.white,
+                    ),
+                  ),
+                  ]
                 ),
+                
                 Text(
-                  '${menulist['total_review']} total reviews',
+                  menulist['Description'],
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 12,
                     fontWeight: FontWeight.w300,
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 Row(
                   children:<Widget>[
-                    Icon(
-                      Icons.star,
-                      size:16,
-                      color:Color(0xffFF8573),
-                    ),
-                    SizedBox(width:5),
                     Text(
-                      menulist['total_rating'],
+                      'RM ${menulist['Price']} ',
                       style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w300,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
                       ),
                     ),
-                    SizedBox(width:40),
-                    MaterialButton(
-                      onPressed: () {                    
-                  },
-                    color: Color(0xff4E2958),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Text(
-                      'View Menu',
-                      style: TextStyle(
-                        color: Colors.white,
-                          ),
-                        )
+                    SizedBox(
+                      width:30
+                    ),
+                    
+                   MaterialButton(
+                      onPressed: () {  
+                                   
+                 },
+                      color: Colors.red,
+                      shape: CircleBorder(
+                      side: BorderSide(
+                      color: Colors.red,
                       ),
+                    ),
+                    child: Icon(
+                      Icons.delete,
+                      size:24,
+                      color:Colors.white,
+                    ),
+                  ),
                   ],
                 ),
               ],
-            ),
+            ) 
           )
         ]
       )

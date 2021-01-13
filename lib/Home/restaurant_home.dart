@@ -42,8 +42,8 @@ class _RestaurantHomeState extends State<RestaurantHome> {
           },
         ),
            new ListTile(
-            title: new Text("View Account"),
-            trailing: new Icon(Icons.people),
+            title: new Text("Log Out"),
+            trailing: new Icon(Icons.logout),
             onTap: (){
             Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => EditProfile()));
