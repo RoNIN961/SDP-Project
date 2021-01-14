@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:sdp_project/screens/authentication/login/loginModel.dart';
-import 'package:sdp_project/screens/authentication/login/loginRepo.dart';
+import 'package:sdp_project/screens(customer)/authentication/login/loginModel.dart';
+import 'package:sdp_project/screens(customer)/authentication/login/loginRepo.dart';
 
 class LoginEvent extends Equatable {
   @override

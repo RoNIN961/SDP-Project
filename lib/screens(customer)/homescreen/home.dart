@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sdp_project/screens/recipe/recipe.dart';
-import 'package:sdp_project/screens/recipe/upload_recipe.dart';
+import 'package:sdp_project/screens(customer)/recipe/recipe.dart';
+import 'package:sdp_project/screens(customer)/recipe/upload_recipe.dart';
 import 'package:sdp_project/theme/custom.dart';
 import 'homecontent.dart';
 import '../restaurant/restaurant.dart';
