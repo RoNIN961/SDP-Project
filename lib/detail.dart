@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
 import 'voucher.dart';
+import 'listview.dart';
 
 class DetailPage extends StatelessWidget {
-  final User user;
+  final Userdata user;
 
   DetailPage(this.user);
 
@@ -26,7 +26,7 @@ class DetailPage extends StatelessWidget {
                         height: 10.0,
                       ),
                       Text(
-                        user.utype,
+                        user.username,
                         style: TextStyle(
                           fontSize: 22.0,
                           color: Colors.white,
@@ -145,7 +145,10 @@ class DetailPage extends StatelessWidget {
                     height: 10.0,
                   ),
                   Text(
-                    'Username :' + (user.id) + '.\nEmail :' + (user.email),
+                    'Username :' +
+                        (user.username) +
+                        '.\nEmail :' +
+                        (user.email),
                     style: TextStyle(
                       fontSize: 15.0,
                       fontStyle: FontStyle.italic,

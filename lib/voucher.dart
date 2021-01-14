@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
 import 'voucher_history.dart';
+import 'listview.dart';
 
 class VoucherPage extends StatelessWidget {
-  final User user;
+  final Userdata user;
 
   VoucherPage(this.user);
 
@@ -23,7 +23,7 @@ class VoucherPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        user.utype,
+                        user.usertype,
                         style: TextStyle(
                           fontSize: 22.0,
                           color: Colors.white,

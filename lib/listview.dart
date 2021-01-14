@@ -2,31 +2,33 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-
-
 class Userdata {
   String username;
   String email;
+  String usertype;
 
-  Userdata({
+  Userdata(
+    u, {
     this.username,
     this.email,
+    this.usertype,
   });
 
   factory Userdata.fromJson(Map<String, dynamic> json) {
-    return Userdata(
-      username: json['Username'],
-      email: json['Email'],
-    );
+    return Userdata({
+      json['Username'],
+      json['Email'],
+      json['Usertype'],
+    });
   }
 }
 
-class userListPage extends StatefulWidget {
+class UserListPage extends StatefulWidget {
   @override
-  userListPageState createState() => userListPageState();
+  UserListPageState createState() => UserListPageState();
 }
 
-class userListPageState extends State<userListPage> {
+class UserListPageState extends State<UserListPage> {
   List<Userdata> userList = List<Userdata>();
   List<Userdata> userListDisplay = List<Userdata>();
 
@@ -60,7 +62,9 @@ class userListPageState extends State<userListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('All Users',style: TextStyle(color: Colors.deepOrange),
+          title: Text(
+            'All Users',
+            style: TextStyle(color: Colors.deepOrange),
           ),
           backgroundColor: Colors.white,
         ),
@@ -99,11 +103,13 @@ class userListPageState extends State<userListPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              userListDisplay[index].username,
+              // userListDisplay[index].username,
+              'user',
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             Text(
-              userListDisplay[index].email,
+              // userListDisplay[index].email,
+              'email',
               style: TextStyle(color: Colors.grey.shade600),
             ),
           ],

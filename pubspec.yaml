@@ -52,10 +52,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - assets/logo2.png
-     - assets/cats.jpg
-     - assets/catded.jpg
-     - assets/statistics.jpg
+     - assets/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -69,13 +66,13 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: Roboto
-      fonts:
-        - asset: fonts/Roboto-Black.ttf
-    - family: Robotoilatic
-      fonts:
-        - asset: fonts/Roboto-BlackItalic.ttf
+  # fonts:
+  #   - family: Roboto
+  #     fonts:
+  #       - asset: fonts/Roboto-Black.ttf
+  #   - family: Robotoilatic
+  #     fonts:
+  #       - asset: fonts/Roboto-BlackItalic.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

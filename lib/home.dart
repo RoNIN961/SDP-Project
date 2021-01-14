@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'detail.dart';
+import 'listview.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -16,17 +16,17 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool searching = false;
-  Future<List<User>> _getUsers() async {
+  Future<List<Userdata>> _getUsers() async {
     var url = 'https://czechoslovakian-scr.000webhostapp.com/login.php';
 
     var data = await http.post(url);
 
     var jsonData = json.decode(data.body);
 
-    List<User> users = [];
+    List<Userdata> users = [];
 
     for (var u in jsonData) {
-      User user = User(u["Username"], u["Usertype"], u["Email"]);
+      Userdata user = Userdata(u);
 
       users.add(user);
     }

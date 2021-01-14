@@ -1,8 +1,9 @@
+import 'package:admin_ui/navbar.dart';
 import 'package:flutter/material.dart';
-import '../custom.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'custom.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -20,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
       String password = passwordController.text;
 
       // SERVER LOGIN API URL
-      var url = 'https://czechoslovakian-scr.000webhostapp.com/login.php';
+      var url = 'https://czechoslovakian-scr.000webhostapp.com/login(OOP).php';
 
       // Store all data with Param Name.
       var data = {'Email': email, 'Password': password};
@@ -35,7 +36,8 @@ class _LoginPageState extends State<LoginPage> {
 
       // If the Response Message is Matched.
       if (jsonResponse['message'] == 'User Successfully Logged In') {
-        Navigator.pushNamed(context, '/rest_home');
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => Nav()));
       } else {
         // Showing Alert Dialog with Response JSON Message.
         showDialog(

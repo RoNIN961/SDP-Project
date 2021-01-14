@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
+import 'listview.dart';
 
 class VoucherHistory extends StatelessWidget {
-  final User user;
+  final Userdata user;
 
   VoucherHistory(this.user);
 
