@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sdp_project/home.dart';
-import 'register.dart';
+import '../custom.dart';
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   @override
@@ -8,72 +10,82 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  Future userLogin() async {
+    try {
+      // Getting value from Controller
+      String email = emailController.text;
+      String password = passwordController.text;
+
+      // SERVER LOGIN API URL
+      var url = 'https://czechoslovakian-scr.000webhostapp.com/login.php';
+
+      // Store all data with Param Name.
+      var data = {'Email': email, 'Password': password};
+
+      // Starting Web API Call.
+      var response = await http.post(url, body: data);
+
+      // Getting Server response into variable.
+      var message = response.body;
+
+      var jsonResponse = jsonDecode(response.body);
+
+      // If the Response Message is Matched.
+      if (jsonResponse['message'] == 'User Successfully Logged In') {
+        Navigator.pushNamed(context, '/rest_home');
+      } else {
+        // Showing Alert Dialog with Response JSON Message.
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: new Text(message),
+              actions: <Widget>[
+                FlatButton(
+                  child: new Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final logo = Padding(
-      padding: EdgeInsets.all(20),
-      child: Hero(
-          tag: 'hero',
-          child: CircleAvatar(
-            radius: 56.0,
-            child: null,
-          )),
+    final logo = CustomLogo(onPressed: null, image: null);
+    final inputEmail = CustomTextField(
+      text: 'email address',
+      controller: emailController,
     );
-    final inputEmail = Padding(
-      padding: EdgeInsets.only(bottom: 10),
-      child: TextField(
-        keyboardType: TextInputType.emailAddress,
-        decoration: InputDecoration(
-            hintText: 'Email',
-            contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(50.0))),
-      ),
+    final inputPassword = CustomHiddenTextField(
+      text: 'password',
+      controller: passwordController,
     );
-    final inputPassword = Padding(
-      padding: EdgeInsets.only(bottom: 20),
-      child: TextField(
-        keyboardType: TextInputType.emailAddress,
-        obscureText: true,
-        decoration: InputDecoration(
-            hintText: 'Password',
-            contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(50.0))),
-      ),
-    );
-    final buttonRegister = FlatButton(
-        child: Text(
-          'Not a member? Register here',
-          style: TextStyle(color: Colors.red, fontSize: 16),
-        ),
+    final buttonRegister = CustomButton2(
         onPressed: () {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => RegisterPage()));
-        });
-    final buttonLogin = Padding(
-      padding: EdgeInsets.only(bottom: 5),
-      child: ButtonTheme(
-        height: 56,
-        child: RaisedButton(
-          child: Text('Login',
-              style: TextStyle(color: Colors.white, fontSize: 20)),
-          color: Colors.black87,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-          onPressed: () {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => MyHomePage()));
-          },
-        ),
-      ),
+          Navigator.pushNamed(context, '/register');
+        },
+        text: 'Not a member? Register here',
+        color: Colors.red);
+    final buttonLogin = CustomButton1(
+      onPressed: userLogin,
+      text: 'login',
     );
-    final buttonForgotPassword = FlatButton(
-        child: Text(
-          'Forgot Password',
-          style: TextStyle(color: Colors.grey, fontSize: 16),
-        ),
-        onPressed: null);
+    final buttonForgotPassword = CustomButton2(
+      onPressed: null,
+      text: 'Forgot Password',
+      color: Colors.grey,
+    );
     return SafeArea(
         child: Scaffold(
       body: Center(
