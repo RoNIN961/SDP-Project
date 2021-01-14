@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sdp_project/screens(admin)/navbar.dart';
+import 'package:sdp_project/screens(restaurant)/home/restaurant_home.dart';
 import 'package:sdp_project/theme/custom.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -35,7 +37,14 @@ class _LoginPageState extends State<LoginPage> {
 
       // If the Response Message is Matched.
       if (jsonResponse['message'] == 'User Successfully Logged In') {
-        Navigator.pushNamed(context, '/home');
+        if (jsonResponse['Usertype'] == 'Admin') {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Nav()));
+        } else if (jsonResponse['Usertype'] == 'Customer') {
+          Navigator.pushNamed(context, '/home');
+        } else
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => RestaurantHome()));
       } else {
         // Showing Alert Dialog with Response JSON Message.
         showDialog(

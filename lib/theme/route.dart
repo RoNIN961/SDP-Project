@@ -1,5 +1,5 @@
-import '../screens(customer)/authentication/login/login.dart';
-import '../screens(customer)/authentication/register.dart';
+import '../authentication/login/login.dart';
+import '../authentication/register.dart';
 import '../screens(customer)/homescreen/check_points.dart';
 import '../screens(customer)/homescreen/home.dart';
 import '../screens(customer)/profile/profile.dart';
