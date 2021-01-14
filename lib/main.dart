@@ -10,7 +10,7 @@ class Admin extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: new ThemeData(primarySwatch: Colors.deepOrange),
-      title: 'bottom nav bar',
+      title: 'FoodAmore',
       home: LoginPage(),
     );
   }
