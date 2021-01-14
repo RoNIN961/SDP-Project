@@ -90,4 +90,3 @@ class _RestaurantHomeState extends State<RestaurantHome> {
     });
   }
 }
-//eating
