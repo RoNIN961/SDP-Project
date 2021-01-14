@@ -1,11 +1,13 @@
 class LoginModel {
-  final username;
-  final password;
+  final id;
   final email;
+  final rowCount;
+  final username;
 
-  LoginModel(this.username, this.password, this.email);
+  LoginModel(this.id, this.rowCount, this.email, this.username);
 
   factory LoginModel.fromJson(Map<String, dynamic> json) {
-    return LoginModel(json['Username'], json['Password'], json['Email']);
+    return LoginModel(
+        json['User_ID'], json['rowCount'], json['Email'], json['Username']);
   }
 }

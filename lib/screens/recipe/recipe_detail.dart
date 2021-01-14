@@ -26,10 +26,9 @@ class _RecipeScreenState extends State<RecipeScreen> {
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 30.0))),
               SizedBox(
-                width: 500.0,
-                height: 200.0,
-                child: Image(image: null),
-              ),
+                  width: 500.0,
+                  height: 200.0,
+                  child: Image.asset('assets/ginger-chicken.jpg')),
               SizedBox(
                 width: 400.0,
                 height: 200.0,
@@ -82,7 +81,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
                   child: Column(children: <Widget>[
                     CircleAvatar(
                       radius: 60.0,
-                      child: Image(image: null),
+                      child: Image.asset('assets/login_logo.png'),
                     ),
                     Text('Published by'),
                     Text(

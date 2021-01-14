@@ -5,13 +5,15 @@ class RestaurantPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            Card(
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            return Card(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  const ListTile(title: Text('Restaurant Name')),
+                  ListTile(
+                      leading: Image.asset('assets/MCD.png'),
+                      title: Text('Restaurant Name')),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
@@ -26,8 +28,8 @@ class RestaurantPage extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

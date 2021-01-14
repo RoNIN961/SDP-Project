@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:sdp_project/screens/authentication/login/loginModel.dart';
-import 'package:sdp_project/screens/authentication/login/loginRepo.dart';
+import 'loginModel.dart';
+import 'loginRepo.dart';
 
 class LoginEvent extends Equatable {
   @override
@@ -32,20 +32,28 @@ class LoadingLogin extends LoginState {}
 class LoggedInSuccess extends LoginState {
   final _email;
   final _password;
+  final _username;
 
-  LoggedInSuccess(this._email, this._password);
+  LoggedInSuccess(this._email, this._password, this._username);
 
   @override
-  List<Object> get props => [_email, _password];
+  List<Object> get props => [_email, _password, _username];
 
   LoginModel get getEmail => _email;
   LoginModel get getPassword => _password;
+  LoginModel get getUsername => _username;
 }
 
 class LoggedInFailed extends LoginState {}
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginRepo loginRepo;
+
+  String _username;
+  String _email;
+
+  String get getUsername => _username;
+  String get getEmail => _email;
 
   LoginBloc(this.loginRepo) : super(NotLoggedIn());
 
@@ -55,9 +63,16 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       yield LoadingLogin();
 
       try {
-        LoginModel email = await loginRepo.getData(event._email, null);
-        LoginModel password = await loginRepo.getData(null, event._password);
-        yield LoggedInSuccess(email, password);
+        LoginModel result =
+            await loginRepo.getData(event._email, event._password);
+        if (result.rowCount == 1) {
+          yield LoggedInSuccess(result.id, result.email, result.username);
+          print(result.username);
+        } else {
+          if (result.rowCount != 1) {
+            yield NotLoggedIn();
+          }
+        }
       } catch (_) {
         yield LoggedInFailed();
       }
