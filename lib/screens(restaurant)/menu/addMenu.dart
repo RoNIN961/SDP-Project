@@ -45,7 +45,7 @@ class _AddMenuPageState extends State<AddMenu> {
           radius: 70,
           backgroundColor: Color(0xFFECEFF1),
           backgroundImage: _imageFile == null
-              ? AssetImage("assets/personicon.png")
+              ? AssetImage("assets/logo2.png")
               : FileImage(File(_imageFile.path)),
         ),
       ),
@@ -203,7 +203,7 @@ class _AddMenuPageState extends State<AddMenu> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
           onPressed: () {
             Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => Menu()));
+                context, MaterialPageRoute(builder: (context) => MenuPage()));
           },
         ),
       ),

@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(context) {
     return MaterialApp(
-      title: 'Flutter Simple Login Page',
+      title: 'FoodAmore',
       initialRoute: '/',
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,

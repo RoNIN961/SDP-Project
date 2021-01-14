@@ -7,19 +7,19 @@ const MenuListData = [
   {
     'Menuname': 'Happy Meals',
     'Description': 'A Happy Meals',
-    'imgUrl': 'assets/Happy Meals.jpg',
+    'imgUrl': 'assets/chicken-casserole.jpg',
     'Price': '24.60',
   },
   {
     'Menuname': 'Lucky Meals',
     'Description': 'A Lucky Meals',
-    'imgUrl': 'assets/Happy Meals.jpg',
+    'imgUrl': 'assets/chicken-fajitas.jpg',
     'Price': '34.70',
   },
   {
     'Menuname': 'Family Meals',
     'Description': 'A Family Meals',
-    'imgUrl': 'assets/Happy Meals.jpg',
+    'imgUrl': 'assets/chicken-casserole.jpg',
     'Price': '14.50',
   },
 ];
