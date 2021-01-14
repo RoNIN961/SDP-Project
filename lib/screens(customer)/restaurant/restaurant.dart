@@ -11,7 +11,9 @@ class RestaurantPage extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  const ListTile(title: Text('Restaurant Name')),
+                  ListTile(
+                      leading: Image.asset('assets/KFC.png'),
+                      title: Text('Restaurant Name')),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[

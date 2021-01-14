@@ -51,13 +51,10 @@ class ReviewDetailScreen extends StatelessWidget {
                   )
                 ])),
             Positioned(
-              top: 40,
-              left: 20,
+              top: 5,
+              left: 10,
               child: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.black,
-                  ),
+                  icon: Icon(Icons.arrow_back_ios, color: Colors.deepOrange),
                   onPressed: () {
                     Navigator.pop(context);
                   }),

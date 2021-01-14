@@ -24,12 +24,12 @@ class ReservationDetailScreen extends StatelessWidget {
                   )
                 ])),
             Positioned(
-              top: 40,
-              left: 20,
+              top: 25,
+              left: 10,
               child: IconButton(
                   icon: Icon(
                     Icons.arrow_back_ios,
-                    color: Colors.white,
+                    color: Colors.deepOrange,
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -104,7 +104,8 @@ class ReservationDetailScreen extends StatelessWidget {
                           left: 0,
                           child: Image.asset(
                             reservationlist['imgUrl'],
-                            scale: 9,
+                            fit: BoxFit.fill,
+                            scale: 6,
                           ),
                         ),
                         SizedBox(

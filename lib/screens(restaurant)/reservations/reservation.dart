@@ -14,14 +14,14 @@ const Re_ListData = [
     'Cus_Name': 'Mirza',
     'Reservation_Date': '9/1/2021',
     'Email': 'mirz666a@gmail.com',
-    'imgUrl': 'assets/Yukinoshita Yukino.jpg',
+    'imgUrl': 'assets/personicon.jpg',
     'bgColor': Color(0xFFC8E6C9),
   },
   {
     'Cus_Name': 'Lim Jia Rong',
     'Reservation_Date': '10/1/2021',
     'Email': 'lim222@gmail.com',
-    'imgUrl': 'assets/Yukinoshita Yukino.jpg',
+    'imgUrl': 'assets/profile-picture.jpg',
     'bgColor': Color(0xFFA5D6A7),
   },
 ];
@@ -130,7 +130,7 @@ class ReservationListCard extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     child: Text(
-                      'View Profile',
+                      'Reservation Detail',
                       style: TextStyle(
                         color: Colors.white,
                       ),
