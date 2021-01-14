@@ -2,10 +2,10 @@ import 'package:admin_ui/login.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(Admin());
+  runApp(MyApp());
 }
 
-class Admin extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
