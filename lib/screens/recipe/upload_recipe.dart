@@ -101,8 +101,55 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
     }
   }
 
+  List<DynamicWidget> listDynamic = [];
+
+  List<String> data = [];
+
+  addDynamic() {
+    if (data.length != 0) {
+      data = [];
+      listDynamic = [];
+      print('if');
+    }
+    setState(() {});
+    if (listDynamic.length >= 5) {
+      return;
+    }
+    listDynamic.add(new DynamicWidget());
+  }
+
   @override
   Widget build(BuildContext context) {
+    Widget result = new Flexible(
+        flex: 1,
+        child: new Card(
+          child: ListView.builder(
+            itemCount: data.length,
+            itemBuilder: (_, index) {
+              return new Padding(
+                padding: new EdgeInsets.all(10.0),
+                child: new Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    new Container(
+                      margin: new EdgeInsets.only(left: 10.0),
+                      child: new Text("${index + 1} : ${data[index]}"),
+                    ),
+                    new Divider()
+                  ],
+                ),
+              );
+            },
+          ),
+        ));
+
+    Widget dynamicTextField = new Flexible(
+        flex: 2,
+        child: new ListView.builder(
+          itemCount: listDynamic.length,
+          itemBuilder: (context, index) => listDynamic[index],
+        ));
+
     return Scaffold(
         body: Container(
             child: ListView(
@@ -162,6 +209,7 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
                 )),
             CustomTextField(
                 text: '250g flour', controller: ingredientController),
+            data.length == 0 ? dynamicTextField : result,
             CustomButton3(
               onPressed: null,
               text: 'add ingredients',
@@ -181,8 +229,8 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
               text: 'Step 1',
             ),
             CustomButton3(
-              onPressed: null,
-              text: 'add steps',
+              onPressed: addDynamic(),
+              text: 'add ingredients',
             )
           ],
         )),
@@ -219,5 +267,20 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
             ),
           );
         });
+  }
+}
+
+class DynamicWidget extends StatelessWidget {
+  TextEditingController controller = new TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: new EdgeInsets.all(8.0),
+      child: new CustomTextField(
+        controller: controller,
+        text: 'Steps',
+      ),
+    );
   }
 }
