@@ -11,5 +11,6 @@ getroute() {
     '/profile': (content) => ProfilePage(),
     '/rest_home': (context) => RestaurantHome(),
     '/rest_homecontent': (content) => RestaurantHomeContent(),
+    
   };
 }
