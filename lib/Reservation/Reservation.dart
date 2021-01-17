@@ -146,7 +146,6 @@
 // }
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'Reservation_detail.dart';
 
 const Re_ListData = [
   {
