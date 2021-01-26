@@ -58,7 +58,7 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
     try {
       String title = titleController.text;
       String detail = detailController.text;
-      String category = CustomDropDownButton() as String;
+      String category = CategoryDropDownButton() as String;
 
       var url =
           'https://czechoslovakian-scr.000webhostapp.com/upload_recipe.php';
@@ -101,94 +101,229 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
     }
   }
 
+  List<DynamicStep> listStep = [];
+  List<DynamicStep> listIngredient = [];
+
+  List<String> step = [];
+  List<String> ingredient = [];
+
+  addStep() {
+    if (step.length != 0) {
+      step = [];
+      listStep = [];
+      print('if');
+    }
+    setState(() {});
+    if (listStep.length >= 5) {
+      return;
+    }
+    listStep.add(new DynamicStep());
+  }
+
+  addIngredient() {
+    if (ingredient.length != 0) {
+      ingredient = [];
+      listIngredient = [];
+      print('if');
+    }
+    setState(() {});
+    if (listIngredient.length >= 5) {
+      return;
+    }
+    listStep.add(new DynamicStep());
+  }
+
   @override
   Widget build(BuildContext context) {
+    Widget ingredientResult = new Container(
+      child: new Card(
+        child: ListView.builder(
+          itemCount: step.length,
+          itemBuilder: (_, index) {
+            return new Padding(
+              padding: new EdgeInsets.all(10.0),
+              child: new Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  new Container(
+                    margin: new EdgeInsets.only(left: 10.0),
+                    child: new Text("${index + 1} : ${step[index]}"),
+                  ),
+                  new Divider()
+                ],
+              ),
+            );
+          },
+        ),
+      ),
+    );
+
+    Widget stepResult = new Container(
+      child: new Card(
+        child: ListView.builder(
+          itemCount: step.length,
+          itemBuilder: (_, index) {
+            return new Padding(
+              padding: new EdgeInsets.all(10.0),
+              child: new Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  new Container(
+                    margin: new EdgeInsets.only(left: 10.0),
+                    child: new Text("${index + 1} : ${step[index]}"),
+                  ),
+                  new Divider()
+                ],
+              ),
+            );
+          },
+        ),
+      ),
+    );
+
+    Widget dynamicIngredient = new Container(
+      child: new ListView.builder(
+        shrinkWrap: true,
+        itemCount: listStep.length,
+        itemBuilder: (context, index) => listStep[index],
+      ),
+    );
+
+    Widget dynamicStep = new Container(
+      child: new ListView.builder(
+        shrinkWrap: true,
+        itemCount: listStep.length,
+        itemBuilder: (context, index) => listStep[index],
+      ),
+    );
+
     return Scaffold(
-        body: Container(
-            child: ListView(
-      children: [
-        SizedBox(
-            child: GestureDetector(
-                onTap: () {
-                  _showPicker(context);
-                },
-                child: CircleAvatar(
-                  radius: 55,
-                  backgroundColor: Color(0xffFDCF09),
-                  child: _image != null
-                      ? ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Image.file(
-                            File(_image.path),
+      body: new Container(
+        margin: new EdgeInsets.all(10.0),
+        child: new ListView(
+          children: [
+            Container(
+              child: SizedBox(
+                child: GestureDetector(
+                  onTap: () {
+                    _showPicker(context);
+                  },
+                  child: CircleAvatar(
+                    radius: 55,
+                    backgroundColor: Color(0xffFDCF09),
+                    child: _image != null
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: Image.file(
+                              File(_image.path),
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.fitHeight,
+                            ),
+                          )
+                        : Container(
+                            decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.circular(50)),
                             width: 100,
                             height: 100,
-                            fit: BoxFit.fitHeight,
+                            child: Icon(
+                              Icons.camera_alt,
+                              color: Colors.grey[800],
+                            ),
                           ),
-                        )
-                      : Container(
-                          decoration: BoxDecoration(
-                              color: Colors.grey[200],
-                              borderRadius: BorderRadius.circular(50)),
-                          width: 100,
-                          height: 100,
-                          child: Icon(
-                            Icons.camera_alt,
-                            color: Colors.grey[800],
-                          ),
-                        ),
-                ))),
-        Column(children: <Widget>[
-          CustomTextField(
-              text: 'Title:Ginger Chicken', controller: titleController),
-          Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+                child: Column(children: <Widget>[
+              CustomTextField(
+                  text: 'Title:Ginger Chicken', controller: titleController),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'Category',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 30.0),
+                    ),
+                    SizedBox(
+                      width: 150,
+                    ),
+                    CategoryDropDownButton()
+                  ]),
+              SizedBox(
+                height: 30,
+              ),
+            ])),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Title(
+                  color: Colors.black,
+                  child: Text(
+                    'Ingredients',
+                    style:
+                        TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                )
+              ],
+            ),
+            Container(
+              margin: new EdgeInsets.all(8.0),
+              child: CustomTextField(
+                  text: '250g flour', controller: ingredientController),
+            ),
+            Container(
+              child: step.length == 0 ? dynamicIngredient : ingredientResult,
+            ),
+            CustomButton3(
+              onPressed: addStep,
+              text: 'add ingredients',
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text(
-                  'Category',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
+                Title(
+                  color: Colors.black,
+                  child: Text(
+                    'Steps',
+                    style:
+                        TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+                  ),
                 ),
-                CustomDropDownButton()
-              ])
-        ]),
-        Container(
-            child: Column(
-          children: <Widget>[
-            Title(
-                color: Colors.black,
-                child: Text(
-                  'Ingredients',
-                  style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
-                )),
-            CustomTextField(
-                text: '250g flour', controller: ingredientController),
-            CustomButton3(
-              onPressed: null,
-              text: 'add ingredients',
-            )
-          ],
-        )),
-        Container(
-            child: Column(
-          children: <Widget>[
-            Title(
-                color: Colors.black,
-                child: Text(
-                  'Steps',
-                  style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
-                )),
-            CustomTextField(
-              text: 'Step 1',
+                SizedBox(
+                  height: 20,
+                ),
+              ],
+            ),
+            Container(
+              margin: new EdgeInsets.all(8.0),
+              child: CustomTextField(
+                text: 'Step 1',
+              ),
+            ),
+            Container(
+              child: step.length == 0 ? dynamicStep : stepResult,
             ),
             CustomButton3(
               onPressed: null,
               text: 'add steps',
+            ),
+            CustomButton2(
+              text: 'Upload Recipe',
+              onPressed: uploadRecipe,
             )
           ],
-        )),
-        CustomButton3(text: 'Upload Recipe', onPressed: uploadRecipe)
-      ],
-    )));
+        ),
+      ),
+    );
   }
 
   void _showPicker(context) {
@@ -219,5 +354,36 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
             ),
           );
         });
+  }
+}
+
+class DynamicIngredient extends StatelessWidget {
+  TextEditingController dynamicIngredientController =
+      new TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: new EdgeInsets.all(8.0),
+      child: new CustomTextField(
+        controller: dynamicIngredientController,
+        text: 'add ingredient here',
+      ),
+    );
+  }
+}
+
+class DynamicStep extends StatelessWidget {
+  TextEditingController dynamicStepController = new TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: new EdgeInsets.all(8.0),
+      child: new CustomTextField(
+        controller: dynamicStepController,
+        text: 'add step here',
+      ),
+    );
   }
 }

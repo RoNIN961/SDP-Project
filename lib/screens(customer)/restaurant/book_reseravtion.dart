@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sdp_project/theme/custom.dart';
 
 class BookReservation extends StatefulWidget {
   @override
@@ -6,8 +7,6 @@ class BookReservation extends StatefulWidget {
 }
 
 class _BookReservationState extends State<BookReservation> {
-  String dropdownValue = 'One';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,20 +51,7 @@ class _BookReservationState extends State<BookReservation> {
                       SizedBox(
                         width: 300,
                       ),
-                      DropdownButton<String>(
-                        value: dropdownValue,
-                        onChanged: (String newValue) {
-                          setState(() {
-                            dropdownValue = newValue;
-                          });
-                          items:
-                          <String>['One', 'Two', 'Three', 'Four']
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                                value: value, child: Text(value));
-                          }).toList();
-                        },
-                      )
+                      PaxDropDownButton()
                     ],
                   ),
                 ),

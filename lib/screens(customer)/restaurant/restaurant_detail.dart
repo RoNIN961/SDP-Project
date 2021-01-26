@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:sdp_project/screens(customer)/restaurant/book_reseravtion.dart';
+import 'package:http/http.dart' as http;
 
 class RestaurantContent extends StatefulWidget {
   @override
@@ -7,6 +9,25 @@ class RestaurantContent extends StatefulWidget {
 }
 
 class _RestaurantContent extends State<RestaurantContent> {
+  List data;
+
+  Future<String> getJSONData() async {
+    var response = await http.get(
+      // Encode the url
+      Uri.encodeFull(
+          "https://czechoslovakian-scr.000webhostapp.com/restaurantprofile.php"),
+      // Only accept JSON response
+      headers: {"Accept": "application/json"},
+    );
+
+    setState(() {
+      // Get the JSON data
+      data = jsonDecode(response.body);
+    });
+
+    return "Successfull";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +49,7 @@ class _RestaurantContent extends State<RestaurantContent> {
                     radius: 50, backgroundImage: AssetImage("assets/KFC.png")),
                 SizedBox(
                     height: 50,
-                    child: Text('Restaurant Name',
+                    child: Text('$data',
                         style: TextStyle(
                           fontSize: 40,
                           fontWeight: FontWeight.bold,

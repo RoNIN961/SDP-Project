@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sdp_project/authentication/login/loginBloc.dart';
 
 class CustomLogo extends StatelessWidget {
   CustomLogo({@required this.onPressed, this.image});
@@ -124,7 +126,7 @@ class CustomButton3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
         RaisedButton(
           onPressed: onPressed,
@@ -236,433 +238,13 @@ class CustomDrawer extends StatelessWidget {
   }
 }
 
-class CustomRecipeListView extends StatelessWidget {
+class CategoryDropDownButton extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 200.0,
-      decoration: new BoxDecoration(boxShadow: [
-        new BoxShadow(
-          color: Color(0xffeeeeee),
-          blurRadius: 1.0,
-          offset: new Offset(1.0, 1.0),
-        ),
-      ]),
-      child: Card(
-        child: InkWell(
-            child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0, top: 10.0),
-              child: Text(
-                "Welcome to FoodAmore",
-                style: TextStyle(color: Color(0xff616161), fontSize: 16.0),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0, top: 3.0),
-              child: Text(
-                "Browse our most popular recipes",
-                style: TextStyle(color: Color(0xff616161), fontSize: 12.0),
-              ),
-            ),
-            Expanded(
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15.00, bottom: 15.00, left: 8, right: 4),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image(
-                            image: AssetImage('assets/chicken-casserole.jpg'),
-                            width: 80.0,
-                            height: 80.0,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Recipe Name",
-                            style: TextStyle(
-                              color: Color(0xff202124),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15.00, bottom: 15.00, left: 8, right: 4),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image(
-                            image: AssetImage('assets/chicken-casserole.jpg'),
-                            width: 80.0,
-                            height: 80.0,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Recipe Name",
-                            style: TextStyle(
-                              color: Color(0xff202124),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15.00, bottom: 15.00, left: 8, right: 4),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image(
-                            image: AssetImage('assets/chicken-casserole.jpg'),
-                            width: 80.0,
-                            height: 80.0,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Recipe Name",
-                            style: TextStyle(
-                              color: Color(0xff202124),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15.00, bottom: 15.00, left: 8, right: 4),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image(
-                            image: AssetImage('assets/chicken-casserole.jpg'),
-                            width: 80.0,
-                            height: 80.0,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Recipe Name",
-                            style: TextStyle(
-                              color: Color(0xff202124),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15.00, bottom: 15.00, left: 8, right: 4),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image(
-                            image: AssetImage('assets/chicken-casserole.jpg'),
-                            width: 80.0,
-                            height: 80.0,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Recipe Name",
-                            style: TextStyle(
-                              color: Color(0xff202124),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        )),
-      ),
-    );
-  }
+  _CategoryDropDownButtonState createState() => _CategoryDropDownButtonState();
+  CategoryDropDownButton({Key key}) : super(key: key);
 }
 
-class CustomRestaurantListView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 200.0,
-      decoration: new BoxDecoration(boxShadow: [
-        new BoxShadow(
-          color: Color(0xffeeeeee),
-          blurRadius: 1.0,
-          offset: new Offset(1.0, 1.0),
-        ),
-      ]),
-      child: Card(
-        child: InkWell(
-            child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0, top: 10.0),
-              child: Text(
-                "New & Updated Restaurants",
-                style: TextStyle(color: Color(0xff616161), fontSize: 16.0),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0, top: 3.0),
-              child: Text(
-                "Selected Restaurants For You",
-                style: TextStyle(color: Color(0xff616161), fontSize: 12.0),
-              ),
-            ),
-            Expanded(
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15.00, bottom: 15.00, left: 8, right: 4),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image(
-                            image: AssetImage('assets/KFC.png'),
-                            width: 80.0,
-                            height: 80.0,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Restaurant Name",
-                            style: TextStyle(
-                              color: Color(0xff202124),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15.00, bottom: 15.00, left: 8, right: 4),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image(
-                            image: AssetImage('assets/KFC.png'),
-                            width: 80.0,
-                            height: 80.0,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Restaurant Name",
-                            style: TextStyle(
-                              color: Color(0xff202124),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15.00, bottom: 15.00, left: 8, right: 4),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image(
-                            image: AssetImage('assets/KFC.png'),
-                            width: 80.0,
-                            height: 80.0,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Restaurant Name",
-                            style: TextStyle(
-                              color: Color(0xff202124),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15.00, bottom: 15.00, left: 8, right: 4),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image(
-                            image: AssetImage('assets/KFC.png'),
-                            width: 80.0,
-                            height: 80.0,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Restaurant Name",
-                            style: TextStyle(
-                              color: Color(0xff202124),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15.00, bottom: 15.00, left: 8, right: 4),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image(
-                            image: AssetImage('assets/KFC.png'),
-                            width: 80.0,
-                            height: 80.0,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Restaurant Name",
-                            style: TextStyle(
-                              color: Color(0xff202124),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(2.0),
-                          ),
-                          Text(
-                            "Author name",
-                            style: TextStyle(
-                                color: Color(0xff5f6368), fontSize: 12.0),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        )),
-      ),
-    );
-  }
-}
-
-class CustomDropDownButton extends StatefulWidget {
-  @override
-  _CustomDropDownButtonState createState() => _CustomDropDownButtonState();
-  CustomDropDownButton({Key key}) : super(key: key);
-}
-
-class _CustomDropDownButtonState extends State<CustomDropDownButton> {
+class _CategoryDropDownButtonState extends State<CategoryDropDownButton> {
   String dropdownValue = 'Please Choose One';
   String holder = '';
 
@@ -692,6 +274,36 @@ class _CustomDropDownButtonState extends State<CustomDropDownButton> {
           value: value,
           child: Text(value),
         );
+      }).toList(),
+    );
+  }
+}
+
+class PaxDropDownButton extends StatefulWidget {
+  @override
+  _PaxDropDownButtonState createState() => _PaxDropDownButtonState();
+}
+
+class _PaxDropDownButtonState extends State<PaxDropDownButton> {
+  String dropdownValue = 'One';
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: dropdownValue,
+      icon: Icon(Icons.arrow_drop_down),
+      iconSize: 24,
+      elevation: 16,
+      style: TextStyle(color: Colors.deepOrange),
+      underline: Container(height: 2, width: 2, color: Colors.deepOrange),
+      onChanged: (String newValue) {
+        setState(() {
+          dropdownValue = newValue;
+        });
+      },
+      items: <String>['One', 'Two', 'Three', 'Four']
+          .map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(value: value, child: Text(value));
       }).toList(),
     );
   }

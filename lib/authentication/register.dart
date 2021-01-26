@@ -24,7 +24,7 @@ class _RegisterPageState extends State<RegisterPage> {
         'Username': username,
         'Password': password,
         'Email': email,
-        'Usertype': 'Customer'
+        'Usertype': 'Customer',
       };
 
       var response = await http.post(url, body: data);

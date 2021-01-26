@@ -31,6 +31,7 @@ dependencies:
   google_fonts: ^1.1.0
   flutter_circular_chart: ^0.1.0
   charts_flutter: ^0.9.0
+  cached_network_image: ^2.5.0
 
 
   # The following adds the Cupertino Icons font to your application.
