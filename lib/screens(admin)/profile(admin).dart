@@ -23,17 +23,14 @@ class ProfilePage extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/catded.jpg'),
-                        fit: BoxFit.cover)),
+                decoration: BoxDecoration(color: Colors.orange),
                 child: Container(
                   width: double.infinity,
                   height: 200,
                   child: Container(
                     alignment: Alignment(0.0, 2.5),
                     child: CircleAvatar(
-                      backgroundImage: AssetImage('assets/statistics.jpg'),
+                      backgroundImage: AssetImage('assets/personicon.jpg'),
                       radius: 60.0,
                     ),
                   ),
