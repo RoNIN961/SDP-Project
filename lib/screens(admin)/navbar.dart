@@ -1,3 +1,6 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sdp_project/bloc/login/loginBloc.dart';
+
 import 'home(admin).dart';
 import 'listview.dart';
 import 'package:sdp_project/authentication/login.dart';
@@ -23,6 +26,8 @@ class _NavState extends State<Nav> {
 
   @override
   Widget build(BuildContext context) {
+    String username = BlocProvider.of<LoginBloc>(context).name;
+    String useremail = BlocProvider.of<LoginBloc>(context).email;
     return Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.deepOrange,
@@ -36,8 +41,8 @@ class _NavState extends State<Nav> {
         drawer: new Drawer(
           child: new ListView(children: <Widget>[
             new UserAccountsDrawerHeader(
-                accountName: new Text('nibbas'),
-                accountEmail: new Text('bababoey@mail.com'),
+                accountName: Text(username),
+                accountEmail: Text(useremail),
                 currentAccountPicture: new CircleAvatar(
                   backgroundColor: Colors.white,
                   backgroundImage: AssetImage('assets/statistics.jpg'),
