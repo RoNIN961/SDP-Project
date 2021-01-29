@@ -52,11 +52,7 @@ class _HomePageState extends State<HomePage> {
               backgroundColor: Colors.deepOrange)
         ],
       ),
-      drawer: Drawer(
-          child: CustomDrawer(
-        email: 'data',
-        name: 'data',
-      )),
+      drawer: Drawer(child: CustomDrawer()),
     );
   }
 

@@ -12,12 +12,8 @@ class ProfilePage extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage("add you image URL here "),
-                        fit: BoxFit.cover)),
                 child: Container(
-                  width: double.infinity,
+                  width: 200,
                   height: 200,
                   child: Container(
                     alignment: Alignment(0.0, 2.5),

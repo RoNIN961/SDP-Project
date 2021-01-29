@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sdp_project/authentication/login/loginBloc.dart';
+import 'package:sdp_project/bloc/login/loginBloc.dart';
 
 class CustomLogo extends StatelessWidget {
   CustomLogo({@required this.onPressed, this.image});
@@ -14,7 +14,7 @@ class CustomLogo extends StatelessWidget {
       child: Padding(
           padding: EdgeInsets.all(20),
           child: Hero(
-              tag: 'hero', child: CircleAvatar(radius: 56.0, child: image))),
+              tag: 'hero', child: CircleAvatar(radius: 80.0, child: image))),
       onPressed: onPressed,
     );
   }
@@ -164,10 +164,6 @@ class CustomButton3 extends StatelessWidget {
 }
 
 class CustomDrawer extends StatelessWidget {
-  CustomDrawer({@required this.email, this.name});
-  final String name;
-  final String email;
-
   final _menutextcolor = TextStyle(
     color: Colors.black,
     fontSize: 14.0,
@@ -178,16 +174,19 @@ class CustomDrawer extends StatelessWidget {
   );
   @override
   Widget build(BuildContext context) {
+    String username = BlocProvider.of<LoginBloc>(context).name;
+    String useremail = BlocProvider.of<LoginBloc>(context).email;
+
     return ListView(
       padding: EdgeInsets.all(0),
       children: <Widget>[
         UserAccountsDrawerHeader(
-          accountEmail: Text(email),
-          accountName: Text(name),
+          accountEmail: Text(username),
+          accountName: Text(useremail),
           currentAccountPicture: Image.asset('assets/profile-picture.jpg'),
         ),
         ListTile(
-          leading: IconTheme(
+          trailing: IconTheme(
             data: _iconcolor,
             child: Icon(Icons.list),
           ),
@@ -198,7 +197,7 @@ class CustomDrawer extends StatelessWidget {
           },
         ),
         ListTile(
-          leading: IconTheme(
+          trailing: IconTheme(
             data: _iconcolor,
             child: Icon(Icons.notifications),
           ),
@@ -207,7 +206,7 @@ class CustomDrawer extends StatelessWidget {
         ),
         Divider(),
         ListTile(
-          leading: IconTheme(
+          trailing: IconTheme(
             data: _iconcolor,
             child: Icon(Icons.account_box),
           ),
@@ -217,20 +216,14 @@ class CustomDrawer extends StatelessWidget {
           },
         ),
         ListTile(
-          leading: IconTheme(
+          trailing: IconTheme(
             data: _iconcolor,
-            child: Icon(Icons.settings),
+            child: Icon(Icons.logout),
           ),
-          title: Text("Settings", style: _menutextcolor),
+          title: Text("Logout", style: _menutextcolor),
           onTap: () {
-            Navigator.pushNamed(context, '/settings');
-          },
-        ),
-        Divider(),
-        ListTile(
-          title: Text("Redeem", style: _menutextcolor),
-          onTap: () {
-            Navigator.pushNamed(context, '/check_points');
+            BlocProvider.of<LoginBloc>(context).add(ResetLoginData());
+            Navigator.pushNamed(context, '/');
           },
         ),
       ],

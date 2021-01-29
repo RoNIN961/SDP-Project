@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:sdp_project/screens(customer)/restaurant/book_reseravtion.dart';
+import 'package:sdp_project/screens(customer)/restaurant/book_reservation.dart';
 import 'package:http/http.dart' as http;
+
+import 'book_reservation.dart';
 
 class RestaurantContent extends StatefulWidget {
   @override
@@ -15,7 +17,8 @@ class _RestaurantContent extends State<RestaurantContent> {
     var response = await http.get(
       // Encode the url
       Uri.encodeFull(
-          "https://czechoslovakian-scr.000webhostapp.com/restaurantprofile.php"),
+        "https://czechoslovakian-scr.000webhostapp.com/restaurantprofile.php",
+      ),
       // Only accept JSON response
       headers: {"Accept": "application/json"},
     );

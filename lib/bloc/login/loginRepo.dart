@@ -4,13 +4,13 @@ import 'loginModel.dart';
 
 class LoginRepo {
   Future<LoginModel> getData(String email, String password) async {
-    email = email;
-    password = password;
-
     final result = await http.post(
         "https://czechoslovakian-scr.000webhostapp.com/login.php",
         body: {'Email': email, 'Password': password});
+
     if (result.statusCode != 200) throw Exception();
+
+    print(result.body);
     return parsedJson(result.body);
   }
 

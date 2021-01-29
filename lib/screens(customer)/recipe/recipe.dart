@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
+import 'package:sdp_project/bloc/recipe/recipeBloc.dart';
 
 class RecipePage extends StatelessWidget {
   @override
@@ -55,7 +57,6 @@ class _RecipePageListViewState extends State<RecipePageListView> {
 
     setState(() {
       // Get the JSON data
-      print(response.body);
       data = jsonDecode(response.body);
     });
 
@@ -122,6 +123,10 @@ class _RecipePageListViewState extends State<RecipePageListView> {
                   TextButton(
                     child: const Text('View'),
                     onPressed: () {
+                      BlocProvider.of<RecipeBloc>(context).add(FetchRecipeData(
+                        item['Recipe_Title'],
+                        item['Username'],
+                      ));
                       Navigator.pushNamed(context, '/recipe_detail');
                     },
                   ),

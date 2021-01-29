@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:sdp_project/authentication/login/loginModel.dart';
-import 'package:sdp_project/authentication/login/loginRepo.dart';
+import 'package:sdp_project/bloc/login/loginModel.dart';
+import 'package:sdp_project/bloc/login/loginRepo.dart';
 
 class LoginEvent extends Equatable {
   @override
@@ -31,21 +31,35 @@ class LoadingLogin extends LoginState {}
 
 class LoggedInSuccess extends LoginState {
   final _email;
-  final _password;
+  final _username;
+  final _usertype;
 
-  LoggedInSuccess(this._email, this._password);
+  LoggedInSuccess(this._email, this._username, this._usertype);
 
   @override
-  List<Object> get props => [_email, _password];
+  List<Object> get props => [_email, _username, _usertype];
 
   LoginModel get getEmail => _email;
-  LoginModel get getPassword => _password;
+  LoginModel get getUsername => _username;
+  LoginModel get getUsertype => _usertype;
 }
 
 class LoggedInFailed extends LoginState {}
 
+class WrongCredentials extends LoginState {}
+
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginRepo loginRepo;
+
+  LoginModel loginmodel;
+
+  String _name;
+  String _email;
+  String _usertype;
+
+  String get name => _name;
+  String get email => _email;
+  String get usertype => _usertype;
 
   LoginBloc(this.loginRepo) : super(NotLoggedIn());
 
@@ -55,9 +69,18 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       yield LoadingLogin();
 
       try {
-        LoginModel email = await loginRepo.getData(event._email, null);
-        LoginModel password = await loginRepo.getData(null, event._password);
-        yield LoggedInSuccess(email, password);
+        LoginModel result =
+            await loginRepo.getData(event._email, event._password);
+        if (result.rowCount == 1) {
+          yield LoggedInSuccess(result.email, result.username, result.usertype);
+          _email = result.email;
+          _name = result.username;
+          _usertype = result.usertype;
+        } else {
+          if (result.rowCount != 1) {
+            yield WrongCredentials();
+          }
+        }
       } catch (_) {
         yield LoggedInFailed();
       }

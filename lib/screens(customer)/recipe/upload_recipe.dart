@@ -102,7 +102,7 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
   }
 
   List<DynamicStep> listStep = [];
-  List<DynamicStep> listIngredient = [];
+  List<DynamicIngredient> listIngredient = [];
 
   List<String> step = [];
   List<String> ingredient = [];
@@ -130,7 +130,7 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
     if (listIngredient.length >= 5) {
       return;
     }
-    listStep.add(new DynamicStep());
+    listIngredient.add(new DynamicIngredient());
   }
 
   @override
@@ -138,7 +138,7 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
     Widget ingredientResult = new Container(
       child: new Card(
         child: ListView.builder(
-          itemCount: step.length,
+          itemCount: ingredient.length,
           itemBuilder: (_, index) {
             return new Padding(
               padding: new EdgeInsets.all(10.0),
@@ -147,7 +147,7 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
                 children: <Widget>[
                   new Container(
                     margin: new EdgeInsets.only(left: 10.0),
-                    child: new Text("${index + 1} : ${step[index]}"),
+                    child: new Text("${index + 1} : ${ingredient[index]}"),
                   ),
                   new Divider()
                 ],
@@ -184,8 +184,8 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
     Widget dynamicIngredient = new Container(
       child: new ListView.builder(
         shrinkWrap: true,
-        itemCount: listStep.length,
-        itemBuilder: (context, index) => listStep[index],
+        itemCount: listIngredient.length,
+        itemBuilder: (context, index) => listIngredient[index],
       ),
     );
 
@@ -280,7 +280,8 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
                   text: '250g flour', controller: ingredientController),
             ),
             Container(
-              child: step.length == 0 ? dynamicIngredient : ingredientResult,
+              child:
+                  ingredient.length == 0 ? dynamicIngredient : ingredientResult,
             ),
             CustomButton3(
               onPressed: addStep,
@@ -313,7 +314,7 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
               child: step.length == 0 ? dynamicStep : stepResult,
             ),
             CustomButton3(
-              onPressed: null,
+              onPressed: addIngredient,
               text: 'add steps',
             ),
             CustomButton2(
