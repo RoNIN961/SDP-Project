@@ -51,6 +51,8 @@ class _NavState extends State<Nav> {
               title: new Text("View Account"),
               trailing: new Icon(Icons.people),
               onTap: () {
+                BlocProvider.of<LoginBloc>(context)
+                    .add(FetchLoginData(username, useremail));
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => ProfilePage()));
               },

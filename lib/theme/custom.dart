@@ -183,7 +183,7 @@ class CustomDrawer extends StatelessWidget {
         UserAccountsDrawerHeader(
           accountEmail: Text(username),
           accountName: Text(useremail),
-          currentAccountPicture: Image.asset('assets/profile-picture.jpg'),
+          currentAccountPicture: Image.asset('assets/personicon.jpg'),
         ),
         ListTile(
           trailing: IconTheme(

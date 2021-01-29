@@ -72,7 +72,7 @@ class LoginPage extends StatelessWidget {
                     Navigator.pushNamed(context, '/home');
                   } else if (usertype == 'Restaurant') {
                     Navigator.pushNamed(context, '/restaurant_home');
-                  } else {
+                  } else if (usertype == 'Admin') {
                     Navigator.pushNamed(context, '/admin_home');
                   }
                 }

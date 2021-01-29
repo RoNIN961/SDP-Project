@@ -1,9 +1,15 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sdp_project/bloc/login/loginBloc.dart';
+
 import 'navbar.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    String username = BlocProvider.of<LoginBloc>(context).name;
+    String useremail = BlocProvider.of<LoginBloc>(context).email;
+
     return Scaffold(
         appBar: AppBar(
           leading: BackButton(
@@ -37,7 +43,7 @@ class ProfilePage extends StatelessWidget {
                 height: 60,
               ),
               Text(
-                "User XXX",
+                username,
                 style: TextStyle(
                     fontSize: 25.0,
                     color: Colors.blueGrey,
