@@ -1,84 +1,88 @@
-import 'dart:convert';
-import 'dart:io';
-import 'package:flutter/material.dart';
 import 'dart:async';
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
-import 'package:sdp_project/theme/custom.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../bloc/login/loginBloc.dart';
+import '../../theme/custom.dart';
 
 class UploadRecipePage extends StatefulWidget {
   _UploadRecipePageState createState() => _UploadRecipePageState();
 }
 
 class _UploadRecipePageState extends State<UploadRecipePage> {
-  PickedFile _image;
+  File _image;
   // ignore: unused_field
   dynamic _pickImageError;
   final titleController = TextEditingController();
-  final detailController = TextEditingController();
-  final ingredientController = TextEditingController();
   final ImagePicker _picker = ImagePicker();
 
-  _imgFromCamera() async {
-    try {
-      final pickedFile = await _picker.getImage(
-        source: ImageSource.camera,
-        imageQuality: 50,
-      );
-      setState(() {
-        _image = pickedFile;
-      });
-    } catch (e) {
-      setState(() {
-        _pickImageError = e;
-      });
-      print(e);
-    }
-  }
+  String title = 'DropDownButton';
+  String _categorylist;
+  List _categoryname = ['Halal', 'Non-Halal'];
 
-  _imgFromGallery() async {
-    try {
-      final pickedFile = await _picker.getImage(
-        source: ImageSource.gallery,
-        imageQuality: 50,
-      );
-      setState(() {
-        _image = pickedFile;
-      });
-      print(_image.path);
-    } catch (e) {
-      setState(() {
-        _pickImageError = e;
-      });
-      print(e);
-    }
-  }
-
-  Future uploadRecipe() async {
+  Future addRecipe(File imageFile) async {
     try {
       String title = titleController.text;
-      String detail = detailController.text;
-      String category = CategoryDropDownButton() as String;
 
-      var url =
-          'https://czechoslovakian-scr.000webhostapp.com/upload_recipe.php';
+      var url = Uri.parse(
+          'https://czechoslovakian-scr.000webhostapp.com/upload_recipe.php');
+
+      var request = http.MultipartRequest("POST", url);
+
+      request.fields['name'] = "";
+
+      var pic = await http.MultipartFile.fromPath("image", imageFile.path);
+
+      String image = pic.filename;
+
+      String userid = BlocProvider.of<LoginBloc>(context).userid;
+
+      request.files.add(pic);
+      var uploadresponse = await request.send();
+
+      if (uploadresponse.statusCode == 200) {
+        print("image uploaded");
+      } else {
+        print("uploaded failed");
+      }
 
       var data = {
-        'Recipe_Title': title,
-        'Detail': detail,
-        'Category': category
+        'title': title,
+        'category': _categorylist,
+        'image': image,
+        'userid': userid,
+        'name': "",
+        'detail': convertStep(),
+        'ingredient': convertIngredient(),
       };
 
-      print(category);
       var response = await http.post(url, body: data);
 
       var message = response.body;
 
-      var jsonResponse = jsonDecode(response.body);
-
-      if (jsonResponse['message'] == 'Upload Success') {
-        print(category);
+      if (message.contains('Successfully Added!')) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: new Text('Added New Recipe!'),
+              actions: <Widget>[
+                FlatButton(
+                  child: new Text("OK"),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            );
+          },
+        );
       } else {
+        // Showing Alert Dialog with Response JSON Message.
         showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -98,6 +102,58 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
       }
     } catch (e) {
       print(e.toString());
+    }
+  }
+
+  String convertStep() {
+    String steparray = '';
+    for (int i = 0; i < step.length; i++) {
+      steparray += step[i] + (i == step.length - 1 ? '' : ',');
+    }
+    return steparray;
+  }
+
+  String convertIngredient() {
+    String ingredientarray = '';
+    for (int i = 0; i < ingredient.length; i++) {
+      ingredientarray +=
+          ingredient[i] + (i == ingredient.length - 1 ? '' : ',');
+    }
+    return ingredientarray;
+  }
+
+  _imgFromCamera() async {
+    try {
+      final pickedFile = await _picker.getImage(
+        source: ImageSource.camera,
+        imageQuality: 50,
+      );
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+    } catch (e) {
+      setState(() {
+        _pickImageError = e;
+      });
+      print(e);
+    }
+  }
+
+  _imgFromGallery() async {
+    try {
+      final pickedFile = await _picker.getImage(
+        source: ImageSource.gallery,
+        imageQuality: 50,
+      );
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+      print(_image.path);
+    } catch (e) {
+      setState(() {
+        _pickImageError = e;
+      });
+      print(e);
     }
   }
 
@@ -136,50 +192,50 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
   @override
   Widget build(BuildContext context) {
     Widget ingredientResult = new Container(
-      child: new Card(
-        child: ListView.builder(
-          itemCount: ingredient.length,
-          itemBuilder: (_, index) {
-            return new Padding(
-              padding: new EdgeInsets.all(10.0),
-              child: new Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  new Container(
-                    margin: new EdgeInsets.only(left: 10.0),
-                    child: new Text("${index + 1} : ${ingredient[index]}"),
-                  ),
-                  new Divider()
-                ],
-              ),
-            );
-          },
-        ),
-      ),
-    );
+        // child: new Card(
+        //   child: ListView.builder(
+        //     itemCount: ingredient.length,
+        //     itemBuilder: (_, index) {
+        //       return new Padding(
+        //         padding: new EdgeInsets.all(10.0),
+        //         child: new Column(
+        //           crossAxisAlignment: CrossAxisAlignment.start,
+        //           children: <Widget>[
+        //             new Container(
+        //               margin: new EdgeInsets.only(left: 10.0),
+        //               child: new Text("${index + 1} : ${ingredient[index]}"),
+        //             ),
+        //             new Divider()
+        //           ],
+        //         ),
+        //       );
+        //     },
+        //   ),
+        // ),
+        );
 
     Widget stepResult = new Container(
-      child: new Card(
-        child: ListView.builder(
-          itemCount: step.length,
-          itemBuilder: (_, index) {
-            return new Padding(
-              padding: new EdgeInsets.all(10.0),
-              child: new Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  new Container(
-                    margin: new EdgeInsets.only(left: 10.0),
-                    child: new Text("${index + 1} : ${step[index]}"),
-                  ),
-                  new Divider()
-                ],
-              ),
-            );
-          },
-        ),
-      ),
-    );
+        // child: new Card(
+        //   child: ListView.builder(
+        //     itemCount: step.length,
+        //     itemBuilder: (_, index) {
+        //       return new Padding(
+        //         padding: new EdgeInsets.all(10.0),
+        //         child: new Column(
+        //           crossAxisAlignment: CrossAxisAlignment.start,
+        //           children: <Widget>[
+        //             new Container(
+        //               margin: new EdgeInsets.only(left: 10.0),
+        //               child: new Text("${index + 1} : ${step[index]}"),
+        //             ),
+        //             new Divider()
+        //           ],
+        //         ),
+        //       );
+        //     },
+        //   ),
+        // ),
+        );
 
     Widget dynamicIngredient = new Container(
       child: new ListView.builder(
@@ -197,10 +253,45 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
       ),
     );
 
+    Widget inputCategory() {
+      return Padding(
+        padding: EdgeInsets.only(bottom: 10),
+        child: Container(
+          width: 180,
+          padding: EdgeInsets.only(left: 16, right: 16),
+          decoration: BoxDecoration(
+            border: Border.all(width: 1),
+            borderRadius: BorderRadius.circular(50.0),
+          ),
+          child: DropdownButton(
+            hint: Text('Select Category'),
+            dropdownColor: Colors.grey,
+            elevation: 5,
+            icon: Icon(Icons.arrow_drop_down),
+            iconSize: 48,
+            isExpanded: true,
+            value: _categorylist,
+            style: TextStyle(color: Colors.black, fontSize: 17),
+            onChanged: (value) {
+              setState(() {
+                _categorylist = value;
+              });
+            },
+            items: _categoryname.map((value) {
+              return DropdownMenuItem(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       body: new Container(
         margin: new EdgeInsets.all(10.0),
-        child: new ListView(
+        child: ListView(
           children: [
             Container(
               child: SizedBox(
@@ -238,8 +329,12 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
             ),
             Container(
                 child: Column(children: <Widget>[
+              SizedBox(height: 30),
               CustomTextField(
                   text: 'Title:Ginger Chicken', controller: titleController),
+              SizedBox(
+                height: 20,
+              ),
               Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -250,9 +345,9 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
                           fontWeight: FontWeight.bold, fontSize: 30.0),
                     ),
                     SizedBox(
-                      width: 150,
+                      width: 100,
                     ),
-                    CategoryDropDownButton()
+                    inputCategory(),
                   ]),
               SizedBox(
                 height: 30,
@@ -275,22 +370,16 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
               ],
             ),
             Container(
-              margin: new EdgeInsets.all(8.0),
-              child: CustomTextField(
-                  text: '250g flour', controller: ingredientController),
-            ),
-            Container(
               child:
                   ingredient.length == 0 ? dynamicIngredient : ingredientResult,
             ),
             CustomButton3(
-              onPressed: addStep,
+              onPressed: addIngredient,
               text: 'add ingredients',
             ),
             Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 Title(
                   color: Colors.black,
                   child: Text(
@@ -301,25 +390,30 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
                 ),
                 SizedBox(
                   height: 20,
-                ),
+                )
               ],
-            ),
-            Container(
-              margin: new EdgeInsets.all(8.0),
-              child: CustomTextField(
-                text: 'Step 1',
-              ),
             ),
             Container(
               child: step.length == 0 ? dynamicStep : stepResult,
             ),
             CustomButton3(
-              onPressed: addIngredient,
+              onPressed: addStep,
               text: 'add steps',
             ),
-            CustomButton2(
+            SizedBox(
+              height: 30,
+            ),
+            CustomButton1(
               text: 'Upload Recipe',
-              onPressed: uploadRecipe,
+              onPressed: () {
+                listIngredient.forEach((widget) =>
+                    ingredient.add(widget.dynamicIngredientController.text));
+                //ingredient is array of text editing controller text
+                listStep.forEach(
+                    (widget) => step.add(widget.dynamicStepController.text));
+                //step is array of text editing controller text
+                addRecipe(_image);
+              },
             )
           ],
         ),
@@ -358,6 +452,7 @@ class _UploadRecipePageState extends State<UploadRecipePage> {
   }
 }
 
+// ignore: must_be_immutable
 class DynamicIngredient extends StatelessWidget {
   TextEditingController dynamicIngredientController =
       new TextEditingController();
@@ -374,6 +469,7 @@ class DynamicIngredient extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class DynamicStep extends StatelessWidget {
   TextEditingController dynamicStepController = new TextEditingController();
 

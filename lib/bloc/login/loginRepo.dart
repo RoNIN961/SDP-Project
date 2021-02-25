@@ -1,5 +1,7 @@
-import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
 import 'loginModel.dart';
 
 class LoginRepo {
@@ -10,7 +12,6 @@ class LoginRepo {
 
     if (result.statusCode != 200) throw Exception();
 
-    print(result.body);
     return parsedJson(result.body);
   }
 

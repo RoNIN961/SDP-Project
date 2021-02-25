@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sdp_project/theme/custom.dart';
 import 'package:http/http.dart' as http;
+
+import '../theme/custom.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -35,6 +36,24 @@ class _RegisterPageState extends State<RegisterPage> {
       //var jsonResponse = jsonDecode(response.body);
 
       if (message == 'Registration Success!') {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: new Center(
+                child: Text(message),
+              ),
+              actions: <Widget>[
+                FlatButton(
+                  child: new Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
         Navigator.pushNamed(context, '/');
       } else {
         // Showing Alert Dialog with Response JSON Message.
@@ -42,7 +61,9 @@ class _RegisterPageState extends State<RegisterPage> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: new Text(message),
+              title: new Center(
+                child: Text(message),
+              ),
               actions: <Widget>[
                 FlatButton(
                   child: new Text("OK"),
@@ -62,6 +83,10 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
+    final logo = CustomLogo(
+      onPressed: null,
+      image: Image.asset('assets/logo2.png'),
+    );
     final inputUsername =
         CustomTextField(text: 'Username', controller: usernameController);
     final inputEmail = CustomTextField(
@@ -72,8 +97,10 @@ class _RegisterPageState extends State<RegisterPage> {
       text: 'password',
       controller: passwordController,
     );
-    final buttonRegister =
-        CustomButton1(onPressed: addData, text: 'Create Account');
+    final buttonRegister = CustomButton1(
+      onPressed: addData,
+      text: 'Create Account',
+    );
     final buttonLogin = CustomButton2(
       onPressed: () {
         Navigator.pushNamed(context, '/');
@@ -87,9 +114,13 @@ class _RegisterPageState extends State<RegisterPage> {
           shrinkWrap: true,
           padding: EdgeInsets.symmetric(horizontal: 20),
           children: <Widget>[
+            logo,
             inputUsername,
+            SizedBox(height: 15),
             inputEmail,
+            SizedBox(height: 15),
             inputPassword,
+            SizedBox(height: 25),
             buttonRegister,
             buttonLogin
           ],

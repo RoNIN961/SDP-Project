@@ -1,35 +1,54 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../../bloc/menu/menuBloc.dart';
+import '../../bloc/menu/menuModel.dart';
+import '../../bloc/restaurant/restaurantBloc.dart';
+import '../../bloc/review/reviewBloc.dart';
+import '../home/restaurant_home.dart';
 import 'review_details.dart';
 
-const ReviewListData = [
-  {
-    'Cus_Name': 'Happy Meals',
-    'total_review': '100',
-    'Email': 'luiyande5678@gmail.com',
-    'imgUrl': 'assets/chicken-fajitas.jpg',
-    'total_rating': '4.6',
-  },
-  {
-    'Cus_Name': 'Happy Meals',
-    'total_review': '90',
-    'Email': 'mirz666a@gmail.com',
-    'imgUrl': 'assets/Happy Meals.jpg',
-    'total_rating': '4.7',
-  },
-  {
-    'Cus_Name': 'Happy Meals',
-    'total_review': '70',
-    'Email': 'lim222@gmail.com',
-    'imgUrl': 'assets/Yukinoshita Yukino.jpg',
-    'total_rating': '4.5',
-  },
-];
+class ReviewPage extends StatefulWidget {
+  @override
+  _ReviewPageState createState() => _ReviewPageState();
+}
 
-class ReviewPage extends StatelessWidget {
+class _ReviewPageState extends State<ReviewPage> {
+  List<MenuModel> data = [];
+
+  @override
+  void initState() {
+    String resid = BlocProvider.of<RestaurantBloc>(context).resid;
+    BlocProvider.of<MenuBloc>(context).add(FetchMenuData(resid));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: <Widget>[Review()],
+      children: <Widget>[
+        BlocBuilder<MenuBloc, MenuState>(
+          builder: (context, state) {
+            if (state is LoadingMenu) {
+              return LinearProgressIndicator();
+            }
+            if (state is MenuLoaded) {
+              return Review();
+            }
+            if (state is MenuFailedLoad) {
+              return Center(
+                child: Text(
+                  'Failed To Load',
+                  style: GoogleFonts.inter(fontSize: 30),
+                ),
+              );
+            }
+            return RestaurantHome();
+          },
+        ),
+      ],
     );
   }
 }
@@ -37,6 +56,8 @@ class ReviewPage extends StatelessWidget {
 class Review extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    List<MenuModel> data = BlocProvider.of<MenuBloc>(context).result;
+
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -47,22 +68,29 @@ class Review extends StatelessWidget {
         ),
       ),
       child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: 20,
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Review',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            ),
+            Container(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: data == null ? 0 : data.length,
+                itemBuilder: (context, index) {
+                  return MenuReview(data[index]);
+                },
               ),
-              Text(
-                'Review',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-              ),
-              MenuReview(ReviewListData[0]),
-              MenuReview(ReviewListData[1]),
-              MenuReview(ReviewListData[2]),
-            ],
-          )),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
@@ -85,35 +113,27 @@ class MenuReview extends StatelessWidget {
           Positioned(
             top: 10,
             left: 10,
-            child: Image.asset(
-              reviewlist['imgUrl'],
-              height: MediaQuery.of(context).size.height * 0.20,
+            child: CachedNetworkImage(
+              imageUrl:
+                  'https://czechoslovakian-scr.000webhostapp.com/uploads(Menu)/${reviewlist.image}',
+              height: MediaQuery.of(context).size.height * 0.15,
               width: MediaQuery.of(context).size.width * 0.30,
+              fit: BoxFit.fill,
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 20, left: 140),
+            padding: EdgeInsets.only(top: 20, left: 160),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  reviewlist['Cus_Name'],
+                  reviewlist.menuname,
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    fontSize: 20,
+                    fontSize: 30,
                   ),
                 ),
-                SizedBox(height: 10),
-                Text(
-                  '${reviewlist['total_review']} total reviews',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w300,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
+                SizedBox(height: 40),
                 Row(
                   children: <Widget>[
                     Icon(
@@ -122,31 +142,42 @@ class MenuReview extends StatelessWidget {
                       color: Color(0xffFF8573),
                     ),
                     SizedBox(width: 5),
-                    Text(
-                      reviewlist['total_rating'],
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w300,
+                    SizedBox(
+                      width: 50,
+                      child: Text(
+                        reviewlist.menuid,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w300,
+                        ),
                       ),
                     ),
-                    SizedBox(width: 26),
-                    MaterialButton(
-                        onPressed: () {
-                          Navigator.push(
+                    SizedBox(width: 50),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: MaterialButton(
+                          onPressed: () {
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      ReviewDetailScreen(reviewlist)));
-                        },
-                        color: Color(0xff4E2958),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Text(
-                          'View Review',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        )),
+                                builder: (context) =>
+                                    ReviewDetailScreen(reviewlist),
+                              ),
+                            );
+                            BlocProvider.of<ReviewBloc>(context).add(
+                              FetchReviewData(reviewlist.menuid),
+                            );
+                          },
+                          color: Color(0xff4E2958),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Text(
+                            'View Review',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          )),
+                    )
                   ],
                 ),
               ],

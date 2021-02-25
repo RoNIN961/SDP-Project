@@ -1,25 +1,31 @@
 class RecipeModel {
   final title;
+  final recipeid;
   final rowCount;
-  final author;
-  final details;
-  final ingredients;
-  final image;
+  final username;
   final category;
-  final step;
+  final userid;
+  final image;
 
-  RecipeModel(this.title, this.rowCount, this.author, this.details,
-      this.ingredients, this.category, this.image, this.step);
+  RecipeModel(
+    this.title,
+    this.recipeid,
+    this.rowCount,
+    this.username,
+    this.category,
+    this.userid,
+    this.image,
+  );
 
   factory RecipeModel.fromJson(Map<String, dynamic> json) {
     return RecipeModel(
-        json['Recipe_Title'],
-        json['rowCount'],
-        json['Username'],
-        json['Detail'],
-        json['Ingredient'],
-        json['Category'],
-        json['Directory'],
-        json['Step']);
+      json['title'],
+      json['recipeid'],
+      json['rowCount'],
+      json['username'],
+      json['category'],
+      json['userid'],
+      json['image'],
+    );
   }
 }

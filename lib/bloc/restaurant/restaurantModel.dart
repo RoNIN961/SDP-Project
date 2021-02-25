@@ -1,25 +1,26 @@
 class RestaurantModel {
-  final title;
+  final resname;
   final rowCount;
-  final author;
-  final details;
-  final ingredients;
+  final address;
+  final email;
+  final number;
   final image;
-  final category;
-  final step;
+  final id;
+  final username;
 
-  RestaurantModel(this.title, this.rowCount, this.author, this.details,
-      this.ingredients, this.category, this.image, this.step);
+  RestaurantModel(this.resname, this.rowCount, this.address, this.email,
+      this.number, this.image, this.id, this.username);
 
   factory RestaurantModel.fromJson(Map<String, dynamic> json) {
     return RestaurantModel(
-        json['Recipe_Title'],
-        json['rowCount'],
-        json['Username'],
-        json['Detail'],
-        json['Ingredient'],
-        json['Category'],
-        json['Directory'],
-        json['Step']);
+      json['Restaurant_Name'],
+      json['rowCount'],
+      json['Address'],
+      json['Email'],
+      json['Contact'],
+      json['Rest_Profile_Pic'],
+      json['Restaurant_ID'],
+      json['Username'],
+    );
   }
 }

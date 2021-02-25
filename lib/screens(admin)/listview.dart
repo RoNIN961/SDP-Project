@@ -1,25 +1,30 @@
-import 'package:flutter/material.dart';
 import 'dart:convert';
+
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class Userdata {
-  String username;
-  String email;
-  String usertype;
+import 'edit_profile(admin).dart';
 
-  Userdata(
-    u, {
+class Userdata {
+  final String username;
+  String email;
+  String id;
+  String password;
+
+  Userdata({
     this.username,
     this.email,
-    this.usertype,
+    this.id,
+    this.password,
   });
 
   factory Userdata.fromJson(Map<String, dynamic> json) {
-    return Userdata({
-      json['Username'],
-      json['Email'],
-      json['Usertype'],
-    });
+    return Userdata(
+      username: json['Username'],
+      email: json['Email'],
+      id: json['User_ID'],
+      password: json['Password'],
+    );
   }
 }
 
@@ -98,20 +103,68 @@ class UserListPageState extends State<UserListPage> {
     return Card(
       child: Padding(
         padding: const EdgeInsets.only(
-            top: 32.0, bottom: 32.0, left: 16.0, right: 16.0),
+            top: 32.0, bottom: 20.0, left: 16.0, right: 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              // userListDisplay[index].username,
-              'user',
+              userListDisplay[index].username,
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             Text(
-              // userListDisplay[index].email,
-              'email',
+              userListDisplay[index].email,
               style: TextStyle(color: Colors.grey.shade600),
             ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Column(
+                children: [
+                  RaisedButton(
+                      color: Colors.orange,
+                      child: SizedBox(
+                        width: 50,
+                        child: Text(
+                          'Edit',
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                EditUserProfilePage(userListDisplay[index]),
+                          ),
+                        );
+                      }),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  RaisedButton(
+                    color: Colors.orange,
+                    onPressed: () {
+                      var url =
+                          'https://czechoslovakian-scr.000webhostapp.com/delete_user.php';
+                      http.post(url, body: {'id': userListDisplay[index].id});
+                      Navigator.pushNamed(context, '/admin_home');
+                    },
+                    child: SizedBox(
+                      width: 50,
+                      child: Text(
+                        'Delete',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),

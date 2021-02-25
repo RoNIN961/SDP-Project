@@ -1,34 +1,54 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart' as http;
+
+import '../../bloc/menu/menuBloc.dart';
+import '../../bloc/menu/menuModel.dart';
+import '../../bloc/restaurant/restaurantBloc.dart';
+import '../home/restaurant_home.dart';
 import 'addMenu.dart';
 import 'editMenu.dart';
 
-const MenuListData = [
-  {
-    'Menuname': 'Happy Meals',
-    'Description': 'A Happy Meals',
-    'imgUrl': 'assets/chicken-casserole.jpg',
-    'Price': '24.60',
-  },
-  {
-    'Menuname': 'Lucky Meals',
-    'Description': 'A Lucky Meals',
-    'imgUrl': 'assets/chicken-fajitas.jpg',
-    'Price': '34.70',
-  },
-  {
-    'Menuname': 'Family Meals',
-    'Description': 'A Family Meals',
-    'imgUrl': 'assets/chicken-casserole.jpg',
-    'Price': '14.50',
-  },
-];
+class MenuPage extends StatefulWidget {
+  @override
+  _MenuPageState createState() => _MenuPageState();
+}
 
-class MenuPage extends StatelessWidget {
+class _MenuPageState extends State<MenuPage> {
+  List<MenuModel> data = [];
+
+  @override
+  void initState() {
+    String resid = BlocProvider.of<RestaurantBloc>(context).resid;
+    BlocProvider.of<MenuBloc>(context).add(
+      FetchMenuData(resid),
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    data = BlocProvider.of<MenuBloc>(context).result;
+
     return ListView(
-      children: <Widget>[Menu()],
+      children: <Widget>[
+        BlocBuilder<MenuBloc, MenuState>(
+          builder: (context, state) {
+            if (state is LoadingMenu) {
+              return LinearProgressIndicator();
+            }
+            if (state is MenuLoaded) {
+              return Menu();
+            }
+            if (state is MenuFailedLoad) {
+              return Menu();
+            }
+            return RestaurantHome();
+          },
+        ),
+      ],
     );
   }
 }
@@ -36,13 +56,14 @@ class MenuPage extends StatelessWidget {
 class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    List<MenuModel> data = BlocProvider.of<MenuBloc>(context).result;
+
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
             children: <Widget>[
               SizedBox(
                 height: 10,
@@ -53,7 +74,7 @@ class Menu extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                 ),
                 SizedBox(
-                  width: 190,
+                  width: 230,
                 ),
                 MaterialButton(
                   onPressed: () {
@@ -72,48 +93,34 @@ class Menu extends StatelessWidget {
                   child: Icon(
                     Icons.add,
                     size: 24,
-                    color: Color(0xffFF8573),
+                    color: Colors.white,
                   ),
                 ),
               ]),
+              SizedBox(
+                height: 20,
+              ),
               Container(
-                  height: 40,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      category("Main Dishes", true),
-                      category("Snacks", false),
-                      category("Drink", false),
-                    ],
-                  )),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: data == null ? 0 : data.length,
+                  itemBuilder: (context, index) {
+                    return Menulist(data[index]);
+                  },
+                ),
+              ),
               SizedBox(
                 height: 10,
               ),
-              Menulist(MenuListData[0]),
-              Menulist(MenuListData[1]),
-              Menulist(MenuListData[2]),
             ],
           )),
     );
   }
 }
 
-Container category(String label, bool isActive) {
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 10),
-    child: Chip(
-      label: Text(
-        label,
-        style: TextStyle(color: Colors.white, fontSize: 16),
-      ),
-      backgroundColor: isActive ? Colors.orange : Colors.grey,
-    ),
-  );
-}
-
 class Menulist extends StatelessWidget {
-  final menulist;
-  Menulist(this.menulist);
+  final data;
+  Menulist(this.data);
 
   @override
   Widget build(BuildContext context) {
@@ -129,10 +136,12 @@ class Menulist extends StatelessWidget {
           Positioned(
             top: 10,
             left: 10,
-            child: Image.asset(
-              menulist['imgUrl'],
-              height: MediaQuery.of(context).size.height * 0.20,
+            child: CachedNetworkImage(
+              imageUrl:
+                  'https://czechoslovakian-scr.000webhostapp.com/uploads(Menu)/${data.image}',
+              height: MediaQuery.of(context).size.height * 0.15,
               width: MediaQuery.of(context).size.width * 0.30,
+              fit: BoxFit.fill,
             ),
           ),
           Padding(
@@ -141,70 +150,79 @@ class Menulist extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Row(children: <Widget>[
-                    Text(
-                      menulist['Menuname'],
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
+                    Container(
+                      height: 70,
+                      width: 160,
+                      child: Column(
+                        children: [
+                          Text(
+                            data.menuname,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Text(
+                            'RM ${data.price}',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    MaterialButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => EditMenu(),
-                            ));
-                      },
-                      color: Colors.green,
-                      shape: CircleBorder(
-                        side: BorderSide(
+                    Column(
+                      children: [
+                        MaterialButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EditMenu(data),
+                              ),
+                            );
+                          },
                           color: Colors.green,
-                        ),
-                      ),
-                      child: Icon(
-                        Icons.edit,
-                        size: 24,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ]),
-                  Text(
-                    menulist['Description'],
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        'RM ${menulist['Price']} ',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(width: 30),
-                      MaterialButton(
-                        onPressed: () {},
-                        color: Colors.red,
-                        shape: CircleBorder(
-                          side: BorderSide(
-                            color: Colors.red,
+                          shape: CircleBorder(
+                            side: BorderSide(
+                              color: Colors.green,
+                            ),
+                          ),
+                          child: Icon(
+                            Icons.edit,
+                            size: 24,
+                            color: Colors.white,
                           ),
                         ),
-                        child: Icon(
-                          Icons.delete,
-                          size: 24,
-                          color: Colors.white,
+                        SizedBox(
+                          height: 10,
                         ),
-                      ),
-                    ],
-                  ),
+                        MaterialButton(
+                          onPressed: () {
+                            var url =
+                                'https://czechoslovakian-scr.000webhostapp.com/delete_menu.php';
+                            http.post(url, body: {'id': data.menuid});
+                            Navigator.pop(context);
+                          },
+                          color: Colors.red,
+                          shape: CircleBorder(
+                            side: BorderSide(
+                              color: Colors.red,
+                            ),
+                          ),
+                          child: Icon(
+                            Icons.delete,
+                            size: 24,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ]),
                 ],
               ))
         ]));

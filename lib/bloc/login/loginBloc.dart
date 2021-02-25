@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:sdp_project/bloc/login/loginModel.dart';
-import 'package:sdp_project/bloc/login/loginRepo.dart';
+
+import 'loginModel.dart';
+import 'loginRepo.dart';
 
 class LoginEvent extends Equatable {
   @override
@@ -33,15 +34,27 @@ class LoggedInSuccess extends LoginState {
   final _email;
   final _username;
   final _usertype;
+  final _userid;
 
-  LoggedInSuccess(this._email, this._username, this._usertype);
+  LoggedInSuccess(
+    this._email,
+    this._username,
+    this._usertype,
+    this._userid,
+  );
 
   @override
-  List<Object> get props => [_email, _username, _usertype];
+  List<Object> get props => [
+        _email,
+        _username,
+        _usertype,
+        _userid,
+      ];
 
   LoginModel get getEmail => _email;
   LoginModel get getUsername => _username;
   LoginModel get getUsertype => _usertype;
+  LoginModel get getUserid => _userid;
 }
 
 class LoggedInFailed extends LoginState {}
@@ -56,10 +69,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   String _name;
   String _email;
   String _usertype;
+  String _userid;
 
   String get name => _name;
   String get email => _email;
   String get usertype => _usertype;
+  String get userid => _userid;
 
   LoginBloc(this.loginRepo) : super(NotLoggedIn());
 
@@ -72,10 +87,16 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         LoginModel result =
             await loginRepo.getData(event._email, event._password);
         if (result.rowCount == 1) {
-          yield LoggedInSuccess(result.email, result.username, result.usertype);
+          yield LoggedInSuccess(
+            result.email,
+            result.username,
+            result.usertype,
+            result.id,
+          );
           _email = result.email;
           _name = result.username;
           _usertype = result.usertype;
+          _userid = result.id;
         } else {
           if (result.rowCount != 1) {
             yield WrongCredentials();

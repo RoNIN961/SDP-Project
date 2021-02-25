@@ -1,0 +1,32 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
+import 'reservationModel.dart';
+
+class ReservationRepo {
+  Future<List<ReservationModel>> getData(String restaurantid) async {
+    final result = await http.post(
+      "https://czechoslovakian-scr.000webhostapp.com/fetch_reservation_based_on_restaurant.php",
+      body: {'Restaurant_ID': restaurantid},
+    );
+
+    if (result.statusCode != 200) throw Exception();
+
+    return parsedJson(result.body);
+  }
+
+  List<ReservationModel> parsedJson(final response) {
+    final jsonDecoded = json.decode(response);
+
+    final jsonMenu = jsonDecoded['data'];
+    List<ReservationModel> datalist = [];
+
+    for (int i = 0; i < jsonMenu.length; i++) {
+      datalist.add(
+        ReservationModel.fromJson(jsonMenu[i]),
+      );
+    }
+    return datalist;
+  }
+}

@@ -1,43 +1,70 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'reservation_detail.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-const Re_ListData = [
-  {
-    'Cus_Name': 'Lui Yan De',
-    'Reservation_Date': '8/1/2021',
-    'Email': 'luiyande5678@gmail.com',
-    'imgUrl': 'assets/Yukinoshita Yukino.jpg',
-    'bgColor': Color(0xFFEFEFEF),
-  },
-  {
-    'Cus_Name': 'Mirza',
-    'Reservation_Date': '9/1/2021',
-    'Email': 'mirz666a@gmail.com',
-    'imgUrl': 'assets/personicon.jpg',
-    'bgColor': Color(0xFFC8E6C9),
-  },
-  {
-    'Cus_Name': 'Lim Jia Rong',
-    'Reservation_Date': '10/1/2021',
-    'Email': 'lim222@gmail.com',
-    'imgUrl': 'assets/profile-picture.jpg',
-    'bgColor': Color(0xFFA5D6A7),
-  },
-];
+import '../../bloc/reservations/reservationBloc.dart';
+import '../../bloc/reservations/reservationModel.dart';
+import '../../bloc/restaurant/restaurantBloc.dart';
+import '../home/restaurant_home.dart';
 
-class ReservationPage extends StatelessWidget {
+class ReservationPage extends StatefulWidget {
+  @override
+  _ReservationPageState createState() => _ReservationPageState();
+}
+
+class _ReservationPageState extends State<ReservationPage> {
+  List<ReservationModel> data = [];
+
+  @override
+  void initState() {
+    String resid = BlocProvider.of<RestaurantBloc>(context).resid;
+    BlocProvider.of<ReservationBloc>(context).add(FetchReservationData(resid));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    data = BlocProvider.of<ReservationBloc>(context).result;
+
     return ListView(
-      children: <Widget>[Reservation()],
+      children: [
+        BlocBuilder<ReservationBloc, ReservationState>(
+          builder: (context, state) {
+            if (state is LoadingReservation) {
+              print(BlocProvider.of<ReservationBloc>(context).state);
+              return LinearProgressIndicator();
+            }
+            if (state is ReservationLoaded) {
+              return Reservation();
+            }
+            if (state is ReservationFailedLoad) {
+              return Center(
+                child: Text(
+                  'No Data Fetched',
+                  style: GoogleFonts.inter(fontSize: 30),
+                ),
+              );
+            }
+            return RestaurantHome();
+          },
+        ),
+      ],
     );
   }
 }
 
-class Reservation extends StatelessWidget {
+class Reservation extends StatefulWidget {
+  @override
+  _ReservationState createState() => _ReservationState();
+}
+
+class _ReservationState extends State<Reservation> {
   @override
   Widget build(BuildContext context) {
+    List<ReservationModel> data =
+        BlocProvider.of<ReservationBloc>(context).result;
+
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -47,23 +74,34 @@ class Reservation extends StatelessWidget {
           top: Radius.circular(50),
         ),
       ),
-      child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                'Reservation',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-              ),
-              ReservationListCard(Re_ListData[0]),
-              ReservationListCard(Re_ListData[1]),
-              ReservationListCard(Re_ListData[2]),
-            ],
-          )),
+      child: ListView(
+        shrinkWrap: true,
+        children: [
+          Padding(
+              padding: EdgeInsets.symmetric(horizontal: 2),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Reservation',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                  ),
+                  Container(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: data == null ? 0 : data.length,
+                      itemBuilder: (context, index) {
+                        return ReservationListCard(data[index]);
+                      },
+                    ),
+                  )
+                ],
+              )),
+        ],
+      ),
     );
   }
 }
@@ -75,7 +113,7 @@ class ReservationListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 20),
+      margin: EdgeInsets.symmetric(vertical: 5),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height / 4 - 20,
       decoration: BoxDecoration(
@@ -88,7 +126,7 @@ class ReservationListCard extends StatelessWidget {
             top: 10,
             right: 10,
             child: Image.asset(
-              reservationlist['imgUrl'],
+              'assets/personicon.jpg',
               height: MediaQuery.of(context).size.height * 0.20,
               width: MediaQuery.of(context).size.width * 0.30,
             ),
@@ -99,42 +137,42 @@ class ReservationListCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  reservationlist['Cus_Name'],
+                  reservationlist.username,
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    fontSize: 20,
+                    fontSize: 24,
                   ),
                 ),
                 SizedBox(
                   height: 5,
                 ),
                 Text(
-                  reservationlist['Reservation_Date'],
+                  reservationlist.date,
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 22,
                     fontWeight: FontWeight.w300,
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
-                MaterialButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  ReservationDetailScreen(reservationlist)));
-                    },
-                    color: Color(0xff4E2958),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Text(
-                      'Reservation Detail',
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    )),
+                Text(
+                  reservationlist.time,
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w200,
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  'Pax: ${reservationlist.pax}',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
               ],
             ),
           )

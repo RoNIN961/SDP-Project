@@ -1,7 +1,14 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sdp_project/bloc/login/loginBloc.dart';
+import 'package:sdp_project/bloc/custotal/custotalBloc.dart';
+
+import '../bloc/homerecipe/homerecipeBloc.dart';
+import '../bloc/homerestaurant/homerestaurantBloc.dart';
+import '../bloc/ingredient/ingredientBloc.dart';
+import '../bloc/instruction/instructionBloc.dart';
+import '../bloc/login/loginBloc.dart';
+import '../bloc/recipe/recipeBloc.dart';
 
 class CustomLogo extends StatelessWidget {
   CustomLogo({@required this.onPressed, this.image});
@@ -176,6 +183,7 @@ class CustomDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     String username = BlocProvider.of<LoginBloc>(context).name;
     String useremail = BlocProvider.of<LoginBloc>(context).email;
+    String userid = BlocProvider.of<LoginBloc>(context).userid;
 
     return ListView(
       padding: EdgeInsets.all(0),
@@ -193,18 +201,18 @@ class CustomDrawer extends StatelessWidget {
           title: Text("My recipes", style: _menutextcolor),
           selected: true,
           onTap: () {
+            BlocProvider.of<RecipeBloc>(context).add(
+              FetchRecipeData(userid),
+            );
+            BlocProvider.of<IngredientBloc>(context).add(
+              ResetIngredientData(),
+            );
+            BlocProvider.of<InstructionBloc>(context).add(
+              ResetInstructionData(),
+            );
             Navigator.pushNamed(context, '/user_recipes');
           },
         ),
-        ListTile(
-          trailing: IconTheme(
-            data: _iconcolor,
-            child: Icon(Icons.notifications),
-          ),
-          title: Text("Notification", style: _menutextcolor),
-          onTap: () {},
-        ),
-        Divider(),
         ListTile(
           trailing: IconTheme(
             data: _iconcolor,
@@ -212,6 +220,8 @@ class CustomDrawer extends StatelessWidget {
           ),
           title: Text("Account", style: _menutextcolor),
           onTap: () {
+            BlocProvider.of<CusTotalBloc>(context)
+                .add(FetchCusTotalData(userid));
             Navigator.pushNamed(context, '/profile');
           },
         ),
@@ -223,81 +233,20 @@ class CustomDrawer extends StatelessWidget {
           title: Text("Logout", style: _menutextcolor),
           onTap: () {
             BlocProvider.of<LoginBloc>(context).add(ResetLoginData());
+            BlocProvider.of<HomeRestaurantBloc>(context)
+                .add(ResetHomeRestaurantData());
+            BlocProvider.of<HomeRecipeBloc>(context).add(ResetHomeRecipeData());
+            BlocProvider.of<RecipeBloc>(context).add(ResetRecipeData());
+            BlocProvider.of<IngredientBloc>(context).add(
+              ResetIngredientData(),
+            );
+            BlocProvider.of<InstructionBloc>(context).add(
+              ResetInstructionData(),
+            );
             Navigator.pushNamed(context, '/');
           },
         ),
       ],
-    );
-  }
-}
-
-class CategoryDropDownButton extends StatefulWidget {
-  @override
-  _CategoryDropDownButtonState createState() => _CategoryDropDownButtonState();
-  CategoryDropDownButton({Key key}) : super(key: key);
-}
-
-class _CategoryDropDownButtonState extends State<CategoryDropDownButton> {
-  String dropdownValue = 'Please Choose One';
-  String holder = '';
-
-  getCategory() {
-    return setState(() {
-      holder = dropdownValue;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: dropdownValue,
-      icon: Icon(Icons.arrow_drop_down),
-      iconSize: 24,
-      elevation: 16,
-      style: TextStyle(color: Colors.deepOrange),
-      underline: Container(height: 2, width: 2, color: Colors.deepOrange),
-      onChanged: (String categoryValue) {
-        setState(() {
-          dropdownValue = categoryValue;
-        });
-      },
-      items: <String>['Please Choose One', 'Halal', 'Non-Halal']
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-    );
-  }
-}
-
-class PaxDropDownButton extends StatefulWidget {
-  @override
-  _PaxDropDownButtonState createState() => _PaxDropDownButtonState();
-}
-
-class _PaxDropDownButtonState extends State<PaxDropDownButton> {
-  String dropdownValue = 'One';
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: dropdownValue,
-      icon: Icon(Icons.arrow_drop_down),
-      iconSize: 24,
-      elevation: 16,
-      style: TextStyle(color: Colors.deepOrange),
-      underline: Container(height: 2, width: 2, color: Colors.deepOrange),
-      onChanged: (String newValue) {
-        setState(() {
-          dropdownValue = newValue;
-        });
-      },
-      items: <String>['One', 'Two', 'Three', 'Four']
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(value: value, child: Text(value));
-      }).toList(),
     );
   }
 }

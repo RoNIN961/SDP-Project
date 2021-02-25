@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:sdp_project/screens(customer)/recipe/recipe.dart';
-import 'package:sdp_project/screens(customer)/recipe/upload_recipe.dart';
-import 'package:sdp_project/theme/custom.dart';
-import 'homecontent.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sdp_project/bloc/homerecipe/homerecipeBloc.dart';
+import 'package:sdp_project/bloc/homerestaurant/homerestaurantBloc.dart';
+
+import '../../theme/custom.dart';
+import '../recipe/recipe.dart';
+import '../recipe/upload_recipe.dart';
 import '../restaurant/restaurant.dart';
+import 'homecontent.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -21,14 +25,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(context) {
     return Scaffold(
-      appBar: AppBar(title: Text('My Flutter App'), actions: <Widget>[
-        IconButton(
-          icon: Icon(Icons.search),
-          onPressed: () {
-            Navigator.pushNamed(context, '/search');
-          },
-        )
-      ]),
+      appBar: AppBar(
+          title: Center(
+            child: Image(
+              image: AssetImage('assets/logo2.png'),
+              fit: BoxFit.cover,
+              height: 93,
+            ),
+          ),
+          actions: <Widget>[]),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped,
@@ -58,6 +63,12 @@ class _HomePageState extends State<HomePage> {
 
   void onTabTapped(int index) {
     setState(() {
+      BlocProvider.of<HomeRecipeBloc>(context).add(
+        FetchHomeRecipeData(null),
+      );
+      BlocProvider.of<HomeRestaurantBloc>(context).add(
+        FetchHomeRestaurantData(null),
+      );
       _currentIndex = index;
     });
   }

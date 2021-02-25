@@ -1,67 +1,69 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:sdp_project/bloc/menu/menuBloc.dart';
+import 'package:sdp_project/bloc/restaurant/restaurantBloc.dart';
 
-var reviewdetail = [
-  {
-    'User': 'Lui Yan De',
-    'imgUrl': 'assets/Yukinoshita Yukino.jpg',
-    'feedback': 'Good!',
-    'rating': 4.6
-  },
-  {
-    'User': 'Lui Yan Ying',
-    'imgUrl': 'assets/Yukinoshita Yukino.jpg',
-    'feedback': 'Great!',
-    'rating': 4.6
-  },
-  {
-    'User': 'Lui Yan Xiu',
-    'imgUrl': 'assets/Yukinoshita Yukino.jpg',
-    'feedback': 'Perfect!',
-    'rating': 4.6
-  },
-  {
-    'User': 'Lui Yan Jing',
-    'imgUrl': 'assets/Yukinoshita Yukino.jpg',
-    'feedback': 'Perfect!',
-    'rating': 4.6
-  },
-];
+import '../../bloc/review/reviewBloc.dart';
+import '../../bloc/review/reviewModel.dart';
+import '../home/restaurant_home.dart';
 
-class ReviewDetailScreen extends StatelessWidget {
+class ReviewDetailScreen extends StatefulWidget {
   final reviewlist;
   ReviewDetailScreen(this.reviewlist);
 
   @override
+  _ReviewDetailScreenState createState() =>
+      _ReviewDetailScreenState(reviewlist);
+}
+
+class _ReviewDetailScreenState extends State<ReviewDetailScreen> {
+  List<ReviewModel> data = [];
+  final reviewlist;
+
+  _ReviewDetailScreenState(this.reviewlist);
+  @override
   Widget build(BuildContext context) {
+    data = BlocProvider.of<ReviewBloc>(context).result;
+
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: 20),
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Stack(
-          children: <Widget>[
-            Container(
-                height: MediaQuery.of(context).size.height / 3 + 20,
-                width: MediaQuery.of(context).size.width,
-                child: Stack(fit: StackFit.expand, children: <Widget>[
-                  Image.asset(
-                    reviewlist['imgUrl'],
-                    fit: BoxFit.fill,
-                  )
-                ])),
-            Positioned(
-              top: 5,
-              left: 10,
-              child: IconButton(
-                  icon: Icon(Icons.arrow_back_ios, color: Colors.deepOrange),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  }),
-            ),
-            Positioned(
-              top: MediaQuery.of(context).size.height / 3 - 30,
-              child: Container(
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.symmetric(vertical: 20),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Stack(
+            children: <Widget>[
+              Container(
+                  height: MediaQuery.of(context).size.height / 3 + 20,
+                  width: MediaQuery.of(context).size.width,
+                  child: Stack(fit: StackFit.expand, children: <Widget>[
+                    CachedNetworkImage(
+                      imageUrl:
+                          'https://czechoslovakian-scr.000webhostapp.com/uploads(Menu)/${reviewlist.image}',
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      width: MediaQuery.of(context).size.width * 0.30,
+                      fit: BoxFit.fill,
+                    ),
+                  ])),
+              Positioned(
+                top: 5,
+                left: 10,
+                child: IconButton(
+                    iconSize: 30,
+                    icon: Icon(Icons.arrow_back_ios, color: Colors.deepOrange),
+                    onPressed: () {
+                      BlocProvider.of<MenuBloc>(context).add(
+                        FetchMenuData(
+                            BlocProvider.of<RestaurantBloc>(context).resid),
+                      );
+                      Navigator.pop(context);
+                    }),
+              ),
+              Positioned(
+                top: MediaQuery.of(context).size.height / 3 - 30,
+                child: Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
                   decoration: BoxDecoration(
@@ -71,29 +73,57 @@ class ReviewDetailScreen extends StatelessWidget {
                     ),
                   ),
                   child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            SizedBox(height: 20),
-                            Text(
-                              'Review',
-                              style: TextStyle(
-                                fontSize: 28,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(height: 5),
-                            UserReview(reviewdetail[0]),
-                            UserReview(reviewdetail[1]),
-                            UserReview(reviewdetail[2]),
-                            UserReview(reviewdetail[3])
-                          ]))),
-            ),
-          ],
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(height: 20),
+                        Text(
+                          'Review',
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 5),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: data == null ? 0 : data.length,
+                          itemBuilder: (context, index) {
+                            BlocBuilder<ReviewBloc, ReviewState>(
+                              builder: (context, state) {
+                                if (state is LoadingReview) {
+                                  return LinearProgressIndicator();
+                                }
+                                if (state is ReviewLoaded) {
+                                  return ReviewDetailScreen(
+                                    reviewlist,
+                                  );
+                                }
+                                if (state is ReviewFailedLoad) {
+                                  return Center(
+                                    child: Text(
+                                      'Failed To Load',
+                                      style: GoogleFonts.inter(fontSize: 30),
+                                    ),
+                                  );
+                                }
+                                return RestaurantHome();
+                              },
+                            );
+                            return UserReview(data[index]);
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-    ));
+    );
   }
 }
 
@@ -123,7 +153,7 @@ class UserReview extends StatelessWidget {
               top: 0,
               left: 10,
               child: Image.asset(
-                review['imgUrl'],
+                'assets/personicon.jpg',
                 height: MediaQuery.of(context).size.height * 0.125,
                 width: MediaQuery.of(context).size.width * 0.2,
               ),
@@ -134,7 +164,7 @@ class UserReview extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    review['User'],
+                    review.username.toString(),
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 20,
@@ -154,7 +184,7 @@ class UserReview extends StatelessWidget {
                     ),
                     SizedBox(width: 5),
                     Text(
-                      '${review['rating']}',
+                      review.rating.toString(),
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w300,
@@ -162,14 +192,11 @@ class UserReview extends StatelessWidget {
                     ),
                   ]),
                   Text(
-                    review['feedback'],
+                    review.feedback.toString(),
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w300,
                     ),
-                  ),
-                  SizedBox(
-                    height: 0,
                   ),
                 ],
               ),

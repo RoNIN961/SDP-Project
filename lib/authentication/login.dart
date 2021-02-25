@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../bloc/login/loginBloc.dart';
 
-import 'package:sdp_project/theme/custom.dart';
+import '../bloc/admin/adminBloc.dart';
+import '../bloc/homerecipe/homerecipeBloc.dart';
+import '../bloc/homerestaurant/homerestaurantBloc.dart';
+import '../bloc/login/loginBloc.dart';
+import '../bloc/restaurant/restaurantBloc.dart';
+import '../theme/custom.dart';
 
 class LoginPage extends StatelessWidget {
   final emailController = TextEditingController();
@@ -10,8 +14,10 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(context) {
+    // ignore: close_sinks
     final loginBloc = BlocProvider.of<LoginBloc>(context);
-    String usertype = BlocProvider.of<LoginBloc>(context).usertype;
+    String usertype;
+
     final logo =
         CustomLogo(onPressed: null, image: Image.asset('assets/logo2.png'));
     final inputEmail = CustomTextField(
@@ -32,7 +38,6 @@ class LoginPage extends StatelessWidget {
       onPressed: () {
         loginBloc
             .add(FetchLoginData(emailController.text, passwordController.text));
-        print(usertype);
       },
       text: 'login',
     );
@@ -68,12 +73,26 @@ class LoginPage extends StatelessWidget {
             BlocConsumer<LoginBloc, LoginState>(
               listener: (context, state) {
                 if (state is LoggedInSuccess) {
-                  if (usertype == 'Customer') {
+                  usertype = loginBloc.usertype;
+
+                  if (usertype == 'Admin') {
+                    BlocProvider.of<AdminBloc>(context).add(
+                      FetchAdminData(null),
+                    );
+                    Navigator.pushNamed(context, '/admin_home');
+                  } else if (usertype == 'Customer') {
+                    BlocProvider.of<HomeRecipeBloc>(context).add(
+                      FetchHomeRecipeData(null),
+                    );
+                    BlocProvider.of<HomeRestaurantBloc>(context).add(
+                      FetchHomeRestaurantData(null),
+                    );
                     Navigator.pushNamed(context, '/home');
                   } else if (usertype == 'Restaurant') {
+                    BlocProvider.of<RestaurantBloc>(context).add(
+                      FetchRestaurantData(emailController.text),
+                    );
                     Navigator.pushNamed(context, '/restaurant_home');
-                  } else if (usertype == 'Admin') {
-                    Navigator.pushNamed(context, '/admin_home');
                   }
                 }
                 if (state is WrongCredentials) {

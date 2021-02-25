@@ -5,10 +5,21 @@ class LoginModel {
   final username;
   final usertype;
 
-  LoginModel(this.id, this.rowCount, this.email, this.username, this.usertype);
+  LoginModel(
+    this.id,
+    this.rowCount,
+    this.email,
+    this.username,
+    this.usertype,
+  );
 
   factory LoginModel.fromJson(Map<String, dynamic> json) {
-    return LoginModel(json['User_ID'], json['rowCount'], json['Email'],
-        json['Username'], json['Usertype']);
+    return LoginModel(
+      json['User_ID'],
+      json['rowCount'],
+      json['Email'],
+      json['Username'],
+      json['Usertype'],
+    );
   }
 }

@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:sdp_project/bloc/recipe/recipeRepo.dart';
-import 'package:sdp_project/bloc/recipe/recipeModel.dart';
+
+import 'recipeModel.dart';
+import 'recipeRepo.dart';
 
 class RecipeEvent extends Equatable {
   @override
@@ -9,16 +10,12 @@ class RecipeEvent extends Equatable {
 }
 
 class FetchRecipeData extends RecipeEvent {
-  final _title;
-  final _author;
+  final _userid;
 
-  FetchRecipeData(this._title, this._author);
+  FetchRecipeData(this._userid);
 
   @override
-  List<Object> get props => [
-        _title,
-        _author,
-      ];
+  List<Object> get props => [_userid];
 }
 
 class ResetRecipeData extends RecipeEvent {}
@@ -28,33 +25,31 @@ class RecipeState extends Equatable {
   List<Object> get props => [];
 }
 
-class NotLoaded extends RecipeState {}
+class NotFetched extends RecipeState {}
 
 class LoadingRecipe extends RecipeState {}
 
-class LoadedSuccess extends RecipeState {
-  final _result;
+class RecipeLoaded extends RecipeState {
+  final List<RecipeModel> _result;
 
-  LoadedSuccess(this._result);
+  RecipeLoaded(this._result);
 
   @override
   List<Object> get props => [_result];
 
-  String get result => _result;
+  List<RecipeModel> get getResult => _result;
 }
 
-class LoggedInFailed extends RecipeState {}
+class RecipeFailedLoad extends RecipeState {}
 
 class RecipeBloc extends Bloc<RecipeEvent, RecipeState> {
   RecipeRepo recipeRepo;
-
-  RecipeModel recipeModel;
 
   List<RecipeModel> _result;
 
   List<RecipeModel> get result => _result;
 
-  RecipeBloc(this.recipeRepo) : super(NotLoaded());
+  RecipeBloc(this.recipeRepo) : super(NotFetched());
 
   @override
   Stream<RecipeState> mapEventToState(RecipeEvent event) async* {
@@ -62,19 +57,18 @@ class RecipeBloc extends Bloc<RecipeEvent, RecipeState> {
       yield LoadingRecipe();
 
       try {
-        _result = await recipeRepo.getData(event._author, event._title);
-        if (result.length == 1) {
-          yield LoadedSuccess(result);
-        } else {
-          if (result.length != 1) {
-            yield NotLoaded();
-          }
-        }
+        _result = await recipeRepo.getData(event._userid);
+        if (result.length >= 1) {
+          yield RecipeLoaded(_result);
+          print(_result);
+          print(result);
+        } else {}
       } catch (_) {
-        yield LoggedInFailed();
+        print(_);
+        yield RecipeFailedLoad();
       }
     } else if (event is ResetRecipeData) {
-      yield NotLoaded();
+      yield NotFetched();
     }
   }
 }

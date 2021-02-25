@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sdp_project/theme/custom.dart';
+
+import '../theme/custom.dart';
 
 class ResetPasswordPage extends StatelessWidget {
   @override
